@@ -16,13 +16,22 @@ type MapProps = {
 export const Map: React.FC<MapProps> = React.memo((props) => {
   const { defaultCenter, defaultZoom } = props;
 
-  const renderedMarkers = hardCodedPositions.map((position, index) => (
-    <MapMarker position={position}>{index}</MapMarker>
+  const renderedMarkers = hardCodedPositions.map((position) => (
+    <MapMarker position={position}>{position.name}</MapMarker>
   ));
 
   return (
     <>
-      <AuthConsumer />
+      <div
+        style={{
+          position: "absolute",
+          left: "1rem",
+          bottom: "1rem",
+          zIndex: 1000,
+        }}
+      >
+        <AuthConsumer />
+      </div>
       <LeafMap
         center={[defaultCenter.latitude, defaultCenter.longitude]}
         zoom={defaultZoom}

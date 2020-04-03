@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 
 export const FacebookLoginButton: React.FC = React.memo(() => {
   const handleClick = () => {
@@ -20,5 +22,12 @@ export const FacebookLoginButton: React.FC = React.memo(() => {
       });
   };
 
-  return <button onClick={handleClick}>Logga in med Ansiktsbok</button>;
+  return (
+    <FontAwesomeIcon
+      size="2x"
+      icon={faFacebookSquare}
+      onClick={handleClick}
+      style={{ color: "#4267B2" }}
+    />
+  );
 });
