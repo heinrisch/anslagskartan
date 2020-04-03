@@ -1,15 +1,15 @@
 import React, { memo, useState } from "react";
-import { Map as LeafMap, TileLayer, Marker, Popup } from "react-leaflet";
+import { Map as LeafMap, TileLayer, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import {FirebaseAuthConsumer} from "@react-firebase/auth";
 import * as firebase from "firebase/app";
+import { MapPosition } from "./models/mapPosition";
+import { MapMarker } from "./mapMarker";
 
 type MapProps = {
-  readonly defaultCenter: {
-    readonly lat: number;
-    readonly lng: number;
-  };
+  readonly defaultCenter: MapPosition;
   readonly defaultZoom: number;
+  readonly markers: MapPosition[];
 };
 
 export const Map: React.FC<MapProps> = memo((props) => {
@@ -116,7 +116,7 @@ export const Map: React.FC<MapProps> = memo((props) => {
       </FirebaseAuthConsumer>
       </div>
       <LeafMap
-        center={[defaultCenter.lat, defaultCenter.lng]}
+        center={[defaultCenter.latitude, defaultCenter.longitude]}
         zoom={defaultZoom}
         style={{ width: "100%", height: "100vh" }}
       >
