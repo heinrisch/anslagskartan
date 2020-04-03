@@ -1,6 +1,8 @@
 import React, { memo, useState } from "react";
 import { Map as LeafMap, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
+import {FirebaseAuthConsumer} from "@react-firebase/auth";
+import * as firebase from "firebase/app";
 
 type MapProps = {
   readonly defaultCenter: {
@@ -44,6 +46,37 @@ export const Map: React.FC<MapProps> = memo((props) => {
     [59.33584,18.0793]
   ];
 
+  const loginButton = (
+      <button
+          onClick={() => {
+            const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+            firebase.auth().signInWithPopup(facebookAuthProvider).then(function(result) {
+              const credential = result.credential;
+              console.log('got credential', credential);
+              const user = result.user;
+              console.log('got user', user)
+            }).catch(function(error) {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              var email = error.email;
+              var credential = error.credential;
+              console.log('got error', errorCode, errorMessage, email, credential, error)
+            });
+          }}
+      >
+        Logga in med Ansiktsbok
+      </button>
+  );
+
+  const logoutButton = (
+      <button
+          onClick={() => {
+            firebase.auth().signOut();
+          }}
+      >
+        Logga ut
+      </button>
+  );
 
   return (
     <>
@@ -71,6 +104,17 @@ export const Map: React.FC<MapProps> = memo((props) => {
         </option>
       </select>
 
+      <div>
+      <FirebaseAuthConsumer>
+        {({ isSignedIn, user, providerId }) => {
+                if(isSignedIn) {
+                  return (<div>Inloggad som: {user['displayName']} {logoutButton}</div>);
+                } else {
+                  return (loginButton)
+                }
+        }}
+      </FirebaseAuthConsumer>
+      </div>
       <LeafMap
         center={[defaultCenter.lat, defaultCenter.lng]}
         zoom={defaultZoom}
