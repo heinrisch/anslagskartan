@@ -1,12 +1,12 @@
-import React, { memo } from "react";
-import { MapPosition } from "./models/mapPosition";
+import React from "react";
 import { Marker, Popup } from "react-leaflet";
+import { MapPosition } from "./models/mapPosition";
 
 export type MapMarkerProps = {
   position: MapPosition;
 };
 
-export const MapMarker: React.FC<MapMarkerProps> = memo((props) => {
+export const MapMarker: React.FC<MapMarkerProps> = React.memo((props) => {
   const { children, position } = props;
 
   return (

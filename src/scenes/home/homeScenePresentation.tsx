@@ -1,7 +1,7 @@
-import React, { memo } from "react";
+import React from "react";
 import { Map } from "../../components/map/map";
 
-export const HomeScenePresentation: React.FC = memo(() => {
+export const HomeScenePresentation: React.FC = React.memo(() => {
   return (
     <Map
       defaultCenter={{ latitude: 59.310519, longitude: 18.057875 }}
