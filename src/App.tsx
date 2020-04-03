@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import SimpleMap from "./SimpleMap";
+import GMap from "./Map";
 
 function App() {
   return (
     <div className="App">
-      <SimpleMap/>
+      <GMap/>
     </div>
   );
 }
