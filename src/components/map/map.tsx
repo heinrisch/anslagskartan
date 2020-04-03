@@ -20,6 +20,31 @@ export const Map: React.FC<MapProps> = memo((props) => {
     setTileType(event.target.value);
   };
 
+  const pois = [
+    [59.29374,18.05942],
+    [59.29628,18.05375],
+    [59.29102,18.05719],
+    [59.30994,18.05736],
+    [59.31134,18.05307],
+    [59.33245,18.01567],
+    [59.3335,18.02048],
+    [59.33315,18.03731],
+    [59.35512,17.94724],
+    [59.40612,18.03671],
+    [59.4042,18.04805],
+    [59.40036,18.04564],
+    [59.40542,18.02607],
+    [59.36523,18.13665],
+    [59.36925,18.14489],
+    [59.33689,18.08754],
+    [59.33706,18.08239],
+    [59.33566,18.08548],
+    [59.33531,18.09097],
+    [59.33461,18.08445],
+    [59.33584,18.0793]
+  ];
+
+
   return (
     <>
       <select onChange={handleChange}>
@@ -56,15 +81,13 @@ export const Map: React.FC<MapProps> = memo((props) => {
           url={tileType}
         />
         <MarkerClusterGroup>
-          <Marker position={[defaultCenter.lat, defaultCenter.lng]}>
-            <Popup>1</Popup>
-          </Marker>
-          <Marker position={[defaultCenter.lat - 1, defaultCenter.lng - 1]}>
-            <Popup>2</Popup>
-          </Marker>
-          <Marker position={[defaultCenter.lat + 1, defaultCenter.lng + 1]}>
-            <Popup>3</Popup>
-          </Marker>
+          { pois.map((locationFuckJs, index) => {
+            return (
+                <Marker position={[locationFuckJs[0], locationFuckJs[1]]}>
+                <Popup>{index}</Popup>
+              </Marker>
+            )
+          })}
         </MarkerClusterGroup>
       </LeafMap>
     </>

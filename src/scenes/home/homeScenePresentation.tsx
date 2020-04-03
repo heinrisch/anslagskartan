@@ -8,7 +8,7 @@ export const HomeScenePresentation: React.FC = memo(() => {
   const renderedMap = useGMaps ? (
     <GMap />
   ) : (
-    <Map defaultCenter={{ lat: 51.505, lng: -0.09 }} defaultZoom={13} />
+    <Map defaultCenter={{  lat: 59.310519, lng: 18.057875 }} defaultZoom={13} />
   );
 
   return (
