@@ -16,12 +16,24 @@ type HomeSceneProps = {
   loadingPosts: boolean;
 };
 
+type MenuType = "list" | "add";
+
 export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
   (props) => {
     const { posts, loadingPosts } = props;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const [menuType, setMenuType] = useState<MenuType>("add");
 
-    const handleMenuOpenClick = () => setMenuIsOpen(!menuIsOpen);
+    const handleMenuItemListOpenClick = () => {
+      setMenuType("list");
+      setMenuIsOpen(!menuIsOpen);
+    };
+
+    const handleMenuAddMenuItemOpenClick = () => {
+      setMenuType("add");
+      setMenuIsOpen(!menuIsOpen);
+    };
+
     const handleMenuStateChange = (state: MenuState) =>
       setMenuIsOpen(state.isOpen);
 
@@ -33,8 +45,7 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
           onStateChange={handleMenuStateChange}
           noOverlay
         >
-          <AddMenuItem />
-          <SideMenuItemList posts={posts} />
+          <MenuContent posts={posts} menuType={menuType} />
         </Menu>
 
         <main id="page-wrap">
@@ -45,8 +56,9 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
           />
           <ActionButtonList>
             <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
-              <AuthConsumer /> <OpenMenuButton onClick={handleMenuOpenClick} />{" "}
-              <AddMenuItemButton onClick={() => ""} />
+              <AuthConsumer />{" "}
+              <OpenMenuButton onClick={handleMenuItemListOpenClick} />{" "}
+              <AddMenuItemButton onClick={handleMenuAddMenuItemOpenClick} />
             </Paper>{" "}
             <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
               <LoadingButton loading={loadingPosts} />
@@ -57,6 +69,23 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
     );
   }
 );
+
+export const MenuContent: React.FC<{ menuType: MenuType; posts: Post[] }> = (
+  props
+) => {
+  const { menuType, posts } = props;
+
+  switch (menuType) {
+    case "add":
+      return <AddMenuItem />;
+
+    case "list":
+      return <SideMenuItemList posts={posts} />;
+
+    default:
+      throw new Error("What menu type? " + menuType);
+  }
+};
 
 export const ActionButtonList: React.FC = (props) => {
   const { children } = props;

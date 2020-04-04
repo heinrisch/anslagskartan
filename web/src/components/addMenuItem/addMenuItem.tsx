@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, OnSubmit } from "react-hook-form";
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField, Typography } from "@material-ui/core";
 
 export const AddMenuItem: React.FC = React.memo(() => {
   const { register, handleSubmit, errors } = useForm();
@@ -11,14 +11,30 @@ export const AddMenuItem: React.FC = React.memo(() => {
 
   return (
     <div style={{ padding: "1rem" }}>
+      <Typography variant="h5" gutterBottom>
+        Skapa en lapp
+      </Typography>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           name="description"
           ref={register}
           label="Beskrivning"
-          rows={2}
+          variant="outlined"
+          rows={3}
           fullWidth
           multiline
+        />
+
+        <br />
+        <br />
+
+        <TextField
+          name="address"
+          ref={register}
+          label="Adress"
+          variant="outlined"
+          fullWidth
         />
 
         <br />
