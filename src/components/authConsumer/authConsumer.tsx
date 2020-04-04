@@ -7,8 +7,7 @@ import { ChildFunction } from "@react-firebase/auth/dist/types";
 export const AuthConsumer: React.FC = React.memo(() => {
   const renderMethod: ChildFunction = ({ isSignedIn, user, providerId }) => {
     if (isSignedIn) return <LoginInfo displayName={user["displayName"]} />;
-    return <LoginInfo displayName="" />;
-    // return <FacebookLoginButton />;
+    return <FacebookLoginButton />;
   };
 
   return <FirebaseAuthConsumer>{renderMethod}</FirebaseAuthConsumer>;

@@ -27,7 +27,7 @@ export const FacebookLoginButton: React.FC = React.memo(() => {
       size="2x"
       icon={faFacebookSquare}
       onClick={handleClick}
-      style={{ color: "#4267B2" }}
+      style={{ color: "#4267B2", cursor: "pointer" }}
     />
   );
 });

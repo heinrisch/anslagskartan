@@ -10,6 +10,10 @@ export const LoginInfo: React.FC<LoginInfoProps> = React.memo((props) => {
   const { displayName } = props;
 
   return (
-    <FontAwesomeIcon icon={faIdCard} size="2x" style={{ color: "#228B22" }} />
+    <FontAwesomeIcon
+      icon={faIdCard}
+      size="2x"
+      style={{ color: "#000000", cursor: "pointer" }}
+    />
   );
 });
