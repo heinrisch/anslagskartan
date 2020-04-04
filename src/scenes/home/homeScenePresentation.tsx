@@ -22,6 +22,7 @@ export const HomeScenePresentation: React.FC = React.memo(() => {
         pageWrapId="page-wrap"
         isOpen={menuIsOpen}
         onStateChange={handleMenuStateChange}
+        noOverlay
       >
         {renderedMenuItems}
       </Menu>
