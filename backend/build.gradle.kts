@@ -12,11 +12,12 @@ application {
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.71")
 
     // Web
     implementation("com.sparkjava:spark-core:2.8.0")
@@ -37,7 +38,37 @@ dependencies {
 
     // Logging
     implementation("org.slf4j:slf4j-simple:1.7.21")
+
+    // Tests
+    testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.5.2")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.5.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testImplementation("com.github.kittinunf.fuel:fuel:1.13.0")
+    testImplementation("com.github.kittinunf.fuel:fuel-gson:1.13.0")
 }
+
+val allEnvVariables
+    get() = File("$projectDir/.env")
+        .readLines()
+        .filter { it.isNotBlank() }
+        .map { it.split("=") }
+        .filter { System.getenv(it.component1()).isNullOrBlank() }
+        .map { it.component1() to it.component2() }
+        .toMap()
+
+tasks {
+    withType<Test> {
+        useJUnitPlatform()
+
+        environment(allEnvVariables)
+
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
+    }
+}
+
 
 tasks {
     compileKotlin {
