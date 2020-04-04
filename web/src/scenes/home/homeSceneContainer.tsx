@@ -6,10 +6,8 @@ import { ApiClient } from "../../utils/ApiClient";
 export const HomeSceneContainer: React.FC = React.memo(() => {
   const { state } = React.useContext(AppContext);
 
-  new ApiClient().ping().then((a) => console.log("ping", a));
-  new ApiClient().allTask().then((a) => console.log("alltasks", a));
-
-  console.log(state);
+  // new ApiClient().ping().then((a) => console.log("ping", a));
+  // new ApiClient().allTask().then((a) => console.log("alltasks", a));
 
   return (
     <HomeScenePresentation

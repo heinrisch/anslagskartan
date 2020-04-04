@@ -24,6 +24,8 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [menuType, setMenuType] = useState<MenuType>("add");
 
+    console.log("posts", posts);
+
     const handleMenuItemListOpenClick = () => {
       setMenuType("list");
       setMenuIsOpen(!menuIsOpen);

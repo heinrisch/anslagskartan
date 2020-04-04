@@ -3,7 +3,7 @@ dependencies:
   '@fortawesome/free-brands-svg-icons': 5.13.0
   '@fortawesome/free-solid-svg-icons': 5.13.0
   '@fortawesome/react-fontawesome': 0.1.9_5fb3140108e238adedb9f9eac67c3a9d
-  '@material-ui/core': 4.9.8_4804f3dd1371563ed44bf63947a46c9f
+  '@material-ui/core': 4.9.9_4804f3dd1371563ed44bf63947a46c9f
   '@react-firebase/auth': 0.2.10_firebase@7.13.2+react@16.13.1
   '@testing-library/jest-dom': 4.2.4
   '@testing-library/react': 9.5.0_react-dom@16.13.1+react@16.13.1
@@ -13,12 +13,14 @@ dependencies:
   '@types/react': 16.9.32
   '@types/react-burger-menu': 2.6.1
   '@types/react-dom': 16.9.6
+  '@types/react-geosuggest': 2.7.10
   firebase: 7.13.2
   google-map-react: 1.1.7_react-dom@16.13.1+react@16.13.1
   leaflet: 1.6.0
   react: 16.13.1
   react-burger-menu: 2.6.13_react-dom@16.13.1+react@16.13.1
   react-dom: 16.13.1_react@16.13.1
+  react-geosuggest: 2.12.1_react-dom@16.13.1+react@16.13.1
   react-hook-form: 5.2.0_react@16.13.1
   react-leaflet: 2.6.3_6895b39fe9dd1903c6d13594b3161b6d
   react-leaflet-markercluster: 2.0.0_react-dom@16.13.1+react@16.13.1
@@ -1630,7 +1632,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ioP5M1x4YO/6Lu7KJUMyqgru2PI=
-  /@material-ui/core/4.9.8_4804f3dd1371563ed44bf63947a46c9f:
+  /@material-ui/core/4.9.9_4804f3dd1371563ed44bf63947a46c9f:
     dependencies:
       '@babel/runtime': 7.9.2
       '@material-ui/styles': 4.9.6_4804f3dd1371563ed44bf63947a46c9f
@@ -1658,7 +1660,7 @@ packages:
       '@types/react':
         optional: true
     resolution:
-      integrity: sha512-4cslpG6oLoPWUfwPkX+hvbak4hAGiOfgXOu/UIYeeMrtsTEebC0Mirjoby7zhS4ny86YI3rXEFW6EZDmlj5n5w==
+      integrity: sha512-Gp0UdJLxPEnkn7O0QpJ2/LOeIuT8nX9e6CjQFuLnOy10rUGjRsOZ2T170Y057xdUmw1VNE+0bvkkO6dOghxt4g==
   /@material-ui/styles/4.9.6_4804f3dd1371563ed44bf63947a46c9f:
     dependencies:
       '@babel/runtime': 7.9.2
@@ -2046,6 +2048,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-PbpOQucrBYhCDLz/Xodtm2NZlkIY/paieEXSMheS3CKcLg5pvzowB5aY6cmj+7uY99j+qzYfO2IIUgraoDaBaQ==
+  /@types/googlemaps/3.39.3:
+    dev: false
+    resolution:
+      integrity: sha512-L8O9HAVFZj0TuiS8h5ORthiMsrrhjxTC8XUusp5k47oXCst4VTm+qWKvrAvmYMybZVokbp4Udco1mNwJrTNZPQ==
   /@types/istanbul-lib-coverage/2.0.1:
     dev: false
     resolution:
@@ -2124,6 +2130,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-S6ihtlPMDotrlCJE9ST1fRmYrQNNwfgL61UB4I1W7M6kPulUKx9fXAleW5zpdIjUQ4fTaaog8uERezjsGUj9HQ==
+  /@types/react-geosuggest/2.7.10:
+    dependencies:
+      '@types/googlemaps': 3.39.3
+      '@types/react': 16.9.32
+    dev: false
+    resolution:
+      integrity: sha512-/eJKThTk86DMFgXmFudPYiZp6p8tebzK0dPCykDnV68QG958LFpRKP1PyzOGdX6HsWUTPCKbq0abSglK2n3g2w==
   /@types/react-leaflet-markercluster/2.0.0:
     dependencies:
       '@types/leaflet': 1.5.12
@@ -2197,7 +2210,7 @@ packages:
       '@typescript-eslint/parser': 2.26.0_eslint@6.8.0+typescript@3.7.5
       eslint: 6.8.0
       functional-red-black-tree: 1.0.1
-      regexpp: 3.0.0
+      regexpp: 3.1.0
       tsutils: 3.17.1_typescript@3.7.5
       typescript: 3.7.5
     dev: false
@@ -7620,6 +7633,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-GVhwRQ9aExkkeN9Lw9I9LeoZB7Y=
+  /lodash.debounce/4.0.8:
+    dev: false
+    resolution:
+      integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=
   /lodash.get/4.4.2:
     dev: false
     resolution:
@@ -9941,6 +9958,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
+  /react-geosuggest/2.12.1_react-dom@16.13.1+react@16.13.1:
+    dependencies:
+      classnames: 2.2.6
+      lodash.debounce: 4.0.8
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+    dev: false
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16.0.0
+      react-dom: ^0.14.0 || ^15.0.0 || ^16.0.0
+    resolution:
+      integrity: sha512-7Ftoyd3h2uRG79tkDZBepAiXdQ4WYq1gIsg48aLsiAqIsZf5wfENthox8flRPEzt2lWk42mbxfoAbeiSCop7nw==
   /react-hook-form/5.2.0_react@16.13.1:
     dependencies:
       react: 16.13.1
@@ -10230,12 +10259,12 @@ packages:
       node: '>=6.5.0'
     resolution:
       integrity: sha512-lv0M6+TkDVniA3aD1Eg0DVpfU/booSu7Eev3TDO/mZKHBfVjgCGTV4t4buppESEYDtkArYFOxTJWv6S5C+iaNw==
-  /regexpp/3.0.0:
+  /regexpp/3.1.0:
     dev: false
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-Z+hNr7RAVWxznLPuA7DIh8UNX1j9CDrUQxskw9IrBE1Dxue2lyXT+shqEIeLUjrokxIP8CMy1WkjgG3rTsd5/g==
+      integrity: sha512-ZOIzd8yVsQQA7j8GCSlPGXwg5PfmA1mrq0JP4nGhh54LaKN3xdai/vHUDu74pKwV8OxseMS65u2NImosQcSD0Q==
   /regexpu-core/4.7.0:
     dependencies:
       regenerate: 1.4.0
@@ -12443,7 +12472,7 @@ specifiers:
   '@fortawesome/free-brands-svg-icons': ^5.13.0
   '@fortawesome/free-solid-svg-icons': ^5.13.0
   '@fortawesome/react-fontawesome': ^0.1.9
-  '@material-ui/core': ^4.9.8
+  '@material-ui/core': ^4.9.9
   '@react-firebase/auth': ^0.2.10
   '@testing-library/jest-dom': ^4.2.4
   '@testing-library/react': ^9.5.0
@@ -12454,6 +12483,7 @@ specifiers:
   '@types/react': ^16.9.32
   '@types/react-burger-menu': ^2.6.1
   '@types/react-dom': ^16.9.6
+  '@types/react-geosuggest': ^2.7.10
   '@types/react-leaflet': ^2.5.1
   '@types/react-leaflet-markercluster': ^2.0.0
   firebase: ^7.13.2
@@ -12462,6 +12492,7 @@ specifiers:
   react: ^16.13.1
   react-burger-menu: ^2.6.13
   react-dom: ^16.13.1
+  react-geosuggest: ^2.12.1
   react-hook-form: ^5.2.0
   react-leaflet: ^2.6.3
   react-leaflet-markercluster: ^2.0.0

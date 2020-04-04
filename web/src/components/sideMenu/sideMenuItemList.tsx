@@ -7,8 +7,16 @@ type SideMenuItemListProps = {
 export const SideMenuItemList: React.FC<SideMenuItemListProps> = React.memo(
   (props) => {
     const { posts } = props;
-    const menuItems = posts.map((position, index) => (
-      <SideMenuItem key={index}>{position.name}</SideMenuItem>
+    const menuItems = posts.map((post, index) => (
+      <SideMenuItem key={index}>
+        <div>
+          <strong>{post.title}</strong>
+        </div>
+        <p>{post.description}</p>
+        <br />
+        <br />
+        <i>{post.address}</i>
+      </SideMenuItem>
     ));
     return <>{menuItems}</>;
   }

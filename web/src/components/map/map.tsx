@@ -17,7 +17,13 @@ export const Map: React.FC<MapProps> = React.memo((props) => {
 
   const renderedMarkers = markers.map((mark, index) => (
     <MapMarker position={mark.position} key={index}>
-      {mark.name}
+      {/* <div>
+        <strong>{mark.title}</strong>
+      </div>
+      <p>{mark.description}</p>
+      <br />
+      <br />
+      <i>{mark.address}</i> */}
     </MapMarker>
   ));
 

@@ -2,7 +2,7 @@ import { Post } from "../../models/post";
 
 export const fetchPosts = (): Promise<Post[]> => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(staticPosts), 2000);
+    setTimeout(() => resolve([]), 2000);
   });
 };
 

@@ -1,12 +1,33 @@
 import React from "react";
 import { useForm, OnSubmit } from "react-hook-form";
 import { Button, TextField, Typography } from "@material-ui/core";
+import { AddressInput, Address } from "../addressInput/addressInput";
+import { AppContext } from "../../state/appContext";
+import { addPosts } from "../../utils/http/addPost";
+import { Post } from "../../models/post";
 
 export const AddMenuItem: React.FC = React.memo(() => {
+  const { dispatch } = React.useContext(AppContext);
+
   const { register, handleSubmit, errors } = useForm();
+  const [address, setAddress] = React.useState<Address>({
+    label: "",
+    latitude: 0,
+    longitude: 0,
+  });
 
   const onSubmit: OnSubmit<Record<string, any>> = (data) => {
-    console.log(data);
+    dispatch({ type: "ADD_POST_PENDING" });
+    addPosts({
+      address: address.label,
+      title: data.title,
+      description: data.description,
+      position: address,
+    })
+      .then((post: Post) => {
+        return dispatch({ type: "ADD_POST_RECEIVED", payload: post });
+      })
+      .catch(() => dispatch({ type: "ADD_POST_REJECTED" }));
   };
 
   return (
@@ -17,8 +38,19 @@ export const AddMenuItem: React.FC = React.memo(() => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
+          name="title"
+          inputRef={register}
+          label="Titel"
+          variant="outlined"
+          fullWidth
+        />
+
+        <br />
+        <br />
+
+        <TextField
           name="description"
-          ref={register}
+          inputRef={register}
           label="Beskrivning"
           variant="outlined"
           rows={3}
@@ -29,11 +61,12 @@ export const AddMenuItem: React.FC = React.memo(() => {
         <br />
         <br />
 
-        <TextField
+        <AddressInput
           name="address"
           ref={register}
           label="Adress"
           variant="outlined"
+          onChange={(value: Address) => setAddress(value)}
           fullWidth
         />
 

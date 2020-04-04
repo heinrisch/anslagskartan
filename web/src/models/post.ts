@@ -1,6 +1,9 @@
 import { MapPosition } from "../components/map/models/mapPosition";
 
 export type Post = {
-    position: MapPosition;
-    name: string;
+  address: string;
+  position: MapPosition;
+  title: string;
+  description: string;
+  id?: number;
 };
