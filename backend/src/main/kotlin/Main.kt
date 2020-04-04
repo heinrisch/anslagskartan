@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseToken
 import spark.Request
 import spark.Response
 import spark.Spark
@@ -17,6 +18,8 @@ val objectMapper = ObjectMapper().apply {
 
 data class MessageResponse(val message: String)
 class ExpectedException(message: String) : Exception(message)
+
+val firebaseUtil by lazy { FirebaseUtil() }
 
 fun main() {
 
@@ -50,12 +53,6 @@ class Routes {
 
 
 fun auth(request: Request, block: (idToken: String) -> Any): Any {
-    val idToken = request.headers("idToken") ?: throw ExpectedException("Token Missing")
-    val decodedToken = try {
-        FirebaseAuth.getInstance().verifyIdToken(idToken)
-    } catch (e: Exception) {
-        e.printStackTrace()
-        throw ExpectedException("Failed verifying token: ${e.message}")
-    }
+    val decodedToken = firebaseUtil.validateToken(request)
     return block(decodedToken.uid)
 }
