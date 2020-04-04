@@ -7,14 +7,18 @@ import { SideMenuContainer } from "../../components/sideMenu/sideMenuContainer";
 import { SideMenuItemList } from "../../components/sideMenu/sideMenuItemList";
 import { AuthConsumer } from "../../components/authConsumer/authConsumer";
 import { AddMenuItemButton } from "../../components/buttons/addMenuItemButton";
+import { AddMenuItem } from "../../components/addMenuItem/addMenuItem";
+import { LoadingButton } from "../../components/buttons/loadingButton";
+import { Paper } from "@material-ui/core";
 
 type HomeSceneProps = {
   posts: Post[];
+  loadingPosts: boolean;
 };
 
 export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
   (props) => {
-    const { posts } = props;
+    const { posts, loadingPosts } = props;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleMenuOpenClick = () => setMenuIsOpen(!menuIsOpen);
@@ -25,10 +29,11 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
       <SideMenuContainer>
         <Menu
           pageWrapId="page-wrap"
-          isOpen={menuIsOpen}
+          isOpen={true}
           onStateChange={handleMenuStateChange}
           noOverlay
         >
+          <AddMenuItem />
           <SideMenuItemList posts={posts} />
         </Menu>
 
@@ -39,8 +44,13 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
             markers={[]}
           />
           <ActionButtonList>
-            <AuthConsumer /> <OpenMenuButton onClick={handleMenuOpenClick} />{" "}
-            <AddMenuItemButton onClick={() => ""} />
+            <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
+              <AuthConsumer /> <OpenMenuButton onClick={handleMenuOpenClick} />{" "}
+              <AddMenuItemButton onClick={() => ""} />
+            </Paper>{" "}
+            <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
+              <LoadingButton loading={loadingPosts} />
+            </Paper>
           </ActionButtonList>
         </main>
       </SideMenuContainer>
@@ -58,8 +68,6 @@ export const ActionButtonList: React.FC = (props) => {
         left: "1rem",
         bottom: "1rem",
         zIndex: 1000,
-        backgroundColor: "#ffffff",
-        padding: "0.5rem",
       }}
     >
       {children}

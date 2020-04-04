@@ -11,5 +11,10 @@ export const HomeSceneContainer: React.FC = React.memo(() => {
 
   console.log(state);
 
-  return <HomeScenePresentation posts={state.posts} />;
+  return (
+    <HomeScenePresentation
+      posts={state.posts}
+      loadingPosts={state.loadingPosts}
+    />
+  );
 });
