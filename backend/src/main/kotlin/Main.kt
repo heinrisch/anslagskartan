@@ -3,8 +3,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseToken
 import spark.Request
 import spark.Response
 import spark.Spark
@@ -32,6 +30,11 @@ fun main() {
     Spark.get("/ping", routes::ping, responseTransformer)
     Spark.get("/check-auth", routes::checkAuth, responseTransformer)
 
+    fixCors()
+
+    Spark.afterAfter { request, response ->
+        println("${request.uri()} -> ${response.status()}")
+    }
 
     Spark.exception(ExpectedException::class.java) { exception, request, response ->
         response.status(401)

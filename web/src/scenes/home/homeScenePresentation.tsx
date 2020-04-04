@@ -4,6 +4,7 @@ import { OpenMenuButton } from "../../components/buttons/openMenuButton";
 import { Map } from "../../components/map/map";
 import { SideMenuItem } from "../../components/sideMenu/sideMenuItem";
 import { hardCodedPositions } from "../../utils/hardCodedPositions";
+import { ApiClient } from "../../utils/ApiClient";
 
 export const HomeScenePresentation: React.FC = React.memo(() => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -15,6 +16,9 @@ export const HomeScenePresentation: React.FC = React.memo(() => {
   const renderedMenuItems = hardCodedPositions.map((position, index) => (
     <SideMenuItem key={index}>{position.name}</SideMenuItem>
   ));
+
+  new ApiClient().ping().then((a) => console.log('ping', a));
+  new ApiClient().authPing().then((a) => console.log('checkAuth', a));
 
   return (
     <div id="outer-container" style={{ height: "100%" }}>

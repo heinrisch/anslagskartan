@@ -34,6 +34,9 @@ dependencies {
 
     // Firebase
     implementation("com.google.firebase:firebase-admin:6.12.2")
+
+    // Logging
+    implementation("org.slf4j:slf4j-simple:1.7.21")
 }
 
 tasks {
