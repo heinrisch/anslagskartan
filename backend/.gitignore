@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Intellij
+*.iml
+.idea
+out
+
+# Gradle
+.gradle
+/local.properties
+/build
+/deployments
+gradle.properties
