@@ -14,26 +14,25 @@ import { Paper } from "@material-ui/core";
 type HomeSceneProps = {
   posts: Post[];
   loadingPosts: boolean;
+  loadingAddPost: boolean;
 };
 
 type MenuType = "list" | "add";
 
 export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
   (props) => {
-    const { posts, loadingPosts } = props;
+    const { posts, loadingPosts, loadingAddPost } = props;
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [menuType, setMenuType] = useState<MenuType>("add");
 
-    console.log("posts", posts);
-
     const handleMenuItemListOpenClick = () => {
+      setMenuIsOpen(menuType !== "list" || !menuIsOpen);
       setMenuType("list");
-      setMenuIsOpen(!menuIsOpen);
     };
 
     const handleMenuAddMenuItemOpenClick = () => {
+      setMenuIsOpen(menuType !== "add" || !menuIsOpen);
       setMenuType("add");
-      setMenuIsOpen(!menuIsOpen);
     };
 
     const handleMenuStateChange = (state: MenuState) =>
@@ -43,7 +42,7 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
       <SideMenuContainer>
         <Menu
           pageWrapId="page-wrap"
-          isOpen={true}
+          isOpen={menuIsOpen}
           onStateChange={handleMenuStateChange}
           noOverlay
         >
@@ -54,7 +53,7 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
           <Map
             defaultCenter={{ latitude: 59.310519, longitude: 18.057875 }}
             defaultZoom={13}
-            markers={[]}
+            markers={posts}
           />
           <ActionButtonList>
             <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
@@ -63,7 +62,7 @@ export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
               <AddMenuItemButton onClick={handleMenuAddMenuItemOpenClick} />
             </Paper>{" "}
             <Paper style={{ display: "inline-block", padding: "0.5rem" }}>
-              <LoadingButton loading={loadingPosts} />
+              <LoadingButton loading={loadingPosts || loadingAddPost} />
             </Paper>
           </ActionButtonList>
         </main>

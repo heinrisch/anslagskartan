@@ -13,6 +13,7 @@ export const HomeSceneContainer: React.FC = React.memo(() => {
     <HomeScenePresentation
       posts={state.posts}
       loadingPosts={state.loadingPosts}
+      loadingAddPost={state.loadingAddPost}
     />
   );
 });
