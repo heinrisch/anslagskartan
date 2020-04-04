@@ -42,8 +42,6 @@ const MapPresentation: React.FC<MapPresentationProps> = React.memo((props) => {
     </MapMarker>
   ));
 
-  console.log("map", props);
-
   return (
     <>
       <LeafMap

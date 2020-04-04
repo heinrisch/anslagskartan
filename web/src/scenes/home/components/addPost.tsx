@@ -8,11 +8,12 @@ import {
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";
 import { Post } from "../../../models/post";
+import { MapPosition } from "../../../components/map/models/mapPosition";
 
 // CONTAINER ----------------------------------------------------------------
 
 const AddPostContainer: React.FC = React.memo(() => {
-  const { dispatch } = React.useContext(AppContext);
+  const { dispatch, state } = React.useContext(AppContext);
 
   const [address, setAddress] = React.useState<Address>({
     label: "",
@@ -43,7 +44,7 @@ const AddPostContainer: React.FC = React.memo(() => {
 
   return (
     <AddPostPresentation
-      address={address}
+      mapCenter={state.mapCenter}
       onSubmitForm={handleSubmitForm}
       onAddressChange={handleAddressChange}
     />
@@ -53,19 +54,19 @@ const AddPostContainer: React.FC = React.memo(() => {
 // PRESENTATION -------------------------------------------------------------
 
 type AddPostPresentationProps = {
-  address: Address;
+  mapCenter: MapPosition;
   onSubmitForm: OnSubmit<Record<string, any>>;
   onAddressChange: (address: Address) => void;
 };
 
 const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
   (props) => {
-    const { address, onSubmitForm, onAddressChange } = props;
+    const { onSubmitForm, onAddressChange, mapCenter } = props;
 
     const { register, handleSubmit, errors } = useForm();
 
     return (
-      <div style={{ padding: "1rem" }}>
+      <>
         <Typography variant="h5" gutterBottom>
           Skapa en lapp
         </Typography>
@@ -95,7 +96,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             label="Adress"
             variant="outlined"
             onChange={onAddressChange}
-            value={address.label}
+            location={mapCenter}
             fullWidth
           />
 
@@ -103,7 +104,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             Lägg till
           </Button>
         </form>
-      </div>
+      </>
     );
   }
 );

@@ -4,11 +4,12 @@ import {
   AddressInput,
   Address,
 } from "../../../components/addressInput/addressInput";
+import { MapPosition } from "../../../components/map/models/mapPosition";
 
 // CONTAINER ----------------------------------------------------------------
 
 const SearchBarContainer: React.FC = () => {
-  const { dispatch } = React.useContext(AppContext);
+  const { dispatch, state } = React.useContext(AppContext);
 
   const handleChange = React.useCallback(
     (address: Address) => {
@@ -17,19 +18,31 @@ const SearchBarContainer: React.FC = () => {
     [dispatch]
   );
 
-  return <SearchBarPresentation onChange={handleChange} />;
+  return (
+    <SearchBarPresentation
+      onChange={handleChange}
+      mapCenter={state.mapCenter}
+    />
+  );
 };
 
 // PRESENTATION -------------------------------------------------------------
 
 type SearchBarPresentationProps = {
+  mapCenter: MapPosition;
   onChange: (address: Address) => void;
 };
 
 const SearchBarPresentation: React.FC<SearchBarPresentationProps> = React.memo(
   (props) => {
-    const { onChange } = props;
-    return <AddressInput label="Sök på kartan" value="" onChange={onChange} />;
+    const { onChange, mapCenter } = props;
+    return (
+      <AddressInput
+        label="Sök på kartan"
+        onChange={onChange}
+        location={mapCenter}
+      />
+    );
   }
 );
 

@@ -2,6 +2,7 @@ import { TextField, TextFieldProps } from "@material-ui/core";
 import React from "react";
 import Geosuggest, { Suggest } from "react-geosuggest";
 import "./addressInput.css";
+import { MapPosition } from "../map/models/mapPosition";
 
 export type Address = {
   readonly label: string;
@@ -12,18 +13,22 @@ export type Address = {
 type AddressInputProps = Omit<TextFieldProps, "onChange"> & {
   readonly label: string;
   readonly onChange: (value: Address) => void;
-  readonly value: string;
+  readonly location: MapPosition;
 };
 
 export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
-  const { label, onChange, value, ...otherProps } = props;
+  const { label, onChange, value, location, ...otherProps } = props;
   const inputRef = React.useRef<Geosuggest>(null);
   const inputRef2 = React.useRef<HTMLInputElement>(null);
 
   const [inputValue, setInputValue] = React.useState("");
+  const [isFocued, setIsFocused] = React.useState(false);
 
   const handleSuggestSelect = (event: Suggest) => {
     if (!event) return;
+
+    setInputValue(event.label);
+    setIsFocused(false);
 
     onChange({
       label: event.label,
@@ -44,7 +49,10 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
     setInputValue(event.currentTarget.value);
   };
 
-  const stockholm = new google.maps.LatLng(59.329323, 18.068581);
+  const mapCenter = new google.maps.LatLng(
+    location.latitude,
+    location.longitude
+  );
 
   return (
     <>
@@ -55,21 +63,25 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
         onChange={handleInputChange}
         inputRef={inputRef2}
         autoComplete="off"
+        value={inputValue}
+        onFocus={() => setIsFocused(true)}
         fullWidth
       />
-      <Geosuggest
-        id="my-input"
-        aria-describedby="my-helper-text"
-        autoComplete="off"
-        country="se"
-        location={stockholm}
-        onSuggestSelect={handleSuggestSelect}
-        placeholder=""
-        radius={6000}
-        initialValue={inputValue}
-        inputClassName="address-input-suggest"
-        ref={inputRef}
-      />
+      {isFocued ? (
+        <Geosuggest
+          id="my-input"
+          aria-describedby="my-helper-text"
+          autoComplete="off"
+          country="se"
+          location={mapCenter}
+          onSuggestSelect={handleSuggestSelect}
+          placeholder=""
+          radius={6000}
+          initialValue={inputValue}
+          inputClassName="address-input-suggest"
+          ref={inputRef}
+        />
+      ) : null}
     </>
   );
 });
