@@ -1,13 +1,6 @@
+import { TextField, TextFieldProps } from "@material-ui/core";
 import React from "react";
 import Geosuggest, { Suggest } from "react-geosuggest";
-import {
-  FormControl,
-  InputLabel,
-  TextField,
-  TextFieldProps,
-  Input,
-  FormHelperText,
-} from "@material-ui/core";
 import "./addressInput.css";
 
 export type Address = {
@@ -19,10 +12,11 @@ export type Address = {
 type AddressInputProps = Omit<TextFieldProps, "onChange"> & {
   readonly label: string;
   readonly onChange: (value: Address) => void;
+  readonly value: string;
 };
 
 export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
-  const { label, onChange, ...otherProps } = props;
+  const { label, onChange, value, ...otherProps } = props;
   const inputRef = React.useRef<Geosuggest>(null);
   const inputRef2 = React.useRef<HTMLInputElement>(null);
 
@@ -56,10 +50,11 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
     <>
       <TextField
         name="address"
-        label="Adress"
+        label={label}
         variant="outlined"
         onChange={handleInputChange}
         inputRef={inputRef2}
+        autoComplete="off"
         fullWidth
       />
       <Geosuggest

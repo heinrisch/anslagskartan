@@ -2,7 +2,7 @@ import { FirebaseAuthProvider } from "@react-firebase/auth";
 import firebase from "firebase/app";
 import "firebase/auth";
 import React from "react";
-import { HomeScene } from "./scenes/home";
+import { HomeScene } from "./scenes/home/homeScene";
 import { AppContext } from "./state/appContext";
 import { initialAppState } from "./state/appState";
 import { appStateReducer } from "./state/appStateReducer";
@@ -15,7 +15,7 @@ export const App: React.FC = React.memo(() => {
   React.useEffect(() => {
     dispatch({ type: "POSTS_PENDING" });
     fetchPosts()
-      .then((payload) => dispatch({ type: "POSTS_RECEIVED", payload }))
+      .then((posts) => dispatch({ type: "POSTS_RECEIVED", posts }))
       .catch(() => dispatch({ type: "POSTS_REJECTED" }));
   }, []);
 

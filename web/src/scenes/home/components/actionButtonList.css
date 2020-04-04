@@ -1,0 +1,12 @@
+.action-button-list__paper {
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+.action-button-list__paper--hidden-true {
+  display: none;
+}
+
+.action-button-list__item {
+  margin: 0 0.5rem;
+}

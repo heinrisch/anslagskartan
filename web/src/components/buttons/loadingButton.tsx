@@ -16,7 +16,7 @@ export const LoadingButton: React.FC<LoadingButtonProps> = React.memo(
         size="2x"
         icon={faCompactDisc}
         style={{
-          color: "#4267B2",
+          color: "#ff5500",
           cursor: "pointer",
         }}
         spin

@@ -17,7 +17,7 @@ export const appStateReducer = (
     case "POSTS_RECEIVED":
       return {
         ...state,
-        posts: action.payload,
+        posts: action.posts,
         loadingPosts: false,
       };
 
@@ -37,13 +37,26 @@ export const appStateReducer = (
       return {
         ...state,
         loadingAddPost: false,
-        posts: [...state.posts, action.payload],
+        posts: [...state.posts, action.post],
       };
 
     case "ADD_POST_REJECTED":
       return {
         ...state,
         loadingAddPost: false,
+      };
+
+    case "TOGGLE_MENU_IS_OPEN":
+      return {
+        ...state,
+        menuIsOpen: state.menuType !== action.menuType || !state.menuIsOpen,
+        menuType: action.menuType,
+      };
+
+    case "UPDATE_MAP_CENTER":
+      return {
+        ...state,
+        mapCenter: action.center,
       };
 
     default:
