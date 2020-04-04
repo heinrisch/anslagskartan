@@ -1,4 +1,4 @@
-import { MapPosition } from "./mapPosition";
+import { MapPosition } from "../components/map/models/mapPosition";
 export const hardCodedPositions: MapPosition[] = [
   {
     latitude: 59.29374,

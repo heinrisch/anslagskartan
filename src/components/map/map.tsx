@@ -3,7 +3,7 @@ import { Map as LeafMap, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import { AuthConsumer } from "../authConsumer/authConsumer";
 import { MapMarker } from "./mapMarker";
-import { hardCodedPositions } from "./models/hardCodedPositions";
+import { hardCodedPositions } from "../../utils/hardCodedPositions";
 import { MapPosition } from "./models/mapPosition";
 import { TileType } from "./models/tileTypes";
 
@@ -16,8 +16,10 @@ type MapProps = {
 export const Map: React.FC<MapProps> = React.memo((props) => {
   const { defaultCenter, defaultZoom } = props;
 
-  const renderedMarkers = hardCodedPositions.map((position) => (
-    <MapMarker position={position}>{position.name}</MapMarker>
+  const renderedMarkers = hardCodedPositions.map((position, index) => (
+    <MapMarker position={position} key={index}>
+      {position.name}
+    </MapMarker>
   ));
 
   return (
