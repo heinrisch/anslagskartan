@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.3.71"
+    id("com.github.johnrengelman.shadow") version "5.2.0"
     application
 }
 
@@ -66,6 +67,18 @@ tasks {
         testLogging {
             events("passed", "skipped", "failed")
         }
+    }
+
+    named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+        archiveBaseName.set("shadow")
+        mergeServiceFiles()
+        manifest {
+            attributes(mapOf("Main-Class" to "com.github.csolem.gradle.shadow.kotlin.example.App"))
+        }
+    }
+
+    build {
+        dependsOn(shadowJar)
     }
 }
 

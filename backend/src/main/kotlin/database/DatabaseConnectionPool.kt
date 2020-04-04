@@ -3,12 +3,20 @@ package lib.database
 import com.mchange.v2.c3p0.ComboPooledDataSource
 import java.util.concurrent.ConcurrentHashMap
 
+/*
+master
+bUZYs6thS8h5ZwExuElyi4lMFi
+5432
+billboard-map.c1yomcfi20b2.eu-west-1.rds.amazonaws.com
+    DB_USER=master DB_PASSWORD=bUZYs6thS8h5ZwExuElyi4lMFi DB_HOST=billboard-map.c1yomcfi20b2.eu-west-1.rds.amazonaws.com DB_PORT=5432
+ */
+
 object Config {
     object Database {
-        val user = "root"
-        val password = "password123"
-        val host = "127.0.0.1"
-        val port = "5440"
+        val user = System.getenv("DB_USER") ?: "root"
+        val password = System.getenv("DB_PASSWORD") ?: "password123"
+        val host = System.getenv("DB_HOST") ?: "127.0.0.1"
+        val port = System.getenv("DB_PORT") ?: "5440"
     }
 }
 
