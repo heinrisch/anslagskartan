@@ -2,42 +2,67 @@ import React, { useState } from "react";
 import { reveal as Menu, State as MenuState } from "react-burger-menu";
 import { OpenMenuButton } from "../../components/buttons/openMenuButton";
 import { Map } from "../../components/map/map";
-import { SideMenuItem } from "../../components/sideMenu/sideMenuItem";
-import { hardCodedPositions } from "../../utils/hardCodedPositions";
-import { ApiClient } from "../../utils/ApiClient";
+import { Post } from "../../models/post";
+import { SideMenuContainer } from "../../components/sideMenu/sideMenuContainer";
+import { SideMenuItemList } from "../../components/sideMenu/sideMenuItemList";
+import { AuthConsumer } from "../../components/authConsumer/authConsumer";
+import { AddMenuItemButton } from "../../components/buttons/addMenuItemButton";
 
-export const HomeScenePresentation: React.FC = React.memo(() => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+type HomeSceneProps = {
+  posts: Post[];
+};
 
-  const handleMenuOpenClick = () => setMenuIsOpen(!menuIsOpen);
-  const handleMenuStateChange = (state: MenuState) =>
-    setMenuIsOpen(state.isOpen);
+export const HomeScenePresentation: React.FC<HomeSceneProps> = React.memo(
+  (props) => {
+    const { posts } = props;
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  const renderedMenuItems = hardCodedPositions.map((position, index) => (
-    <SideMenuItem key={index}>{position.name}</SideMenuItem>
-  ));
+    const handleMenuOpenClick = () => setMenuIsOpen(!menuIsOpen);
+    const handleMenuStateChange = (state: MenuState) =>
+      setMenuIsOpen(state.isOpen);
 
-  new ApiClient().ping().then((a) => console.log('ping', a));
-  new ApiClient().authPing().then((a) => console.log('checkAuth', a));
+    return (
+      <SideMenuContainer>
+        <Menu
+          pageWrapId="page-wrap"
+          isOpen={menuIsOpen}
+          onStateChange={handleMenuStateChange}
+          noOverlay
+        >
+          <SideMenuItemList posts={posts} />
+        </Menu>
+
+        <main id="page-wrap">
+          <Map
+            defaultCenter={{ latitude: 59.310519, longitude: 18.057875 }}
+            defaultZoom={13}
+            markers={[]}
+          />
+          <ActionButtonList>
+            <AuthConsumer /> <OpenMenuButton onClick={handleMenuOpenClick} />{" "}
+            <AddMenuItemButton onClick={() => ""} />
+          </ActionButtonList>
+        </main>
+      </SideMenuContainer>
+    );
+  }
+);
+
+export const ActionButtonList: React.FC = (props) => {
+  const { children } = props;
 
   return (
-    <div id="outer-container" style={{ height: "100%" }}>
-      <Menu
-        pageWrapId="page-wrap"
-        isOpen={menuIsOpen}
-        onStateChange={handleMenuStateChange}
-        noOverlay
-      >
-        {renderedMenuItems}
-      </Menu>
-      <main id="page-wrap">
-        <OpenMenuButton onClick={handleMenuOpenClick} />
-        <Map
-          defaultCenter={{ latitude: 59.310519, longitude: 18.057875 }}
-          defaultZoom={13}
-          markers={[]}
-        />
-      </main>
+    <div
+      style={{
+        position: "absolute",
+        left: "1rem",
+        bottom: "1rem",
+        zIndex: 1000,
+        backgroundColor: "#ffffff",
+        padding: "0.5rem",
+      }}
+    >
+      {children}
     </div>
   );
-});
+};

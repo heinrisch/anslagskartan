@@ -1,19 +1,19 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faListAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-type OpenMenuButtonProps = {
+type AddMenuItemButtonProps = {
   onClick: () => void;
 };
 
-export const OpenMenuButton: React.FC<OpenMenuButtonProps> = React.memo(
+export const AddMenuItemButton: React.FC<AddMenuItemButtonProps> = React.memo(
   (props) => {
     const { onClick } = props;
 
     return (
       <FontAwesomeIcon
         size="2x"
-        icon={faListAlt}
+        icon={faPlusSquare}
         onClick={onClick}
         style={{
           color: "#4267B2",

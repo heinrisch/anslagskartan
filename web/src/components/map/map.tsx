@@ -3,22 +3,22 @@ import { Map as LeafMap, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import { AuthConsumer } from "../authConsumer/authConsumer";
 import { MapMarker } from "./mapMarker";
-import { hardCodedPositions } from "../../utils/hardCodedPositions";
 import { MapPosition } from "./models/mapPosition";
 import { TileType } from "./models/tileTypes";
+import { Post } from "../../models/post";
 
 type MapProps = {
   readonly defaultCenter: MapPosition;
   readonly defaultZoom: number;
-  readonly markers: MapPosition[];
+  readonly markers: Post[];
 };
 
 export const Map: React.FC<MapProps> = React.memo((props) => {
-  const { defaultCenter, defaultZoom } = props;
+  const { defaultCenter, defaultZoom, markers } = props;
 
-  const renderedMarkers = hardCodedPositions.map((position, index) => (
-    <MapMarker position={position} key={index}>
-      {position.name}
+  const renderedMarkers = markers.map((mark, index) => (
+    <MapMarker position={mark.position} key={index}>
+      {mark.name}
     </MapMarker>
   ));
 
