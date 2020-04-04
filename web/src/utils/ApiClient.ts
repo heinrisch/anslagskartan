@@ -2,7 +2,7 @@ import firebase from "firebase";
 
 export class ApiClient {
 
-  host = "http://localhost:4021";
+  host = "http://bimp.eu-west-1.elasticbeanstalk.com";
 
   get idToken(): Promise<string> {
     const currentUser = firebase.auth().currentUser;
@@ -22,5 +22,9 @@ export class ApiClient {
         'idToken': token
       },
     }));
+  }
+
+  allTask() {
+    return fetch(`${this.host}/tasks`).then(response => response.json());
   }
 }

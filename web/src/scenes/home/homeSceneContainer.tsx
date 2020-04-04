@@ -7,7 +7,7 @@ export const HomeSceneContainer: React.FC = React.memo(() => {
   const { state } = React.useContext(AppContext);
 
   new ApiClient().ping().then((a) => console.log("ping", a));
-  new ApiClient().authPing().then((a) => console.log("checkAuth", a));
+  new ApiClient().allTask().then((a) => console.log("alltasks", a));
 
   console.log(state);
 
