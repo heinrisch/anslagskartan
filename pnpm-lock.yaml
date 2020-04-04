@@ -10,11 +10,13 @@ dependencies:
   '@types/jest': 24.9.1
   '@types/node': 12.12.34
   '@types/react': 16.9.32
+  '@types/react-burger-menu': 2.6.1
   '@types/react-dom': 16.9.6
   firebase: 7.13.2
   google-map-react: 1.1.7_react-dom@16.13.1+react@16.13.1
   leaflet: 1.6.0
   react: 16.13.1
+  react-burger-menu: 2.6.13_react-dom@16.13.1+react@16.13.1
   react-dom: 16.13.1_react@16.13.1
   react-leaflet: 2.6.3_6895b39fe9dd1903c6d13594b3161b6d
   react-leaflet-markercluster: 2.0.0_react-dom@16.13.1+react@16.13.1
@@ -1996,6 +1998,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
+  /@types/react-burger-menu/2.6.1:
+    dependencies:
+      '@types/react': 16.9.32
+    dev: false
+    resolution:
+      integrity: sha512-uWY/xQ4WzdMk0oN3/KmtQ7MWLcdLsymFjSIG5awHMju2vIS0V6C4vqwVCmULz9UlVKpmH1TP6si0E75GY9Sc9w==
   /@types/react-dom/16.9.6:
     dependencies:
       '@types/react': 16.9.32
@@ -2383,6 +2391,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
+  /amdefine/1.0.1:
+    dev: false
+    engines:
+      node: '>=0.4.2'
+    optional: true
+    resolution:
+      integrity: sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
   /ansi-colors/3.2.4:
     dev: false
     engines:
@@ -2628,10 +2643,24 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-WWZ/QfrdTyDMvCu5a41Pf3jsA2c=
+  /ast-transform/0.0.0:
+    dependencies:
+      escodegen: 1.2.0
+      esprima: 1.0.4
+      through: 2.3.8
+    dev: false
+    resolution:
+      integrity: sha1-dJRAWIh9goPhidlUYAlHvJj+AGI=
   /ast-types-flow/0.0.7:
     dev: false
     resolution:
       integrity: sha1-9wtzXGvKGlycItmCw+Oef+ujva0=
+  /ast-types/0.7.8:
+    dev: false
+    engines:
+      node: '>= 0.6'
+    resolution:
+      integrity: sha1-kC0uDWDQcb3NRtwRXhgJ7RHBOKk=
   /astral-regex/1.0.0:
     dev: false
     engines:
@@ -3025,6 +3054,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-BioO1xf3hFwz4kc6iBhI3ieDFompMhrMlnDFC4/0/vd5MokpuAc3R+LYbwTA9A5Yc9pq9UYPqffKpW2ObuwX5A==
+  /browserify-optional/1.0.1:
+    dependencies:
+      ast-transform: 0.0.0
+      ast-types: 0.7.8
+      browser-resolve: 1.11.3
+    dev: false
+    resolution:
+      integrity: sha1-HhNyLP3g2F8SFnbCpyztUzoBiGk=
   /browserify-rsa/4.0.1:
     dependencies:
       bn.js: 4.11.8
@@ -3372,6 +3409,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==
+  /classnames/2.2.6:
+    dev: false
+    resolution:
+      integrity: sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
   /clean-css/4.2.3:
     dependencies:
       source-map: 0.6.1
@@ -4540,6 +4581,19 @@ packages:
       source-map: 0.6.1
     resolution:
       integrity: sha512-Bmt7NcRySdIfNPfU2ZoXDrrXsG9ZjvDxcAlMfDUgRBjLOWTuIACXPBFJH7Z+cLb40JeQco5toikyc9t9P8E9SQ==
+  /escodegen/1.2.0:
+    dependencies:
+      esprima: 1.0.4
+      estraverse: 1.5.1
+      esutils: 1.0.0
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    hasBin: true
+    optionalDependencies:
+      source-map: 0.1.43
+    resolution:
+      integrity: sha1-Cd55Z3kcyVi3+Jot220jRRrzJ+E=
   /eslint-config-react-app/5.2.1_faa38357a759f2a583204aebd9c24063:
     dependencies:
       '@typescript-eslint/eslint-plugin': 2.26.0_a79a6fb8e701aad51307301715df01ad
@@ -4777,6 +4831,13 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-ysCxRQY3WaXJz9tdbWOwuWr5Y/XrPTGX9Kiz3yoUXwW0VZ4w30HTkQLaGx/+ttFjF8i+ACbArnB4ce68a9m5hw==
+  /esprima/1.0.4:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    hasBin: true
+    resolution:
+      integrity: sha1-n1V+CPw7TSbs6d00+Pv0drYlha0=
   /esprima/4.0.1:
     dev: false
     engines:
@@ -4800,6 +4861,12 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-64RBB++fIOAXPw3P9cy89qfMlvZEXZkqqJkjqqXIvzP5ezRZjW+lPWjw35UX/3EhUPFYbg5ER4JYgDw4007/DQ==
+  /estraverse/1.5.1:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    resolution:
+      integrity: sha1-hno+jlip+EYYr7bC3bzZFrfLr3E=
   /estraverse/4.3.0:
     dev: false
     engines:
@@ -4812,6 +4879,12 @@ packages:
       node: '>=4.0'
     resolution:
       integrity: sha512-j3acdrMzqrxmJTNj5dbr1YbjacrYgAxVMeF0gK16E3j494mOe7xygM/ZLIguEQ0ETwAg2hlJCtHRGav+y0Ny5A==
+  /esutils/1.0.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-gVHTWOIMisx/t0XnRywAJf5JZXA=
   /esutils/2.0.3:
     dev: false
     engines:
@@ -4824,6 +4897,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  /eve/0.5.4:
+    dev: false
+    resolution:
+      integrity: sha1-Z9CAuXJSkdfjieNMJoYN2X8d66o=
   /eventemitter3/1.2.0:
     dev: false
     resolution:
@@ -9586,6 +9663,23 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-OfBnObtnGgLGfweORmdZbyEz+3dgVePQBb3zipiaDsMHV1NpWm0rDFYIVXFV/AK+x4VIIfWHhrdMIeoTLyRr2g==
+  /react-burger-menu/2.6.13_react-dom@16.13.1+react@16.13.1:
+    dependencies:
+      browserify-optional: 1.0.1
+      classnames: 2.2.6
+      eve: 0.5.4
+      prop-types: 15.7.2
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+      snapsvg-cjs: 0.0.6_eve@0.5.4
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    peerDependencies:
+      react: '>=0.14.0 <17.0.0'
+      react-dom: '>=0.14.0 <17.0.0'
+    resolution:
+      integrity: sha512-tloQs8F2+YHR/FYfQpu4z+OQzgGHzUZYZXBxGmb6/6eckjQ1GvzeNpHp4IZigpe0ovamg1HgDRK3qNlOPezjlA==
   /react-dev-utils/10.2.1:
     dependencies:
       '@babel/code-frame': 7.8.3
@@ -10539,6 +10633,21 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg==
+  /snapsvg-cjs/0.0.6_eve@0.5.4:
+    dependencies:
+      eve: 0.5.4
+      snapsvg: 0.5.1
+    dev: false
+    peerDependencies:
+      eve: ~0.5.1
+    resolution:
+      integrity: sha1-Oy9WryVz09Nkw+1b+IhXRfTS3eE=
+  /snapsvg/0.5.1:
+    dependencies:
+      eve: 0.5.4
+    dev: false
+    resolution:
+      integrity: sha1-DK9Sx5GJopB0b8RGzF6GP2vd3+M=
   /sockjs-client/1.4.0:
     dependencies:
       debug: 3.2.6
@@ -10590,6 +10699,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=
+  /source-map/0.1.43:
+    dependencies:
+      amdefine: 1.0.1
+    dev: false
+    engines:
+      node: '>=0.8.0'
+    optional: true
+    resolution:
+      integrity: sha1-wkvBRspRfBRx9drL4lcbK3+eM0Y=
   /source-map/0.5.7:
     dev: false
     engines:
@@ -12093,6 +12211,7 @@ specifiers:
   '@types/jest': ^24.9.1
   '@types/node': ^12.12.34
   '@types/react': ^16.9.32
+  '@types/react-burger-menu': ^2.6.1
   '@types/react-dom': ^16.9.6
   '@types/react-leaflet': ^2.5.1
   '@types/react-leaflet-markercluster': ^2.0.0
@@ -12100,6 +12219,7 @@ specifiers:
   google-map-react: ^1.1.7
   leaflet: ^1.6.0
   react: ^16.13.1
+  react-burger-menu: ^2.6.13
   react-dom: ^16.13.1
   react-leaflet: ^2.6.3
   react-leaflet-markercluster: ^2.0.0
