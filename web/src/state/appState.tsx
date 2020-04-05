@@ -8,7 +8,7 @@ export const initialAppState: AppState = {
   loadingAddPost: false,
   mapCenter: { latitude: 59.310519, longitude: 18.057875 },
   menuIsOpen: false,
-  menuType: "none",
+  menuType: "list",
   selectedPostId: undefined,
 };
 

@@ -4,6 +4,8 @@ import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { SearchBar } from "./searchBar";
 import { truncateString } from "../../../utils/truncateString";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -56,14 +58,29 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
           <Typography variant="h6">{post.title}</Typography>
           <div style={{ fontSize: "0.7rem" }}>
             Behöver{" "}
-            <Chip
-              style={{ fontSize: "0.7rem", height: "1rem" }}
-              size="small"
-              color="primary"
-              label="3D printing"
-            />
+            {post.needs.map((need) => (
+              <Chip
+                style={{
+                  fontSize: "0.7rem",
+                  height: "1rem",
+                  marginRight: "0.2rem",
+                }}
+                size="small"
+                color="secondary"
+                label={need}
+              />
+            ))}
           </div>
           <div>{description}</div>
+          {currentIsActive ? (
+            <Typography
+              variant="caption"
+              display="block"
+              style={{ marginTop: "1rem" }}
+            >
+              <FontAwesomeIcon icon={faMapMarkerAlt} /> {post.address}
+            </Typography>
+          ) : null}
         </Paper>
       );
     });

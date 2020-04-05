@@ -31,6 +31,7 @@ const AddPostContainer: React.FC = React.memo(() => {
         title: data.title,
         description: data.description,
         position: address,
+        needs: [],
       })
         .then((post: Post) => dispatch({ type: "ADD_POST_RECEIVED", post }))
         .catch(() => dispatch({ type: "ADD_POST_REJECTED" }));

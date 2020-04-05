@@ -62,8 +62,16 @@ export const appStateReducer = (
     case "SELECT_POST":
       return {
         ...state,
-        selectedPostId: action.post.id,
+        selectedPostId:
+          action.post.id === state.selectedPostId ? 0 : action.post.id,
         mapCenter: action.post.position,
+      };
+
+    case "CLOSE_SIDEBAR":
+      return {
+        ...state,
+        menuIsOpen: false,
+        menuType: "none",
       };
 
     default:

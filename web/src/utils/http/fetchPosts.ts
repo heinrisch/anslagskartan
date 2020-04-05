@@ -17,6 +17,7 @@ const staticPosts = [
       longitude: 18.0304568,
     },
     id: 1,
+    needs: ["Material", "Annat"],
   },
   {
     address: "Södersjukhuset, Sjukhusbacken, Stockholm, Sweden",
@@ -28,6 +29,7 @@ const staticPosts = [
       longitude: 18.0558704,
     },
     id: 2,
+    needs: ["Mat"],
   },
   {
     address:
@@ -40,6 +42,7 @@ const staticPosts = [
       longitude: 18.0206789,
     },
     id: 3,
+    needs: ["Annat"],
   },
   {
     address: "Stockholms Sjukhem, Mariebergsgatan, Stockholm, Sweden",
@@ -51,6 +54,7 @@ const staticPosts = [
       longitude: 18.0253904,
     },
     id: 4,
+    needs: ["3D printing", "Material"],
   },
   {
     address: "Ersta sjukhus, Fjällgatan, Stockholm, Sweden",
@@ -62,5 +66,6 @@ const staticPosts = [
       longitude: 18.0888491,
     },
     id: 5,
+    needs: ["3D printing"],
   },
 ];

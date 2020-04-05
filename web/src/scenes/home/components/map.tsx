@@ -48,6 +48,7 @@ const MapPresentation: React.FC<MapPresentationProps> = React.memo((props) => {
         center={[defaultCenter.latitude, defaultCenter.longitude]}
         zoom={defaultZoom}
         style={{ width: "100%", height: "100vh" }}
+        zoomControl={false}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
