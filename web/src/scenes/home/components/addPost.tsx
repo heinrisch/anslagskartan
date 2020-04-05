@@ -188,7 +188,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
 
         <br />
         <br />
-        <a>Läs mer om hur och varför vi använder Facebook</a>
+        <a href="#">Läs mer om hur och varför vi använder Facebook</a>
 
         <br />
         <br />

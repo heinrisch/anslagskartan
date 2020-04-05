@@ -28,7 +28,12 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
     return (
       <>
         <SearchBar />
-        <Typography variant="caption" display="block" gutterBottom>
+        <Typography
+          variant="caption"
+          display="block"
+          gutterBottom
+          style={{ color: "lightgray" }}
+        >
           Visar {renderedPosts.length} resultat
         </Typography>
         <div style={{ margin: "0 -1rem", paddingBottom: "60px" }}>
