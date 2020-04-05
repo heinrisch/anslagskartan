@@ -1,4 +1,3 @@
-import firebase from "firebase";
 import {
   BackendCreatePost,
   BackendPostResponse,
@@ -8,26 +7,16 @@ import {
 export class ApiClient {
   host = "https://anslagskartans-backend.herokuapp.com";
 
-  get idToken(): Promise<string> {
-    const currentUser = firebase.auth().currentUser;
-    if (currentUser) {
-      return currentUser.getIdToken(false);
-    }
-    return Promise.reject("not logged in");
-  }
-
   ping() {
     return fetch(`${this.host}/ping`);
   }
 
-  authPing() {
-    return this.idToken.then((token) =>
-      fetch(`${this.host}/check-auth`, {
-        headers: {
-          idToken: token,
-        },
-      })
-    );
+  authPing(userId: string) {
+    return fetch(`${this.host}/check-auth`, {
+      headers: {
+        idToken: userId,
+      },
+    });
   }
 
   allTask(): Promise<BackendPostResponse> {
@@ -35,15 +24,13 @@ export class ApiClient {
   }
 
   async createPost(
+    userId: string,
     backendCreatePost: BackendCreatePost
   ): Promise<TaskResponse> {
-    const token = await this.idToken;
     const response = await fetch(`${this.host}/tasks`, {
       method: "POST",
       body: JSON.stringify(backendCreatePost),
-      headers: {
-        idToken: token,
-      },
+      headers: { idToken: userId },
     });
     return await response.json();
   }

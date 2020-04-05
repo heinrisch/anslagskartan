@@ -16,7 +16,7 @@ const FacebookSignInNotificationContainer: React.FC = React.memo(() => {
     dispatch,
     "list"
   );
-  const handleSignInClick = useHandleUserSignInClickCallback();
+  const handleSignInClick = useHandleUserSignInClickCallback(dispatch);
 
   return (
     <FacebookSignInNotificationPresentation

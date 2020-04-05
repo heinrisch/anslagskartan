@@ -25,7 +25,11 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
     (data) => {
       dispatch({ type: "ADD_POST_PENDING" });
 
-      addPosts({
+      if (state.userId === null) {
+        throw new Error("User is not logged in");
+      }
+
+      addPosts(state.userId, {
         title: data.title,
         location: {
           lat: address.latitude,

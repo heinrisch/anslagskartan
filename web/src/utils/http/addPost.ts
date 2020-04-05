@@ -3,6 +3,9 @@ import { ApiClient } from "../ApiClient";
 
 const apiClient = new ApiClient();
 
-export const addPosts = (backendCreatePost: BackendCreatePost): Promise<TaskResponse> => {
-  return apiClient.createPost(backendCreatePost);
+export const addPosts = (
+  userId: string,
+  backendCreatePost: BackendCreatePost
+): Promise<TaskResponse> => {
+  return apiClient.createPost(userId, backendCreatePost);
 };

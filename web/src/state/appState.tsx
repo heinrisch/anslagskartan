@@ -11,6 +11,7 @@ export const initialAppState: AppState = {
   menuType: "list",
   selectedPostId: undefined,
   user: null,
+  userId: null,
 };
 
 export type AppState = {
@@ -22,6 +23,7 @@ export type AppState = {
   menuType: MenuType;
   selectedPostId: string | undefined;
   user: null | FacebookUser;
+  userId: null | string;
 };
 
 export type FacebookUser = {

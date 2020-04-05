@@ -23,6 +23,7 @@ export const PostItemNeedsPresentation: React.FC<PostItemNeedsProps> = React.mem
             size="small"
             color="secondary"
             label={need}
+            key={need}
           />
         ))}
       </div>

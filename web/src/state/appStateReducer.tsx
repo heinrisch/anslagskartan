@@ -79,6 +79,12 @@ export const appStateReducer = withReducerLog(
           user: action.user,
         };
 
+      case "SET_USER_ID":
+        return {
+          ...state,
+          userId: action.userId,
+        };
+
       default:
         return state;
     }

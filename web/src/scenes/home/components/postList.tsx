@@ -23,7 +23,9 @@ type PostListPresentationProps = {
 const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
   (props) => {
     const { posts } = props;
-    const renderedPosts = posts.map((post) => <PostItem post={post} />);
+    const renderedPosts = posts.map((post) => (
+      <PostItem post={post} key={post.id} />
+    ));
 
     return (
       <>

@@ -42,6 +42,7 @@ export const AuthContentSwitchPresentation: React.FC<AuthContentSwitchPresentati
     const renderMethod: ChildFunction = ({ isSignedIn, user, providerId }) => {
       if (isSignedIn) {
         onUserSignedIn(user);
+
         return signedInContent;
       }
 

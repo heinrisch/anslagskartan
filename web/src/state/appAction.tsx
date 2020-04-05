@@ -14,4 +14,5 @@ export type AppAction =
   | { type: "UPDATE_MAP_CENTER"; center: MapPosition }
   | { type: "SELECT_POST"; post: Post }
   | { type: "CLOSE_SIDEBAR" }
-  | { type: "FACEBOOK_USER_SIGNED_IN"; user: FacebookUser };
+  | { type: "FACEBOOK_USER_SIGNED_IN"; user: FacebookUser }
+  | { type: "SET_USER_ID"; userId: string | null };
