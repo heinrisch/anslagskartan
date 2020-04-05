@@ -46,9 +46,11 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
         style={{
           padding: "1rem",
           position: "absolute",
-          left: `${width}px`,
+          left: `${width - 2}px`,
           top: "1rem",
           cursor: "pointer",
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
         }}
         onClick={onToggle}
       >
