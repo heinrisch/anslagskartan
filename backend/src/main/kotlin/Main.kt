@@ -27,7 +27,7 @@ class ExpectedException(message: String) : Exception(message)
 val firebaseUtil by lazy { FirebaseUtil() }
 
 fun main() {
-    startWebServer(::firebaseAuth, 4021)
+    startWebServer(::firebaseAuth, System.getenv("PORT")?.toInt() ?: 4021)
 }
 
 fun startWebServer(auth: KFunction2<Request, (userId:String) -> Any, Any>, port: Int) {
