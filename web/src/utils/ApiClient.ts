@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { BackendPostResponse } from "../models/post";
 
 export class ApiClient {
 
@@ -24,7 +25,7 @@ export class ApiClient {
     }));
   }
 
-  allTask() {
+  allTask(): Promise<BackendPostResponse> {
     return fetch(`${this.host}/tasks`).then(response => response.json());
   }
 }

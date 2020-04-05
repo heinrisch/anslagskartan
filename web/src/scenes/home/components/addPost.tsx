@@ -27,6 +27,7 @@ const AddPostContainer: React.FC = React.memo(() => {
       dispatch({ type: "ADD_POST_PENDING" });
 
       addPosts({
+        id: address.label,
         address: address.label,
         title: data.title,
         description: data.description,
