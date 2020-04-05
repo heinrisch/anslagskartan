@@ -49,14 +49,6 @@ const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> 
       >
         <LoadingButton loading={isLoading} />
       </Paper>
-
-      <Paper className="action-button-list__paper">
-        <AuthConsumer className="action-button-list__item" />
-        <AddMenuItemButton
-          className="action-button-list__item"
-          onClick={onOpenAddPostClick}
-        />
-      </Paper>
     </div>
   );
 };

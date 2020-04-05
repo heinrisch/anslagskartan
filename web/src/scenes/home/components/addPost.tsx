@@ -6,7 +6,13 @@ import {
   AddressInput,
 } from "../../../components/addressInput/addressInput";
 import { MapPosition } from "../../../components/map/models/mapPosition";
-import { BackendLocation, BackendPostData, BackendPostResponse, Post, TaskResponse } from "../../../models/post";
+import {
+  BackendLocation,
+  BackendPostData,
+  BackendPostResponse,
+  Post,
+  TaskResponse,
+} from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";
 import "./addPost.css";
@@ -40,21 +46,23 @@ const AddPostContainer: React.FC = React.memo(() => {
       })
         .then((postResponse: TaskResponse) => {
           fetchPosts().then((posts) => {
-            const post: Post = posts.filter((p) => p.id === postResponse.taskId)[0];
-            dispatch({ type: "ADD_POST_RECEIVED", post })
-          })
+            const post: Post = posts.filter(
+              (p) => p.id === postResponse.taskId
+            )[0];
+            dispatch({ type: "ADD_POST_RECEIVED", post });
+          });
         })
         .catch((e) => {
-          console.log('error in posting post', e);
-          dispatch({ type: "ADD_POST_REJECTED" })
+          console.log("error in posting post", e);
+          dispatch({ type: "ADD_POST_REJECTED" });
         });
     },
-    [dispatch, address],
+    [dispatch, address]
   );
 
   const handleAddressChange = React.useCallback(
     (value: Address) => setAddress(value),
-    [setAddress],
+    [setAddress]
   );
 
   return (
@@ -91,7 +99,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             className="form-field"
             name="title"
             inputRef={register}
-            label="Titel"
+            label="Kort beskrivning"
             variant="outlined"
             fullWidth
           />
@@ -124,7 +132,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
         </form>
       </>
     );
-  },
+  }
 );
 
 // EXPORT ------------------------------------------------------------------
