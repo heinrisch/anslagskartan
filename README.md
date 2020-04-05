@@ -1,3 +1,5 @@
+![map](https://github.com/heinrisch/billboard-map/blob/master/screenshot.png?raw=true)
+
 # Anslagskartan
 
 This is a project written during Hack the Crisis Sweden 4th-5th of April 2020.
