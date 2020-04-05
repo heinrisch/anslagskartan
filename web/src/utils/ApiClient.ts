@@ -6,7 +6,7 @@ import {
 } from "../models/post";
 
 export class ApiClient {
-  host = "https://calm-earth-95509.herokuapp.com/";
+  host = "https://anslagskartans-backend.herokuapp.com";
 
   get idToken(): Promise<string> {
     const currentUser = firebase.auth().currentUser;
