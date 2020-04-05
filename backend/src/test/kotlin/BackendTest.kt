@@ -1,8 +1,8 @@
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.kittinunf.fuel.Fuel
 import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import spark.Request
@@ -11,11 +11,11 @@ import java.util.*
 
 class BackendTest {
 
-    val host = "http://127.0.0.1:1234"
+    private val host = "http://127.0.0.1:1234"
 
     @Test
     fun `test ping`() {
-        val (a,b,c) = Fuel.Companion.get("$host/ping").responseString()
+        val (_, b, _) = Fuel.Companion.get("$host/ping").responseString()
         assertEquals(
             200,
             b.statusCode
@@ -24,17 +24,18 @@ class BackendTest {
 
     @Test
     fun `test auth`() {
-        val (a,b,c) = Fuel.Companion.get("$host/check-auth").responseString()
+        val (_, b, _) = Fuel.Companion.get("$host/check-auth").responseString()
         assertEquals(
             200,
             b.statusCode
         )
     }
 
-    fun getMyTasks()  = objectMapper.readValue<Routes.Tasks>(Fuel.Companion.get("$host/me/tasks").responseString().third.get())
+    fun getMyTasks() = objectMapper.readValue<Tasks>(Fuel.Companion.get("$host/me/tasks").responseString().third.get())
 
     fun createTask(): UUID {
-        val (a,b,c) = Fuel.Companion.post("$host/tasks").body("""
+        val (_, b, c) = Fuel.Companion.post("$host/tasks").body(
+            """
             {
               "title": "This is the title",
               "location": {
@@ -47,12 +48,13 @@ class BackendTest {
                 "text": "Hej! Jag har massa visior som jag kan bli av med"
               }
             }
-        """).responseString()
+        """
+        ).responseString()
         assertEquals(
             200,
             b.statusCode
         )
-        return objectMapper.readValue<Routes.TaskResponse>(c.get()).taskId
+        return objectMapper.readValue<TaskResponse>(c.get()).taskId
     }
 
     @Test
@@ -66,7 +68,8 @@ class BackendTest {
         val id = createTask()
         val newTitle = UUID.randomUUID().toString()
 
-        val (a,b,c) = Fuel.Companion.post("$host/tasks/$id").body("""
+        val (_, b, c) = Fuel.Companion.post("$host/tasks/$id").body(
+            """
             {
               "title": "$newTitle",
               "location": {
@@ -79,7 +82,8 @@ class BackendTest {
                 "text": "Hej! Jag har massa visior som jag kan bli av med"
               }
             }
-        """).responseString()
+        """
+        ).responseString()
 
         assertEquals(
             200,
@@ -87,7 +91,7 @@ class BackendTest {
         )
         assertEquals(
             id,
-            objectMapper.readValue<Routes.TaskResponse>(c.get()).taskId
+            objectMapper.readValue<TaskResponse>(c.get()).taskId
         )
 
         assertEquals(
@@ -99,7 +103,7 @@ class BackendTest {
 
     companion object {
 
-        private fun auth(request: Request, block: (idToken: String) -> Any): Any {
+        private fun auth(@Suppress("UNUSED_PARAMETER") request: Request, block: (idToken: String) -> Any): Any {
             return block("hack-user-123")
         }
 

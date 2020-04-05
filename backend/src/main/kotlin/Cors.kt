@@ -1,7 +1,6 @@
 import spark.Request
 import spark.Response
 import spark.Spark
-import spark.Spark.before
 import spark.Spark.options
 
 fun fixCors() {
