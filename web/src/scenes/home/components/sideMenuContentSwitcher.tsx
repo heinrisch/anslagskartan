@@ -44,7 +44,11 @@ const SideMenuContentSwitcherPresentation: React.FC<SideMenuContentSwitcherPrese
 
   return (
     <div
-      style={{ backgroundColor: "#ffffff", height: "100vh", padding: "1rem" }}
+      style={{
+        padding: "1rem",
+        overflow: "auto",
+        maxHeight: "100vh",
+      }}
     >
       {content}
     </div>

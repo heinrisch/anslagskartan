@@ -1,9 +1,10 @@
 import React from "react";
-import { Typography, Paper, Chip } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { SearchBar } from "./searchBar";
 import { PostItem } from "./postItem";
+import { PostListFooter } from "./postListFooter";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -30,7 +31,11 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
         <Typography variant="caption" display="block" gutterBottom>
           Visar {renderedPosts.length} resultat
         </Typography>
-        <div style={{ margin: "0 -1rem" }}>{renderedPosts}</div>
+        <div style={{ margin: "0 -1rem", paddingBottom: "60px" }}>
+          {renderedPosts}
+        </div>
+
+        <PostListFooter />
       </>
     );
   }

@@ -65,9 +65,14 @@ const AddPostContainer: React.FC = React.memo(() => {
     [setAddress]
   );
 
+  const handleCancelClick = React.useCallback(() => {
+    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: "list" });
+  }, [dispatch]);
+
   return (
     <AddPostPresentation
       mapCenter={state.mapCenter}
+      onCancelClick={handleCancelClick}
       onSubmitForm={handleSubmitForm}
       onAddressChange={handleAddressChange}
     />
@@ -79,12 +84,13 @@ const AddPostContainer: React.FC = React.memo(() => {
 type AddPostPresentationProps = {
   mapCenter: MapPosition;
   onSubmitForm: OnSubmit<Record<string, any>>;
+  onCancelClick: () => void;
   onAddressChange: (address: Address) => void;
 };
 
 const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
   (props) => {
-    const { onSubmitForm, onAddressChange, mapCenter } = props;
+    const { onSubmitForm, onAddressChange, mapCenter, onCancelClick } = props;
 
     const { register, handleSubmit, errors } = useForm();
 
@@ -103,7 +109,6 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             variant="outlined"
             fullWidth
           />
-
           <TextField
             className="form-field"
             name="description"
@@ -114,7 +119,6 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             fullWidth
             multiline
           />
-
           <AddressInput
             className="form-field"
             name="address"
@@ -125,9 +129,16 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             location={mapCenter}
             fullWidth
           />
-
           <Button type="submit" variant="contained" color="primary">
             Lägg till
+          </Button>{" "}
+          <Button
+            type="button"
+            variant="contained"
+            color="secondary"
+            onClick={onCancelClick}
+          >
+            Avbryt
           </Button>
         </form>
       </>

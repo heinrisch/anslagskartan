@@ -31,6 +31,22 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
   const { open, onToggle } = props;
   const width = 320;
 
+  const carret = open ? (
+    <FontAwesomeIcon icon={faCaretLeft} />
+  ) : (
+    <FontAwesomeIcon icon={faCaretRight} />
+  );
+
+  const toggleStyle: React.CSSProperties = {
+    padding: "1rem",
+    position: "absolute",
+    left: `${width - 2}px`,
+    top: "1rem",
+    cursor: "pointer",
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  };
+
   return (
     <Menu
       pageWrapId="page-wrap"
@@ -42,25 +58,18 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
       disableCloseOnEsc
       disableOverlayClick
     >
-      <Paper
+      <div
         style={{
-          padding: "1rem",
+          height: "100vh",
           position: "absolute",
-          left: `${width - 2}px`,
-          top: "1rem",
-          cursor: "pointer",
-          borderTopLeftRadius: 0,
-          borderBottomLeftRadius: 0,
+          backgroundColor: "#ffffff",
         }}
-        onClick={onToggle}
       >
-        {open ? (
-          <FontAwesomeIcon icon={faCaretLeft} />
-        ) : (
-          <FontAwesomeIcon icon={faCaretRight} />
-        )}
-      </Paper>
-      <SideMenuContentSwitcher />
+        <Paper style={toggleStyle} onClick={onToggle}>
+          {carret}
+        </Paper>
+        <SideMenuContentSwitcher />
+      </div>
     </Menu>
   );
 };

@@ -1,24 +1,17 @@
 import { Paper } from "@material-ui/core";
 import React from "react";
-import { AuthConsumer } from "../../../components/authConsumer/authConsumer";
-import { AppContext } from "../../../state/appContext";
-import { AddMenuItemButton } from "../../../components/buttons/addMenuItemButton";
 import { LoadingButton } from "../../../components/buttons/loadingButton";
+import { AppContext } from "../../../state/appContext";
 import "./actionButtonList.css";
 
 // CONTAINER ----------------------------------------------------------------
 
 const ActionButtonListContainer: React.FC = () => {
-  const { dispatch, state } = React.useContext(AppContext);
-
-  const handleOpenAddPostClick = React.useCallback(() => {
-    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: "add" });
-  }, [dispatch]);
+  const { state } = React.useContext(AppContext);
 
   return (
     <ActionButtonListPresentation
       isLoading={state.loadingAddPost || state.loadingPosts}
-      onOpenAddPostClick={handleOpenAddPostClick}
     />
   );
 };
@@ -27,13 +20,12 @@ const ActionButtonListContainer: React.FC = () => {
 
 type ActionButtonListPresentationProps = {
   isLoading: boolean;
-  onOpenAddPostClick: () => void;
 };
 
 const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> = (
   props
 ) => {
-  const { isLoading, onOpenAddPostClick } = props;
+  const { isLoading } = props;
 
   const style: React.CSSProperties = {
     position: "absolute",
@@ -42,11 +34,14 @@ const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> 
     zIndex: 1000,
   };
 
+  const className = [
+    "action-button-list__paper",
+    `action-button-list__paper--hidden-${(!isLoading).toString()}`,
+  ].join(" ");
+
   return (
     <div style={style}>
-      <Paper
-        className={`action-button-list__paper action-button-list__paper--hidden-${(!isLoading).toString()}`}
-      >
+      <Paper className={className}>
         <LoadingButton loading={isLoading} />
       </Paper>
     </div>

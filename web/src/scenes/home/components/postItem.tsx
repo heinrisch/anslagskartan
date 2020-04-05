@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { AppContext } from "../../../state/appContext";
 import { PostItemNeeds } from "./postItemNeeds";
+import "./postItem.css";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -51,8 +52,7 @@ const PostItemPresentation: React.FC<PostItemPresentationProps> = React.memo(
     return (
       <Paper
         variant="outlined"
-        className="menu-item"
-        style={{ cursor: "pointer", padding: "0.5rem 1rem" }}
+        className="menu-item post-item"
         onClick={onClick}
         key={post.id}
       >
