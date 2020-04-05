@@ -1,4 +1,4 @@
-import { MapPosition } from "../components/map/models/mapPosition";
+import { MapPosition } from "../scenes/home/models/mapPosition";
 
 export type Post = {
   address?: string;

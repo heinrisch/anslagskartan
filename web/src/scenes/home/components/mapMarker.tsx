@@ -1,6 +1,6 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
-import { MapPosition } from "./models/mapPosition";
+import { MapPosition } from "../models/mapPosition";
 
 export type MapMarkerProps = {
   position: MapPosition;

@@ -1,9 +1,9 @@
 import React from "react";
 import { Map as LeafMap, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import { MapMarker } from "../../../components/map/mapMarker";
-import { MapPosition } from "../../../components/map/models/mapPosition";
-import { TileType } from "../../../components/map/models/tileTypes";
+import { MapMarker } from "./mapMarker";
+import { MapPosition } from "../models/mapPosition";
+import { TileType } from "../models/tileTypes";
 import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 

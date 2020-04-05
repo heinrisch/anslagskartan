@@ -1,11 +1,8 @@
 import { Button, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
-import {
-  Address,
-  AddressInput,
-} from "../../../components/addressInput/addressInput";
-import { MapPosition } from "../../../components/map/models/mapPosition";
+import { Address, AddressInput } from "./addressInput";
+import { MapPosition } from "../models/mapPosition";
 import { Post, TaskResponse } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";

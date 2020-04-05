@@ -1,9 +1,12 @@
 import firebase from "firebase";
-import { BackendCreatePost, BackendPostResponse, TaskResponse } from "../models/post";
+import {
+  BackendCreatePost,
+  BackendPostResponse,
+  TaskResponse,
+} from "../models/post";
 
 export class ApiClient {
-
-  host = "http://bimp.eu-west-1.elasticbeanstalk.com";
+  host = "https://calm-earth-95509.herokuapp.com/";
 
   get idToken(): Promise<string> {
     const currentUser = firebase.auth().currentUser;
@@ -18,26 +21,30 @@ export class ApiClient {
   }
 
   authPing() {
-    return this.idToken.then((token) => fetch(`${this.host}/check-auth`, {
-      headers: {
-        "idToken": token,
-      },
-    }));
+    return this.idToken.then((token) =>
+      fetch(`${this.host}/check-auth`, {
+        headers: {
+          idToken: token,
+        },
+      })
+    );
   }
 
   allTask(): Promise<BackendPostResponse> {
-    return fetch(`${this.host}/tasks`).then(response => response.json());
+    return fetch(`${this.host}/tasks`).then((response) => response.json());
   }
 
-  async createPost(backendCreatePost: BackendCreatePost): Promise<TaskResponse> {
+  async createPost(
+    backendCreatePost: BackendCreatePost
+  ): Promise<TaskResponse> {
     const token = await this.idToken;
     const response = await fetch(`${this.host}/tasks`, {
       method: "POST",
       body: JSON.stringify(backendCreatePost),
       headers: {
-        "idToken": token,
-      }
+        idToken: token,
+      },
     });
-    return await response.json()
+    return await response.json();
   }
 }

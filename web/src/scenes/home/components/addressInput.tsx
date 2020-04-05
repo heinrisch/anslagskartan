@@ -2,7 +2,7 @@ import { TextField, TextFieldProps } from "@material-ui/core";
 import React from "react";
 import Geosuggest, { Suggest } from "react-geosuggest";
 import "./addressInput.css";
-import { MapPosition } from "../map/models/mapPosition";
+import { MapPosition } from "../models/mapPosition";
 
 export type Address = {
   readonly label: string;

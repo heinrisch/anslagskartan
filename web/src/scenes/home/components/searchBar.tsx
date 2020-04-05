@@ -1,10 +1,7 @@
 import React from "react";
 import { AppContext } from "../../../state/appContext";
-import {
-  AddressInput,
-  Address,
-} from "../../../components/addressInput/addressInput";
-import { MapPosition } from "../../../components/map/models/mapPosition";
+import { AddressInput, Address } from "./addressInput";
+import { MapPosition } from "../models/mapPosition";
 import { useHandleUpdateMapCenterCallback } from "../../../handlers/handleUpdateMapCenter";
 
 // CONTAINER ----------------------------------------------------------------

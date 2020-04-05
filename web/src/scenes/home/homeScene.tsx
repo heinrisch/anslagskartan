@@ -1,5 +1,5 @@
 import React from "react";
-import { SideMenuContainer } from "../../components/sideMenu/sideMenuContainer";
+import { SideMenuContainer } from "./components/sideMenuContainer";
 import { ActionButtonList } from "./components/actionButtonList";
 import { Map } from "./components/map";
 import { SideMenu } from "./components/sideMenu";

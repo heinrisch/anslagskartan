@@ -1,6 +1,6 @@
 import { Paper } from "@material-ui/core";
 import React from "react";
-import { LoadingButton } from "../../../components/buttons/loadingButton";
+import { LoadingButton } from "./loadingButton";
 import { AppContext } from "../../../state/appContext";
 import "./actionButtonList.css";
 
