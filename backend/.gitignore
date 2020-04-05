@@ -12,3 +12,6 @@ out
 /build
 /deployments
 gradle.properties
+
+# secrets
+src/main/resources/firebase.json
