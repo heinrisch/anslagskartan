@@ -2,7 +2,7 @@ type Action = {
   readonly type: string;
 };
 
-const isActive = false;
+const isActive = true;
 
 export const withReducerLog = <S, A extends Action>(
   reducer: (state: S, action: A) => S

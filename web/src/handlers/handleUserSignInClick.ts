@@ -14,10 +14,10 @@ export const useHandleUserSignInClickCallback = (
       .signInWithPopup(facebookAuthProvider)
       .then(async (result) => {
         const { credential, user } = result;
-        // const currentUser = firebase.auth().currentUser;
-        // const userId = await currentUser?.getIdToken(false);
+        const currentUser = firebase.auth().currentUser;
+        const userId = await currentUser?.getIdToken(false);
 
-        // dispatch({ type: "SET_USER_ID", userId: userId || null });
+        dispatch({ type: "SET_USER_ID", userId: userId || null });
         dispatch({
           type: "FACEBOOK_USER_SIGNED_IN",
           user: user as FacebookUser,
@@ -30,8 +30,5 @@ export const useHandleUserSignInClickCallback = (
 
         console.error("got error", code, message, email, credential, error);
       });
-    // .finally(() => {
-    //   dispatch({ type: "LOGGED_IN_PROMISE" });
-    // });
   }, [dispatch]);
 };

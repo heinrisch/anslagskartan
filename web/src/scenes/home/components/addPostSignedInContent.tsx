@@ -34,8 +34,6 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
     (data) => {
       dispatch({ type: "ADD_POST_PENDING" });
 
-      console.log("data", data);
-
       if (state.userId === null) {
         throw new Error("User is not logged in");
       }
@@ -55,7 +53,9 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
             data.material ? "Material" : "",
             data.food ? "Mat" : "",
             data.other ? "Annat" : "",
-          ].join(","),
+          ]
+            .filter((x) => x.length > 0)
+            .join(","),
         },
       })
         .then((postResponse: TaskResponse) => {

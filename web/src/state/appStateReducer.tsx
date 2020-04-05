@@ -4,8 +4,6 @@ import { withReducerLog } from "../utils/withReducerLog";
 
 export const appStateReducer = withReducerLog(
   (state: AppState, action: AppAction): AppState => {
-    console.log("state", state, action);
-
     switch (action.type) {
       case "POSTS_PENDING":
         return {
@@ -83,12 +81,6 @@ export const appStateReducer = withReducerLog(
         return {
           ...state,
           userId: action.userId,
-        };
-
-      case "LOGGED_IN_PROMISE":
-        return {
-          ...state,
-          doNotCheckLogin: true,
         };
 
       default:
