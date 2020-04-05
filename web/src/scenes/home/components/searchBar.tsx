@@ -5,18 +5,14 @@ import {
   Address,
 } from "../../../components/addressInput/addressInput";
 import { MapPosition } from "../../../components/map/models/mapPosition";
+import { useHandleUpdateMapCenterCallback } from "../../../handlers/handleUpdateMapCenter";
 
 // CONTAINER ----------------------------------------------------------------
 
 const SearchBarContainer: React.FC = () => {
   const { dispatch, state } = React.useContext(AppContext);
 
-  const handleChange = React.useCallback(
-    (address: Address) => {
-      dispatch({ type: "UPDATE_MAP_CENTER", center: address });
-    },
-    [dispatch]
-  );
+  const handleChange = useHandleUpdateMapCenterCallback(dispatch);
 
   return (
     <SearchBarPresentation

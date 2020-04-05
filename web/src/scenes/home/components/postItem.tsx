@@ -7,6 +7,7 @@ import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { AppContext } from "../../../state/appContext";
 import { PostItemNeeds } from "./postItemNeeds";
 import "./postItem.css";
+import { useHandleSelectPostCallback } from "../../../handlers/handleSelectPost";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -24,9 +25,7 @@ const PostItemContainer: React.FC<PostItemContainerProps> = (props) => {
     ? post.description
     : truncateString(post.description || "", 40, true);
 
-  const handleClick = React.useCallback(() => {
-    dispatch({ type: "SELECT_POST", post });
-  }, [dispatch, post]);
+  const handleClick = useHandleSelectPostCallback(dispatch, post);
 
   return (
     <PostItemPresentation

@@ -3,6 +3,7 @@ import { ChildFunction } from "@react-firebase/auth/dist/types";
 import React from "react";
 import { AppContext } from "../../../state/appContext";
 import { FacebookUser } from "../../../state/appState";
+import { useHandleFacebookUserSignedInCallback } from "../../../handlers/handleFacebookUserSignedIn";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -16,12 +17,7 @@ const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
 ) => {
   const { dispatch } = React.useContext(AppContext);
 
-  const handleUserSignedIn = React.useCallback(
-    (user: FacebookUser) => {
-      dispatch({ type: "FACEBOOK_USER_SIGNED_IN", user });
-    },
-    [dispatch]
-  );
+  const handleUserSignedIn = useHandleFacebookUserSignedInCallback(dispatch);
 
   return (
     <AuthContentSwitchPresentation

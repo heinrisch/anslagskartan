@@ -1,15 +1,17 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { AppContext } from "../../../state/appContext";
+import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 
 // CONTAINER ----------------------------------------------------------------
 
 const PostListFooterContainer: React.FC = () => {
   const { dispatch } = React.useContext(AppContext);
 
-  const handleAddPostClick = React.useCallback(() => {
-    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: "add" });
-  }, [dispatch]);
+  const handleAddPostClick = useHandleToggleSidebarViewCallback(
+    dispatch,
+    "add"
+  );
 
   return <PostListFooterPresentation onAddPostClick={handleAddPostClick} />;
 };

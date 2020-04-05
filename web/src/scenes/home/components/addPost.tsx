@@ -14,8 +14,8 @@ import "./addPost.css";
 import { AuthContentSwitch } from "./authContentSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
-import firebase from "firebase/app";
-import { FacebookUser } from "../../../state/appState";
+import { useHandleUserSignInClickCallback } from "../../../handlers/handleUserSignInClick";
+import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -64,32 +64,15 @@ const AddPostContainer: React.FC = React.memo(() => {
     [setAddress]
   );
 
-  const handleCancelClick = React.useCallback(() => {
-    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: "list" });
-  }, [dispatch]);
-
-  const handleSignInClick = React.useCallback(() => {
-    const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(facebookAuthProvider)
-      .then((result) => {
-        const { credential, user } = result;
-
-        console.log("got credential", credential);
-        console.log("got user", user);
-      })
-      .catch((error) => {
-        var { code, message, email, credential } = error;
-
-        console.error("got error", code, message, email, credential, error);
-      });
-  }, []);
+  const handleCancelClick = useHandleToggleSidebarViewCallback(
+    dispatch,
+    "list"
+  );
+  const handleSignInClick = useHandleUserSignInClickCallback();
 
   return (
     <AddPostPresentation
       mapCenter={state.mapCenter}
-      user={state.user}
       onSignInClick={handleSignInClick}
       onCancelClick={handleCancelClick}
       onSubmitForm={handleSubmitForm}
@@ -102,7 +85,6 @@ const AddPostContainer: React.FC = React.memo(() => {
 
 type AddPostPresentationProps = {
   mapCenter: MapPosition;
-  user: FacebookUser | null;
   onSignInClick: () => void;
   onSubmitForm: OnSubmit<Record<string, any>>;
   onCancelClick: () => void;
@@ -117,7 +99,6 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
       mapCenter,
       onCancelClick,
       onSignInClick,
-      user,
     } = props;
 
     const { register, handleSubmit, errors } = useForm();

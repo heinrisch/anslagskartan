@@ -5,15 +5,17 @@ import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import { AppContext } from "../../../state/appContext";
 import { SideMenuContentSwitcher } from "./sideMenuContentSwitcher";
+import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 
 // CONTAINER ----------------------------------------------------------------
 
 const SideMenuContainer: React.FC = () => {
   const { dispatch, state } = React.useContext(AppContext);
 
-  const handleCloseClick = React.useCallback(() => {
-    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: state.menuType });
-  }, [dispatch]);
+  const handleCloseClick = useHandleToggleSidebarViewCallback(
+    dispatch,
+    state.menuType
+  );
 
   return (
     <SideMenuPresentation open={state.menuIsOpen} onToggle={handleCloseClick} />
