@@ -17,7 +17,7 @@ React app written in Typescript (web) and deployed at https://anslagskartan.hero
 Kotlin webserver using SparkJava deployed to https://anslagskartans-backend.herokuapp.com/
 
 
-###Contributers:
+## Contributers:
 
 Misael [Github](https://github.com/misael86)
 
