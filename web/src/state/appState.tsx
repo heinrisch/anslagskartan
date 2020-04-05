@@ -19,5 +19,5 @@ export type AppState = {
   mapCenter: MapPosition;
   menuIsOpen: boolean;
   menuType: MenuType;
-  selectedPostId: number | undefined;
+  selectedPostId: string | undefined;
 };

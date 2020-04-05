@@ -31,7 +31,7 @@ const PostListContainer: React.FC = () => {
 // PRESENTATION -------------------------------------------------------------
 
 type PostListPresentationProps = {
-  selectedPostId: number | undefined;
+  selectedPostId: string | undefined;
   posts: Post[];
   onClick: (post: Post) => void;
 };
@@ -45,7 +45,7 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
       const currentIsActive = selectedPostId === post.id;
       const description = currentIsActive
         ? post.description
-        : truncateString(post.description, 40, true);
+        : truncateString(post.description || "", 40, true);
 
       return (
         <Paper

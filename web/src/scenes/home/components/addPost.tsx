@@ -6,10 +6,11 @@ import {
   AddressInput,
 } from "../../../components/addressInput/addressInput";
 import { MapPosition } from "../../../components/map/models/mapPosition";
-import { Post } from "../../../models/post";
+import { BackendLocation, BackendPostData, BackendPostResponse, Post, TaskResponse } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";
 import "./addPost.css";
+import { fetchPosts } from "../../../utils/http/fetchPosts";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -27,21 +28,33 @@ const AddPostContainer: React.FC = React.memo(() => {
       dispatch({ type: "ADD_POST_PENDING" });
 
       addPosts({
-        address: address.label,
         title: data.title,
-        description: data.description,
-        position: address,
-        needs: [],
+        location: {
+          lat: address.latitude,
+          lng: address.longitude,
+        },
+        data: {
+          address: address.label,
+          description: data.description,
+        },
       })
-        .then((post: Post) => dispatch({ type: "ADD_POST_RECEIVED", post }))
-        .catch(() => dispatch({ type: "ADD_POST_REJECTED" }));
+        .then((postResponse: TaskResponse) => {
+          fetchPosts().then((posts) => {
+            const post: Post = posts.filter((p) => p.id === postResponse.taskId)[0];
+            dispatch({ type: "ADD_POST_RECEIVED", post })
+          })
+        })
+        .catch((e) => {
+          console.log('error in posting post', e);
+          dispatch({ type: "ADD_POST_REJECTED" })
+        });
     },
-    [dispatch, address]
+    [dispatch, address],
   );
 
   const handleAddressChange = React.useCallback(
     (value: Address) => setAddress(value),
-    [setAddress]
+    [setAddress],
   );
 
   return (
@@ -111,7 +124,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
         </form>
       </>
     );
-  }
+  },
 );
 
 // EXPORT ------------------------------------------------------------------

@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import { BackendCreatePost, BackendPostResponse, TaskResponse } from "../models/post";
 
 export class ApiClient {
 
@@ -19,12 +20,24 @@ export class ApiClient {
   authPing() {
     return this.idToken.then((token) => fetch(`${this.host}/check-auth`, {
       headers: {
-        'idToken': token
+        "idToken": token,
       },
     }));
   }
 
-  allTask() {
+  allTask(): Promise<BackendPostResponse> {
     return fetch(`${this.host}/tasks`).then(response => response.json());
+  }
+
+  async createPost(backendCreatePost: BackendCreatePost): Promise<TaskResponse> {
+    const token = await this.idToken;
+    const response = await fetch(`${this.host}/tasks`, {
+      method: "POST",
+      body: JSON.stringify(backendCreatePost),
+      headers: {
+        "idToken": token,
+      }
+    });
+    return await response.json()
   }
 }
