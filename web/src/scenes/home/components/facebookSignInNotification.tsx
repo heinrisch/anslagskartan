@@ -60,9 +60,9 @@ const FacebookSignInNotificationPresentation: React.FC<FacebookSignInNotificatio
           </Button>
         </div>
 
-        <br />
-        <br />
-        <a href="#">Läs mer om hur och varför vi använder Facebook</a>
+        {/* <br /> */}
+        {/* <br /> */}
+        {/* <a href="#">Läs mer om hur och varför vi använder Facebook</a> */}
 
         <br />
         <br />

@@ -1,4 +1,13 @@
-import { Button, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  TextField,
+  Typography,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  FormControl,
+  FormLabel,
+} from "@material-ui/core";
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
@@ -25,6 +34,8 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
     (data) => {
       dispatch({ type: "ADD_POST_PENDING" });
 
+      console.log("data", data);
+
       if (state.userId === null) {
         throw new Error("User is not logged in");
       }
@@ -38,6 +49,13 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
         data: {
           address: address.label,
           description: data.description,
+          contactInfo: data.contactInfo,
+          needs: [
+            data.printer ? "3D printer" : "",
+            data.material ? "Material" : "",
+            data.food ? "Mat" : "",
+            data.other ? "Annat" : "",
+          ].join(","),
         },
       })
         .then((postResponse: TaskResponse) => {
@@ -53,7 +71,7 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
           dispatch({ type: "ADD_POST_REJECTED" });
         });
     },
-    [dispatch, address]
+    [dispatch, address, state.userId]
   );
 
   const handleAddressChange = React.useCallback(
@@ -101,7 +119,7 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
             className="form-field"
             name="title"
             inputRef={register}
-            label="Kort beskrivning"
+            label="Kort beskrivning / Titel"
             variant="outlined"
             fullWidth
           />
@@ -109,12 +127,44 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
             className="form-field"
             name="description"
             inputRef={register}
-            label="Beskrivning"
+            label="Full beskrivning"
             variant="outlined"
             rows={3}
             fullWidth
             multiline
           />
+          <TextField
+            className="form-field"
+            name="contactInfo"
+            inputRef={register}
+            label="Kontaktinformation"
+            variant="outlined"
+            rows={3}
+            fullWidth
+            multiline
+          />
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Behov</FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={<Checkbox inputRef={register} name="printer" />}
+                label="3D printer"
+              />
+              <FormControlLabel
+                control={<Checkbox inputRef={register} name="material" />}
+                label="Material"
+              />
+              <FormControlLabel
+                control={<Checkbox inputRef={register} name="food" />}
+                label="Mat"
+              />
+              <FormControlLabel
+                control={<Checkbox inputRef={register} name="other" />}
+                label="Annat"
+              />
+            </FormGroup>
+          </FormControl>
+
           <AddressInput
             className="form-field"
             name="address"

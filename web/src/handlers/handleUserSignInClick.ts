@@ -8,6 +8,7 @@ export const useHandleUserSignInClickCallback = (
 ) => {
   return React.useCallback(() => {
     const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+
     firebase
       .auth()
       .signInWithPopup(facebookAuthProvider)
@@ -28,6 +29,9 @@ export const useHandleUserSignInClickCallback = (
         var { code, message, email, credential } = error;
 
         console.error("got error", code, message, email, credential, error);
+      })
+      .finally(() => {
+        dispatch({ type: "LOGGED_IN_PROMISE" });
       });
-  }, []);
+  }, [dispatch]);
 };

@@ -5,6 +5,7 @@ export type Post = {
   position: MapPosition;
   title: string;
   description?: string;
+  contactInfo?: string;
   id?: string;
   needs: string[];
 };
@@ -17,6 +18,8 @@ export type BackendLocation = {
 export type BackendPostData = {
   address?: string;
   description?: string;
+  contactInfo?: string;
+  needs?: string;
 };
 
 export type BackendPost = {

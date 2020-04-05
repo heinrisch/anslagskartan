@@ -8,5 +8,5 @@ export const useHandleToggleSidebarViewCallback = (
 ) => {
   return React.useCallback(() => {
     dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType });
-  }, [dispatch]);
+  }, [dispatch, menuType]);
 };

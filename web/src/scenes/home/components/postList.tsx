@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { SearchBar } from "./searchBar";

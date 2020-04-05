@@ -4,7 +4,7 @@ import { ApiClient } from "../ApiClient";
 const apiClient = new ApiClient();
 
 export const fetchPosts = (): Promise<Post[]> => {
-  return apiClient.allTask().then(bpr => bpr.tasks.map(backendPostToPost))
+  return apiClient.allTask().then((bpr) => bpr.tasks.map(backendPostToPost));
 };
 
 const backendPostToPost = (bp: BackendPost): Post => {
@@ -12,11 +12,12 @@ const backendPostToPost = (bp: BackendPost): Post => {
     address: bp.data.address,
     position: {
       latitude: bp.location.lat,
-      longitude: bp.location.lng
+      longitude: bp.location.lng,
     },
     title: bp.title,
     description: bp.data.description,
+    contactInfo: bp.data.contactInfo,
     id: bp.id,
-    needs: [],
+    needs: bp.data.needs?.split(",") || [],
   };
 };

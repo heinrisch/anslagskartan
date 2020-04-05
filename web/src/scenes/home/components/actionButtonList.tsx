@@ -11,6 +11,7 @@ const ActionButtonListContainer: React.FC = () => {
 
   return (
     <ActionButtonListPresentation
+      profileImageUrl={state.user?.photoURL}
       isLoading={state.loadingAddPost || state.loadingPosts}
     />
   );
@@ -20,17 +21,18 @@ const ActionButtonListContainer: React.FC = () => {
 
 type ActionButtonListPresentationProps = {
   isLoading: boolean;
+  profileImageUrl: string | undefined;
 };
 
 const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> = (
   props
 ) => {
-  const { isLoading } = props;
+  const { isLoading, profileImageUrl } = props;
 
   const style: React.CSSProperties = {
     position: "absolute",
     right: "1rem",
-    bottom: "1rem",
+    top: "1rem",
     zIndex: 1000,
   };
 
@@ -44,6 +46,9 @@ const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> 
       <Paper className={className}>
         <LoadingButton loading={isLoading} />
       </Paper>
+      {/* <Paper className={className}>
+        <img src={profileImageUrl} alt="facebook avatar" />
+      </Paper> */}
     </div>
   );
 };

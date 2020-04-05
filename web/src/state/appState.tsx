@@ -12,6 +12,7 @@ export const initialAppState: AppState = {
   selectedPostId: undefined,
   user: null,
   userId: null,
+  doNotCheckLogin: false,
 };
 
 export type AppState = {
@@ -24,6 +25,7 @@ export type AppState = {
   selectedPostId: string | undefined;
   user: null | FacebookUser;
   userId: null | string;
+  doNotCheckLogin: boolean;
 };
 
 export type FacebookUser = {

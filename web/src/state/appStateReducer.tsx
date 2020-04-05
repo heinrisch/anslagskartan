@@ -85,6 +85,12 @@ export const appStateReducer = withReducerLog(
           userId: action.userId,
         };
 
+      case "LOGGED_IN_PROMISE":
+        return {
+          ...state,
+          doNotCheckLogin: true,
+        };
+
       default:
         return state;
     }

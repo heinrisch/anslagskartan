@@ -15,4 +15,5 @@ export type AppAction =
   | { type: "SELECT_POST"; post: Post }
   | { type: "CLOSE_SIDEBAR" }
   | { type: "FACEBOOK_USER_SIGNED_IN"; user: FacebookUser }
-  | { type: "SET_USER_ID"; userId: string | null };
+  | { type: "SET_USER_ID"; userId: string | null }
+  | { type: "LOGGED_IN_PROMISE" };

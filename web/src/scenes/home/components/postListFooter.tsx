@@ -48,7 +48,7 @@ const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = Re
             Be om hjälp
           </Button>
         </div>
-        <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
+        {/* <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
           <Button
             variant="contained"
             color="secondary"
@@ -58,7 +58,7 @@ const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = Re
           >
             Hjälp till
           </Button>
-        </div>
+        </div> */}
       </div>
     );
   }
