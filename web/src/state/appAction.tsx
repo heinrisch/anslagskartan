@@ -1,6 +1,7 @@
 import { Post } from "../models/post";
 import { MenuType } from "../scenes/home/models/menuType";
 import { MapPosition } from "../components/map/models/mapPosition";
+import { FacebookUser } from "./appState";
 
 export type AppAction =
   | { type: "POSTS_PENDING" }
@@ -13,4 +14,4 @@ export type AppAction =
   | { type: "UPDATE_MAP_CENTER"; center: MapPosition }
   | { type: "SELECT_POST"; post: Post }
   | { type: "CLOSE_SIDEBAR" }
-  | { type: "USER_SIGNED_IN"; user: unknown };
+  | { type: "FACEBOOK_USER_SIGNED_IN"; user: FacebookUser };

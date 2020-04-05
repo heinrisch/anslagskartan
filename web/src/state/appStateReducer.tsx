@@ -73,7 +73,7 @@ export const appStateReducer = withReducerLog(
           menuType: "none",
         };
 
-      case "USER_SIGNED_IN":
+      case "FACEBOOK_USER_SIGNED_IN":
         return {
           ...state,
           user: action.user,

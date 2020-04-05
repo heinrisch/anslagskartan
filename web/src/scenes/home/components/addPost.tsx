@@ -15,6 +15,7 @@ import { AuthContentSwitch } from "./authContentSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import firebase from "firebase/app";
+import { FacebookUser } from "../../../state/appState";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -88,6 +89,7 @@ const AddPostContainer: React.FC = React.memo(() => {
   return (
     <AddPostPresentation
       mapCenter={state.mapCenter}
+      user={state.user}
       onSignInClick={handleSignInClick}
       onCancelClick={handleCancelClick}
       onSubmitForm={handleSubmitForm}
@@ -100,6 +102,7 @@ const AddPostContainer: React.FC = React.memo(() => {
 
 type AddPostPresentationProps = {
   mapCenter: MapPosition;
+  user: FacebookUser | null;
   onSignInClick: () => void;
   onSubmitForm: OnSubmit<Record<string, any>>;
   onCancelClick: () => void;
@@ -114,6 +117,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
       mapCenter,
       onCancelClick,
       onSignInClick,
+      user,
     } = props;
 
     const { register, handleSubmit, errors } = useForm();
@@ -153,12 +157,18 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
             location={mapCenter}
             fullWidth
           />
-          <Button type="submit" variant="contained" color="primary">
-            Lägg till
-          </Button>{" "}
-          <Button type="button" variant="contained" onClick={onCancelClick}>
-            Tillbaka till listan
-          </Button>
+          <div style={{ textAlign: "center" }}>
+            <Button type="submit" variant="contained" color="primary">
+              Lägg till
+            </Button>
+
+            <br />
+            <br />
+
+            <Button type="button" variant="contained" onClick={onCancelClick}>
+              Tillbaka till listan
+            </Button>
+          </div>
         </form>
       </>
     );

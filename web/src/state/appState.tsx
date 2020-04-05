@@ -21,5 +21,13 @@ export type AppState = {
   menuIsOpen: boolean;
   menuType: MenuType;
   selectedPostId: string | undefined;
-  user: null | unknown;
+  user: null | FacebookUser;
+};
+
+export type FacebookUser = {
+  uid: string;
+  displayName: string;
+  photoURL: string;
+  email: string;
+  phoneNumber: string | null;
 };

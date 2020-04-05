@@ -2,6 +2,7 @@ import { FirebaseAuthConsumer } from "@react-firebase/auth";
 import { ChildFunction } from "@react-firebase/auth/dist/types";
 import React from "react";
 import { AppContext } from "../../../state/appContext";
+import { FacebookUser } from "../../../state/appState";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -16,8 +17,8 @@ const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
   const { dispatch } = React.useContext(AppContext);
 
   const handleUserSignedIn = React.useCallback(
-    (user: unknown) => {
-      dispatch({ type: "USER_SIGNED_IN", user });
+    (user: FacebookUser) => {
+      dispatch({ type: "FACEBOOK_USER_SIGNED_IN", user });
     },
     [dispatch]
   );
@@ -35,23 +36,20 @@ const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
 type AuthContentSwitchPresentationProps = {
   signedInContent: JSX.Element;
   signedOutContent: JSX.Element;
-  onUserSignedIn: (user: unknown) => void;
+  onUserSignedIn: (user: FacebookUser) => void;
 };
 
 export const AuthContentSwitchPresentation: React.FC<AuthContentSwitchPresentationProps> = React.memo(
   (props) => {
-    const {
-      signedInContent: signedInElement,
-      signedOutContent: signedOutElement,
-    } = props;
+    const { onUserSignedIn, signedInContent, signedOutContent } = props;
 
     const renderMethod: ChildFunction = ({ isSignedIn, user, providerId }) => {
-      console.log("facebook user", user);
       if (isSignedIn) {
-        return signedInElement;
+        onUserSignedIn(user);
+        return signedInContent;
       }
 
-      return signedOutElement;
+      return signedOutContent;
     };
 
     return <FirebaseAuthConsumer>{renderMethod}</FirebaseAuthConsumer>;
