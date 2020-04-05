@@ -12,31 +12,31 @@ export type Post = {
 export type BackendLocation = {
   lat: number;
   lng: number;
-}
+};
 
 export type BackendPostData = {
-  address?: string
-  description?: string
-}
+  address?: string;
+  description?: string;
+};
 
 export type BackendPost = {
   id: string;
   title: string;
   userId: string;
   location: BackendLocation;
-  data: BackendPostData
-}
+  data: BackendPostData;
+};
 
 export type BackendPostResponse = {
-  tasks: [BackendPost];
-}
+  tasks: BackendPost[];
+};
 
 export type BackendCreatePost = {
   title: string;
   location: BackendLocation;
   data: BackendPostData;
-}
+};
 
 export type TaskResponse = {
   taskId: string;
-}
+};
