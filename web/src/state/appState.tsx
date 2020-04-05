@@ -10,6 +10,7 @@ export const initialAppState: AppState = {
   menuIsOpen: true,
   menuType: "list",
   selectedPostId: undefined,
+  user: null,
 };
 
 export type AppState = {
@@ -20,4 +21,5 @@ export type AppState = {
   menuIsOpen: boolean;
   menuType: MenuType;
   selectedPostId: string | undefined;
+  user: null | unknown;
 };

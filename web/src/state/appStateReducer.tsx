@@ -63,7 +63,7 @@ export const appStateReducer = (
       return {
         ...state,
         selectedPostId:
-          action.post.id === state.selectedPostId ? '0' : action.post.id,
+          action.post.id === state.selectedPostId ? "0" : action.post.id,
         mapCenter: action.post.position,
       };
 
@@ -72,6 +72,12 @@ export const appStateReducer = (
         ...state,
         menuIsOpen: false,
         menuType: "none",
+      };
+
+    case "USER_SIGNED_IN":
+      return {
+        ...state,
+        user: action.user,
       };
 
     default:

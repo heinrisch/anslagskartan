@@ -12,4 +12,5 @@ export type AppAction =
   | { type: "TOGGLE_MENU_IS_OPEN"; menuType: MenuType }
   | { type: "UPDATE_MAP_CENTER"; center: MapPosition }
   | { type: "SELECT_POST"; post: Post }
-  | { type: "CLOSE_SIDEBAR" };
+  | { type: "CLOSE_SIDEBAR" }
+  | { type: "USER_SIGNED_IN"; user: unknown };

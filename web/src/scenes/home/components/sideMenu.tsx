@@ -45,6 +45,7 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
     cursor: "pointer",
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+    zIndex: -1,
   };
 
   return (
@@ -61,6 +62,7 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
       <div
         style={{
           height: "100vh",
+          width: "100%",
           position: "absolute",
           backgroundColor: "#ffffff",
         }}

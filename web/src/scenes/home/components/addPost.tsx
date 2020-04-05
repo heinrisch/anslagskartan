@@ -6,17 +6,15 @@ import {
   AddressInput,
 } from "../../../components/addressInput/addressInput";
 import { MapPosition } from "../../../components/map/models/mapPosition";
-import {
-  BackendLocation,
-  BackendPostData,
-  BackendPostResponse,
-  Post,
-  TaskResponse,
-} from "../../../models/post";
+import { Post, TaskResponse } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";
-import "./addPost.css";
 import { fetchPosts } from "../../../utils/http/fetchPosts";
+import "./addPost.css";
+import { AuthContentSwitch } from "./authContentSwitch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import firebase from "firebase/app";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -69,9 +67,28 @@ const AddPostContainer: React.FC = React.memo(() => {
     dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType: "list" });
   }, [dispatch]);
 
+  const handleSignInClick = React.useCallback(() => {
+    const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(facebookAuthProvider)
+      .then((result) => {
+        const { credential, user } = result;
+
+        console.log("got credential", credential);
+        console.log("got user", user);
+      })
+      .catch((error) => {
+        var { code, message, email, credential } = error;
+
+        console.error("got error", code, message, email, credential, error);
+      });
+  }, []);
+
   return (
     <AddPostPresentation
       mapCenter={state.mapCenter}
+      onSignInClick={handleSignInClick}
       onCancelClick={handleCancelClick}
       onSubmitForm={handleSubmitForm}
       onAddressChange={handleAddressChange}
@@ -83,6 +100,7 @@ const AddPostContainer: React.FC = React.memo(() => {
 
 type AddPostPresentationProps = {
   mapCenter: MapPosition;
+  onSignInClick: () => void;
   onSubmitForm: OnSubmit<Record<string, any>>;
   onCancelClick: () => void;
   onAddressChange: (address: Address) => void;
@@ -90,11 +108,17 @@ type AddPostPresentationProps = {
 
 const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
   (props) => {
-    const { onSubmitForm, onAddressChange, mapCenter, onCancelClick } = props;
+    const {
+      onSubmitForm,
+      onAddressChange,
+      mapCenter,
+      onCancelClick,
+      onSignInClick,
+    } = props;
 
     const { register, handleSubmit, errors } = useForm();
 
-    return (
+    const signedInContent = (
       <>
         <Typography variant="h5" gutterBottom>
           Skapa en lapp
@@ -132,16 +156,56 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
           <Button type="submit" variant="contained" color="primary">
             Lägg till
           </Button>{" "}
-          <Button
-            type="button"
-            variant="contained"
-            color="secondary"
-            onClick={onCancelClick}
-          >
-            Avbryt
+          <Button type="button" variant="contained" onClick={onCancelClick}>
+            Tillbaka till listan
           </Button>
         </form>
       </>
+    );
+
+    const signedOutContent = (
+      <>
+        <strong>Logga in med Facebook för att fortsätta</strong>
+        <p>
+          Får att göra den här tjänsten användbar och säker, både för de som
+          behöver hjälp och för de som vill hjälpa till, behöver vi identifiera
+          er. För närvarandet är Facebook den enklaste och snabbaste lösningen.
+        </p>
+
+        <div style={{ textAlign: "center" }}>
+          <Button variant="contained" color="primary" onClick={onSignInClick}>
+            <FontAwesomeIcon
+              icon={faFacebookSquare}
+              style={{
+                color: "#4267B2",
+                cursor: "pointer",
+                marginRight: "1rem",
+              }}
+            />
+            Logga in med Facebook
+          </Button>
+        </div>
+
+        <br />
+        <br />
+        <a>Läs mer om hur och varför vi använder Facebook</a>
+
+        <br />
+        <br />
+
+        <div style={{ textAlign: "center" }}>
+          <Button variant="contained" onClick={onCancelClick}>
+            Tillbaka till listan
+          </Button>
+        </div>
+      </>
+    );
+
+    return (
+      <AuthContentSwitch
+        signedInContent={signedInContent}
+        signedOutContent={signedOutContent}
+      />
     );
   }
 );
