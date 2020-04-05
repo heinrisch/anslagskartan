@@ -17,7 +17,7 @@ type AddressInputProps = Omit<TextFieldProps, "onChange"> & {
 };
 
 export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
-  const { label, onChange, value, location, ...otherProps } = props;
+  const { label, onChange, value, location, className, ...otherProps } = props;
   const inputRef = React.useRef<Geosuggest>(null);
   const inputRef2 = React.useRef<HTMLInputElement>(null);
 
@@ -57,6 +57,7 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
   return (
     <>
       <TextField
+        className={className}
         name="address"
         label={label}
         variant="outlined"

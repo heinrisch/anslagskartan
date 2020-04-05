@@ -25,6 +25,7 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
       pageWrapId="page-wrap"
       isOpen={open}
       overlayClassName="side-menu__overlay"
+      width="360px"
       noOverlay
       disableAutoFocus
       disableCloseOnEsc

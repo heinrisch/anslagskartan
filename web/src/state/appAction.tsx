@@ -10,4 +10,5 @@ export type AppAction =
   | { type: "ADD_POST_REJECTED" }
   | { type: "ADD_POST_RECEIVED"; post: Post }
   | { type: "TOGGLE_MENU_IS_OPEN"; menuType: MenuType }
-  | { type: "UPDATE_MAP_CENTER"; center: MapPosition };
+  | { type: "UPDATE_MAP_CENTER"; center: MapPosition }
+  | { type: "SELECT_POST"; post: Post };

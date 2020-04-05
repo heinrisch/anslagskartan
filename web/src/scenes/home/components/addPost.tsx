@@ -1,14 +1,15 @@
-import React from "react";
-import { useForm, OnSubmit } from "react-hook-form";
 import { Button, TextField, Typography } from "@material-ui/core";
+import React from "react";
+import { OnSubmit, useForm } from "react-hook-form";
 import {
-  AddressInput,
   Address,
+  AddressInput,
 } from "../../../components/addressInput/addressInput";
+import { MapPosition } from "../../../components/map/models/mapPosition";
+import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { addPosts } from "../../../utils/http/addPost";
-import { Post } from "../../../models/post";
-import { MapPosition } from "../../../components/map/models/mapPosition";
+import "./addPost.css";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -73,6 +74,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
 
         <form onSubmit={handleSubmit(onSubmitForm)}>
           <TextField
+            className="form-field"
             name="title"
             inputRef={register}
             label="Titel"
@@ -81,6 +83,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
           />
 
           <TextField
+            className="form-field"
             name="description"
             inputRef={register}
             label="Beskrivning"
@@ -91,6 +94,7 @@ const AddPostPresentation: React.FC<AddPostPresentationProps> = React.memo(
           />
 
           <AddressInput
+            className="form-field"
             name="address"
             ref={register}
             label="Adress"

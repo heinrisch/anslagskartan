@@ -59,6 +59,13 @@ export const appStateReducer = (
         mapCenter: action.center,
       };
 
+    case "SELECT_POST":
+      return {
+        ...state,
+        selectedPostId: action.post.id,
+        mapCenter: action.post.position,
+      };
+
     default:
       return state;
   }

@@ -9,6 +9,7 @@ export const initialAppState: AppState = {
   mapCenter: { latitude: 59.310519, longitude: 18.057875 },
   menuIsOpen: false,
   menuType: "none",
+  selectedPostId: undefined,
 };
 
 export type AppState = {
@@ -18,4 +19,5 @@ export type AppState = {
   mapCenter: MapPosition;
   menuIsOpen: boolean;
   menuType: MenuType;
+  selectedPostId: number | undefined;
 };
