@@ -1,7 +1,8 @@
-import { Post } from "../../models/post";
+import { BackendCreatePost, TaskResponse } from "../../models/post";
+import { ApiClient } from "../ApiClient";
 
-export const addPosts = (post: Post): Promise<Post> => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...post, id: Math.random().toString() }), 2000);
-  });
+const apiClient = new ApiClient();
+
+export const addPosts = (backendCreatePost: BackendCreatePost): Promise<TaskResponse> => {
+  return apiClient.createPost(backendCreatePost);
 };
