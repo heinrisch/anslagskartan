@@ -1,10 +1,10 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
 import { Post } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
 import { SearchBar } from "./searchBar";
 import { PostItem } from "./postItem";
 import { PostListFooter } from "./postListFooter";
+import { Typography } from "../../../components/typography";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -30,12 +30,7 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
     return (
       <>
         <SearchBar />
-        <Typography
-          variant="caption"
-          display="block"
-          gutterBottom
-          style={{ color: "lightgray" }}
-        >
+        <Typography as="span" size={7} color="grey-light">
           Visar {renderedPosts.length} resultat
         </Typography>
         <div style={{ margin: "0 -1rem", paddingBottom: "60px" }}>

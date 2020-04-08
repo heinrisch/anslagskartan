@@ -1,5 +1,5 @@
 import React from "react";
-import { Chip } from "@material-ui/core";
+import { Tag } from "../../../components/tag";
 
 // PRESENTATION -------------------------------------------------------------
 
@@ -14,16 +14,14 @@ export const PostItemNeedsPresentation: React.FC<PostItemNeedsProps> = React.mem
       <div style={{ fontSize: "0.7rem" }}>
         Behöver{" "}
         {needs.map((need) => (
-          <Chip
+          <Tag
             style={{
               fontSize: "0.7rem",
               height: "1rem",
               marginRight: "0.2rem",
             }}
-            size="small"
-            color="secondary"
-            label={need}
             key={need}
+            children={need}
           />
         ))}
       </div>

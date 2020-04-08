@@ -1,8 +1,8 @@
-import { Paper } from "@material-ui/core";
 import React from "react";
 import { LoadingButton } from "./loadingButton";
 import { AppContext } from "../../../state/appContext";
 import "./actionButtonList.css";
+import { Card } from "../../../components/card";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -43,9 +43,9 @@ const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> 
 
   return (
     <div style={style}>
-      <Paper className={className}>
+      <Card className={className}>
         <LoadingButton loading={isLoading} />
-      </Paper>
+      </Card>
       {/* <Paper className={className}>
         <img src={profileImageUrl} alt="facebook avatar" />
       </Paper> */}

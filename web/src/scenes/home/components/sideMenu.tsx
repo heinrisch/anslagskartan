@@ -1,11 +1,11 @@
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Paper } from "@material-ui/core";
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
 import { AppContext } from "../../../state/appContext";
 import { SideMenuContentSwitcher } from "./sideMenuContentSwitcher";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
+import { Card } from "../../../components/card";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -40,7 +40,6 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
   );
 
   const toggleStyle: React.CSSProperties = {
-    padding: "1rem",
     position: "absolute",
     left: `${width - 2}px`,
     top: "1rem",
@@ -69,9 +68,9 @@ const SideMenuPresentation: React.FC<SideMenuPresentationProps> = (props) => {
           backgroundColor: "#ffffff",
         }}
       >
-        <Paper style={toggleStyle} onClick={onToggle}>
+        <Card style={toggleStyle} onClick={onToggle}>
           {carret}
-        </Paper>
+        </Card>
         <SideMenuContentSwitcher />
       </div>
     </Menu>

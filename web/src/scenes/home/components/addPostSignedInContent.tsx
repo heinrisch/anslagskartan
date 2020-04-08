@@ -1,15 +1,10 @@
-import {
-  Button,
-  TextField,
-  Typography,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
-  FormControl,
-  FormLabel,
-} from "@material-ui/core";
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
+import { Address, AddressInput } from "../../../components/addressInput";
+import { Button } from "../../../components/buttons/button";
+import { Input } from "../../../components/input";
+import { TextArea } from "../../../components/textarea";
+import { Title } from "../../../components/title";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { Post, TaskResponse } from "../../../models/post";
 import { AppContext } from "../../../state/appContext";
@@ -17,7 +12,9 @@ import { addPosts } from "../../../utils/http/addPost";
 import { fetchPosts } from "../../../utils/http/fetchPosts";
 import { MapPosition } from "../models/mapPosition";
 import "./addPost.css";
-import { Address, AddressInput } from "./addressInput";
+import { Buttons } from "../../../components/buttons/buttons";
+import { PrimaryButton } from "../../../components/buttons/primaryButton";
+import { Checkbox } from "../../../components/checkbox";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -110,83 +107,44 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
 
     return (
       <>
-        <Typography variant="h5" gutterBottom>
-          Skapa en lapp
-        </Typography>
+        <Title as="h5">Skapa en lapp</Title>
 
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <TextField
-            className="form-field"
-            name="title"
-            inputRef={register}
-            label="Kort beskrivning / Titel"
-            variant="outlined"
-            fullWidth
-          />
-          <TextField
-            className="form-field"
+          <Input name="title" ref={register} label="Kort beskrivning / Titel" />
+          <TextArea
             name="description"
-            inputRef={register}
+            ref={register}
             label="Full beskrivning"
-            variant="outlined"
             rows={3}
-            fullWidth
-            multiline
           />
-          <TextField
-            className="form-field"
+          <TextArea
             name="contactInfo"
-            inputRef={register}
+            ref={register}
             label="Kontaktinformation"
-            variant="outlined"
             rows={3}
-            fullWidth
-            multiline
           />
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Behov</FormLabel>
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox inputRef={register} name="printer" />}
-                label="3D printer"
-              />
-              <FormControlLabel
-                control={<Checkbox inputRef={register} name="material" />}
-                label="Material"
-              />
-              <FormControlLabel
-                control={<Checkbox inputRef={register} name="food" />}
-                label="Mat"
-              />
-              <FormControlLabel
-                control={<Checkbox inputRef={register} name="other" />}
-                label="Annat"
-              />
-            </FormGroup>
-          </FormControl>
+
+          <label className="label" children="Behov" />
+          <Checkbox ref={register} name="printer" label="3D printer" />
+          <Checkbox ref={register} name="material" label="Material" />
+          <Checkbox ref={register} name="food" label="Mat" />
+          <Checkbox ref={register} name="other" label="Annat" />
 
           <AddressInput
             className="form-field"
             name="address"
-            ref={register}
             label="Adress"
-            variant="outlined"
             onChange={onAddressChange}
             location={mapCenter}
-            fullWidth
           />
-          <div style={{ textAlign: "center" }}>
-            <Button type="submit" variant="contained" color="primary">
-              Lägg till
-            </Button>
 
-            <br />
-            <br />
+          <Buttons>
+            <PrimaryButton type="submit">Lägg till</PrimaryButton>
 
-            <Button type="button" variant="contained" onClick={onCancelClick}>
+            <Button type="button" onClick={onCancelClick}>
               Tillbaka till listan
             </Button>
-          </div>
+          </Buttons>
         </form>
       </>
     );

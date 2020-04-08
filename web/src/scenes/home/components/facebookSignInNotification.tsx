@@ -1,11 +1,13 @@
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "@material-ui/core";
 import React from "react";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { useHandleUserSignInClickCallback } from "../../../handlers/handleUserSignInClick";
 import { AppContext } from "../../../state/appContext";
 import "./addPost.css";
+import { Button } from "../../../components/buttons/button";
+import { Gutter } from "../../../components/gutter";
+import { FacebookButton } from "../../../components/buttons/facebookButton";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -40,37 +42,37 @@ const FacebookSignInNotificationPresentation: React.FC<FacebookSignInNotificatio
     return (
       <>
         <strong>Logga in med Facebook för att fortsätta</strong>
+
+        <Gutter />
+
         <p>
           Får att göra den här tjänsten användbar och säker, både för de som
           behöver hjälp och för de som vill hjälpa till, behöver vi identifiera
           er. För närvarandet är Facebook den enklaste och snabbaste lösningen.
         </p>
 
+        <Gutter />
+
         <div style={{ textAlign: "center" }}>
-          <Button variant="contained" color="primary" onClick={onSignInClick}>
+          <FacebookButton onClick={onSignInClick}>
             <FontAwesomeIcon
               icon={faFacebookSquare}
               style={{
-                color: "#4267B2",
-                cursor: "pointer",
                 marginRight: "1rem",
               }}
             />
             Logga in med Facebook
-          </Button>
+          </FacebookButton>
         </div>
 
         {/* <br /> */}
         {/* <br /> */}
         {/* <a href="#">Läs mer om hur och varför vi använder Facebook</a> */}
 
-        <br />
-        <br />
+        <Gutter />
 
         <div style={{ textAlign: "center" }}>
-          <Button variant="contained" onClick={onCancelClick}>
-            Tillbaka till listan
-          </Button>
+          <Button onClick={onCancelClick}>Tillbaka till listan</Button>
         </div>
       </>
     );

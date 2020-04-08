@@ -1,7 +1,8 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import { AppContext } from "../../../state/appContext";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
+import { Button } from "../../../components/buttons/button";
+import { PrimaryButton } from "../../../components/buttons/primaryButton";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -37,16 +38,14 @@ const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = Re
         }}
       >
         <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            style={{ width: "100%", height: "100%", borderRadius: 0 }}
+          <PrimaryButton
+            style={{ height: "100%" }}
             onClick={onAddPostClick}
-            disableElevation
+            size="large"
+            fullWidth
           >
             Be om hjälp
-          </Button>
+          </PrimaryButton>
         </div>
         {/* <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
           <Button
