@@ -1,6 +1,6 @@
 import React from "react";
 import { AppAction } from "../state/appAction";
-import { Address } from "../components/addressInput";
+import { Address } from "../components/formAddressInput";
 
 export const useHandleUpdateMapCenterCallback = (
   dispatch: React.Dispatch<AppAction>

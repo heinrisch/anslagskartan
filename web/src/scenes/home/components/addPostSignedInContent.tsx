@@ -1,9 +1,15 @@
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
-import { Address, AddressInput } from "../../../components/addressInput";
 import { Button } from "../../../components/buttons/button";
-import { Input } from "../../../components/input";
-import { TextArea } from "../../../components/textarea";
+import { Buttons } from "../../../components/buttons/buttons";
+import { PrimaryButton } from "../../../components/buttons/primaryButton";
+import {
+  Address,
+  FormAddressInput,
+} from "../../../components/formAddressInput";
+import { FormCheckbox } from "../../../components/formCheckbox";
+import { FormInput } from "../../../components/formInput";
+import { FormTextArea } from "../../../components/formTextArea";
 import { Title } from "../../../components/title";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { Post, TaskResponse } from "../../../models/post";
@@ -12,9 +18,6 @@ import { addPosts } from "../../../utils/http/addPost";
 import { fetchPosts } from "../../../utils/http/fetchPosts";
 import { MapPosition } from "../models/mapPosition";
 import "./addPost.css";
-import { Buttons } from "../../../components/buttons/buttons";
-import { PrimaryButton } from "../../../components/buttons/primaryButton";
-import { Checkbox } from "../../../components/checkbox";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -110,14 +113,18 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
         <Title as="h5">Skapa en lapp</Title>
 
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <Input name="title" ref={register} label="Kort beskrivning / Titel" />
-          <TextArea
+          <FormInput
+            name="title"
+            ref={register}
+            label="Kort beskrivning / Titel"
+          />
+          <FormTextArea
             name="description"
             ref={register}
             label="Full beskrivning"
             rows={3}
           />
-          <TextArea
+          <FormTextArea
             name="contactInfo"
             ref={register}
             label="Kontaktinformation"
@@ -125,12 +132,12 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
           />
 
           <label className="label" children="Behov" />
-          <Checkbox ref={register} name="printer" label="3D printer" />
-          <Checkbox ref={register} name="material" label="Material" />
-          <Checkbox ref={register} name="food" label="Mat" />
-          <Checkbox ref={register} name="other" label="Annat" />
+          <FormCheckbox ref={register} name="printer" label="3D printer" />
+          <FormCheckbox ref={register} name="material" label="Material" />
+          <FormCheckbox ref={register} name="food" label="Mat" />
+          <FormCheckbox ref={register} name="other" label="Annat" />
 
-          <AddressInput
+          <FormAddressInput
             className="form-field"
             name="address"
             label="Adress"

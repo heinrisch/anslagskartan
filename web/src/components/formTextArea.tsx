@@ -1,13 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 
-type TextAreaProps = React.HTMLProps<HTMLTextAreaElement> &
+type FormTextAreaProps = React.HTMLProps<HTMLTextAreaElement> &
   React.HTMLAttributes<HTMLTextAreaElement> & {
     label: string;
     name?: string;
   };
 
-export const TextArea: React.FC<TextAreaProps> = React.memo((props) => {
+export const FormTextArea: React.FC<FormTextAreaProps> = React.memo((props) => {
   const { label, className, name, ...otherProps } = props;
   const fieldClassName = classNames("field", className);
 

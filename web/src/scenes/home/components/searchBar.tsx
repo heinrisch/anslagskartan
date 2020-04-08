@@ -1,8 +1,9 @@
 import React from "react";
-import { AppContext } from "../../../state/appContext";
-import { AddressInput, Address } from "../../../components/addressInput";
-import { MapPosition } from "../models/mapPosition";
+import { AddressInput } from "../../../components/addressInput";
+import { Address } from "../../../components/formAddressInput";
 import { useHandleUpdateMapCenterCallback } from "../../../handlers/handleUpdateMapCenter";
+import { AppContext } from "../../../state/appContext";
+import { MapPosition } from "../models/mapPosition";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -31,7 +32,7 @@ const SearchBarPresentation: React.FC<SearchBarPresentationProps> = React.memo(
     const { onChange, mapCenter } = props;
     return (
       <AddressInput
-        label="Sök på kartan"
+        placeholder="Sök på kartan"
         onChange={onChange}
         location={mapCenter}
         fullWidth

@@ -13,7 +13,7 @@ const AddPostPresentation: React.FC = React.memo(() => {
   return (
     <AuthContentSwitch
       signedInContent={signedInContent}
-      signedOutContent={signedInContent}
+      signedOutContent={signedOutContent}
     />
   );
 });

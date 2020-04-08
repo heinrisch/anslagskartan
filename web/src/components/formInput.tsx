@@ -1,13 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 
-type InputProps = React.HTMLProps<HTMLInputElement> &
+type FormInputProps = React.HTMLProps<HTMLInputElement> &
   React.HTMLAttributes<HTMLInputElement> & {
     label: string;
     fullWidth?: boolean;
   };
 
-export const Input: React.FC<InputProps> = React.memo((props) => {
+export const FormInput: React.FC<FormInputProps> = React.memo((props) => {
   const { label, className, fullWidth, name, ...otherProps } = props;
   const fieldClassName = classNames("field", className);
   const inputClassName = classNames("input", { "is-fullwidth": fullWidth });
