@@ -6,7 +6,7 @@ import { HomeScene } from "./scenes/home/homeScene";
 import { AppContext } from "./state/appContext";
 import { initialAppState } from "./state/appState";
 import { appStateReducer } from "./state/appStateReducer";
-import { appConfig } from "./utils/appConfig";
+import { appConfig } from "./appConfig";
 
 export const App: React.FC = React.memo(() => {
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);

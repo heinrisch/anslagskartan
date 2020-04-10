@@ -8,12 +8,12 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@react-firebase/auth": "^0.2.10",
+    "axios": "^0.19.2",
     "bulma": "^0.8.1",
     "classnames": "^2.2.6",
-    "firebase": "^7.13.2",
+    "firebase": "^7.14.0",
     "leaflet": "^1.6.0",
     "react": "^16.13.1",
-    "react-burger-menu": "^2.6.13",
     "react-dom": "^16.13.1",
     "react-geosuggest": "^2.12.1",
     "react-hook-form": "^5.3.1",
@@ -28,7 +28,8 @@
     "start-mac-https": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettier": "prettier --write ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,11 +53,12 @@
     "@types/classnames": "^2.2.10",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.35",
-    "@types/react": "^16.9.33",
-    "@types/react-burger-menu": "^2.6.1",
+    "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "@types/react-geosuggest": "^2.7.10",
     "@types/react-leaflet": "^2.5.1",
-    "@types/react-leaflet-markercluster": "^2.0.0"
+    "@types/react-leaflet-markercluster": "^2.0.0",
+    "prettier-plugin-package": "^1.0.0",
+    "prettier-plugin-sorted": "^1.2.1"
   }
 }

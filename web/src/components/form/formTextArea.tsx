@@ -1,13 +1,15 @@
 import React from "react";
 import classNames from "classnames";
+import { HtmlTextAreaProps } from "../../models/htmlProps/htmlTextAreaProps";
 
-type FormTextAreaProps = React.HTMLProps<HTMLTextAreaElement> &
-  React.HTMLAttributes<HTMLTextAreaElement> & {
-    label: string;
-    name?: string;
-  };
+// PRESENTATION -------------------------------------------------------------
 
-export const FormTextArea: React.FC<FormTextAreaProps> = React.memo((props) => {
+type FormTextAreaPresentationProps = HtmlTextAreaProps & {
+  readonly label: string;
+  readonly name?: string;
+};
+
+const FormTextAreaPresentation: React.FC<FormTextAreaPresentationProps> = React.memo((props) => {
   const { label, className, name, ...otherProps } = props;
   const fieldClassName = classNames("field", className);
 
@@ -20,3 +22,7 @@ export const FormTextArea: React.FC<FormTextAreaProps> = React.memo((props) => {
     </div>
   );
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const FormTextArea = FormTextAreaPresentation;

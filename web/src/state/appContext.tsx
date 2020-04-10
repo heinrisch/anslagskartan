@@ -2,9 +2,11 @@ import React from "react";
 import { AppState, initialAppState } from "./appState";
 import { AppAction } from "./appAction";
 
+export type AppDispatch = React.Dispatch<AppAction>;
+
 export const initialContext: {
   state: AppState;
-  dispatch: React.Dispatch<AppAction>;
+  dispatch: AppDispatch;
 } = {
   state: initialAppState,
   dispatch: () => "",

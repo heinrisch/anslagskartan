@@ -9,5 +9,6 @@ export const appConfig = {
     appId: "1:40115610522:web:7e23526425256a60c71023",
     measurementId: "G-9DVNV4LHZR",
   },
+  apiBaseUrl: "https://anslagskartans-backend.herokuapp.com",
   logReducerChange: true,
 };

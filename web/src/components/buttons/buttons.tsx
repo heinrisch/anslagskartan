@@ -1,8 +1,12 @@
 import React from "react";
+import { HtmlDivProps } from "../../models/htmlProps/htmlDivProps";
 
-type ButtonsProps = React.HTMLProps<HTMLDivElement> &
-  React.HTMLAttributes<HTMLDivElement>;
+// PRESENTATION -------------------------------------------------------------
 
-export const Buttons: React.FC<ButtonsProps> = React.memo((props) => {
+const ButtonsPresentation: React.FC<HtmlDivProps> = React.memo((props) => {
   return <div className="buttons" {...props} />;
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const Buttons = ButtonsPresentation;

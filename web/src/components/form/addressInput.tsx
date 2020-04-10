@@ -1,28 +1,44 @@
 import React from "react";
 import Geosuggest, { Styles, Suggest } from "react-geosuggest";
-import { MapPosition } from "../map/mapPosition";
+import { MapPosition } from "../map/models/mapPosition";
 import "./addressInput.css";
 import classNames from "classnames";
+import { Address } from "./models/address";
+import { HtmlInputProps } from "../../models/htmlProps/htmlInputProps";
 
-export type Address = {
-  readonly label: string;
-  readonly latitude: number;
-  readonly longitude: number;
+// CONTAINER ----------------------------------------------------------------
+
+type AddressInputContainerProps = Omit<AddressInputPresentationProps, "onChange"> & {
+  onChange: (value: Address) => void;
 };
 
-export type AddressInputProps = Omit<
-  Omit<React.HTMLProps<HTMLInputElement>, "onChange">,
-  "ref"
-> &
-  Omit<Omit<React.HTMLAttributes<HTMLInputElement>, "onChange">, "ref"> & {
-    ref?: React.RefObject<Geosuggest>;
-    style?: Styles;
-    fullWidth?: boolean;
-    onChange: (value: Address) => void;
-    location: MapPosition;
+const AddressInputContainer: React.FC<AddressInputContainerProps> = React.memo((props) => {
+  const { onChange, ...otherProps } = props;
+
+  const handleSuggestSelect = (event: Suggest) => {
+    if (!event) return;
+
+    onChange({
+      label: event.label,
+      latitude: event.location.lat,
+      longitude: event.location.lng,
+    });
   };
 
-export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
+  return <AddressInputPresentation onChange={handleSuggestSelect} {...otherProps} />;
+});
+
+// PRESENTATION -------------------------------------------------------------
+
+type AddressInputPresentationProps = Omit<Omit<HtmlInputProps, "onChange">, "ref"> & {
+  ref?: React.RefObject<Geosuggest>;
+  style?: Styles;
+  fullWidth?: boolean;
+  onChange: (value: Suggest) => void;
+  location: MapPosition;
+};
+
+const AddressInputPresentation: React.FC<AddressInputPresentationProps> = React.memo((props) => {
   const {
     fullWidth,
     label,
@@ -37,27 +53,14 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
     "is-fullwidth": fullWidth,
   });
 
-  const handleSuggestSelect = (event: Suggest) => {
-    if (!event) return;
-
-    onChange({
-      label: event.label,
-      latitude: event.location.lat,
-      longitude: event.location.lng,
-    });
-  };
-
-  const mapCenter = new google.maps.LatLng(
-    location.latitude,
-    location.longitude
-  );
+  const mapCenter = new google.maps.LatLng(location.latitude, location.longitude);
 
   return (
     <Geosuggest
       autoComplete="off"
       country="se"
       location={mapCenter}
-      onSuggestSelect={handleSuggestSelect}
+      onSuggestSelect={onChange}
       placeholder={placeholder}
       radius={6000}
       inputClassName={inputClassName}
@@ -65,3 +68,8 @@ export const AddressInput: React.FC<AddressInputProps> = React.memo((props) => {
     />
   );
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const AddressInput = AddressInputContainer;
+export type AddressInputProps = AddressInputContainerProps;

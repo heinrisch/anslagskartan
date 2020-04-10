@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, ButtonProps } from "./button";
 
-export const FacebookButton: React.FC<ButtonProps> = React.memo((props) => {
+// PRESENTATION -------------------------------------------------------------
+
+const FacebookButtonPresentation: React.FC<ButtonProps> = React.memo((props) => {
   const { style, ...otherProps } = props;
   const buttonStyle: React.CSSProperties = {
     ...style,
@@ -11,3 +13,7 @@ export const FacebookButton: React.FC<ButtonProps> = React.memo((props) => {
 
   return <Button style={buttonStyle} {...otherProps} />;
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const FacebookButton = FacebookButtonPresentation;

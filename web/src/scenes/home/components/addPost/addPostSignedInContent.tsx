@@ -3,19 +3,18 @@ import { OnSubmit, useForm } from "react-hook-form";
 import { Button } from "../../../../components/buttons/button";
 import { Buttons } from "../../../../components/buttons/buttons";
 import { PrimaryButton } from "../../../../components/buttons/primaryButton";
-import {
-  Address,
-  FormAddressInput,
-} from "../../../../components/form/formAddressInput";
+import { FormAddressInput } from "../../../../components/form/formAddressInput";
 import { FormCheckbox } from "../../../../components/form/formCheckbox";
 import { FormInput } from "../../../../components/form/formInput";
 import { FormTextArea } from "../../../../components/form/formTextArea";
-import { Title } from "../../../../components/text/title";
+import { TitlePresentation } from "../../../../components/text/title";
 import { useHandleSubmitAddPostCallback } from "../../../../handlers/handleSubmitAddPost";
 import { useHandleToggleSidebarViewCallback } from "../../../../handlers/handleToggleSidebarView";
 import { AppContext } from "../../../../state/appContext";
-import { MapPosition } from "../../../../components/map/mapPosition";
+import { MapPosition } from "../../../../components/map/models/mapPosition";
 import "./addPost.css";
+import { Address } from "../../../../components/form/models/address";
+import { LinkButton } from "../../../../components/buttons/linkButton";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -30,10 +29,9 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
 
   const handleSubmitForm = useHandleSubmitAddPostCallback(address);
 
-  const handleAddressChange = React.useCallback(
-    (value: Address) => setAddress(value),
-    [setAddress]
-  );
+  const handleAddressChange = React.useCallback((value: Address) => setAddress(value), [
+    setAddress,
+  ]);
 
   const handleCancelClick = useHandleToggleSidebarViewCallback("list");
 
@@ -43,6 +41,7 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
       onCancelClick={handleCancelClick}
       onSubmitForm={handleSubmitForm}
       onAddressChange={handleAddressChange}
+      loading={state.loadingAddPost}
     />
   );
 });
@@ -50,39 +49,32 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
 // PRESENTATION -------------------------------------------------------------
 
 type AddPostSignedInContentPresentationProps = {
-  mapCenter: MapPosition;
-  onSubmitForm: OnSubmit<Record<string, any>>;
-  onCancelClick: () => void;
-  onAddressChange: (address: Address) => void;
+  readonly loading: boolean;
+  readonly mapCenter: MapPosition;
+  readonly onSubmitForm: OnSubmit<Record<string, any>>;
+  readonly onCancelClick: () => void;
+  readonly onAddressChange: (address: Address) => void;
 };
 
 const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresentationProps> = React.memo(
   (props) => {
-    const { mapCenter, onAddressChange, onCancelClick, onSubmitForm } = props;
+    const { mapCenter, onAddressChange, onCancelClick, onSubmitForm, loading } = props;
     const { register, handleSubmit } = useForm();
 
     return (
-      <>
-        <Title as="h5">Skapa en lapp</Title>
+      <div style={{ margin: "1rem" }}>
+        <LinkButton onClick={onCancelClick} withGutter={1}>
+          {"<"} Tillbaka till listan
+        </LinkButton>
+
+        <TitlePresentation as="h5" withGutter={true}>
+          Skapa en lapp
+        </TitlePresentation>
 
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <FormInput
-            name="title"
-            ref={register}
-            label="Kort beskrivning / Titel"
-          />
-          <FormTextArea
-            name="description"
-            ref={register}
-            label="Full beskrivning"
-            rows={3}
-          />
-          <FormTextArea
-            name="contactInfo"
-            ref={register}
-            label="Kontaktinformation"
-            rows={3}
-          />
+          <FormInput name="title" ref={register} label="Kort beskrivning / Titel" />
+          <FormTextArea name="description" ref={register} label="Full beskrivning" rows={3} />
+          <FormTextArea name="contactInfo" ref={register} label="Kontaktinformation" rows={3} />
 
           <label className="label" children="Behov" />
           <FormCheckbox ref={register} name="printer" label="3D printer" />
@@ -98,12 +90,11 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
             location={mapCenter}
           />
 
-          <Buttons>
-            <PrimaryButton type="submit">Lägg till</PrimaryButton>
-            <Button onClick={onCancelClick}>Tillbaka till listan</Button>
-          </Buttons>
+          <PrimaryButton type="submit" fullWidth={true} loading={loading}>
+            Lägg till
+          </PrimaryButton>
         </form>
-      </>
+      </div>
     );
   }
 );

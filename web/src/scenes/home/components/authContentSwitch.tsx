@@ -8,13 +8,11 @@ import { useHandleFacebookUserSignedInCallback } from "../../../handlers/handleF
 // CONTAINER ----------------------------------------------------------------
 
 type AuthContentSwitchContainerProps = {
-  signedInContent: JSX.Element;
-  signedOutContent: JSX.Element;
+  readonly signedInContent: JSX.Element;
+  readonly signedOutContent: JSX.Element;
 };
 
-const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
-  props
-) => {
+const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (props) => {
   const { state } = React.useContext(AppContext);
 
   const handleUserSignedIn = useHandleFacebookUserSignedInCallback();
@@ -23,20 +21,15 @@ const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
     return props.signedInContent;
   }
 
-  return (
-    <AuthContentSwitchPresentation
-      onUserSignedIn={handleUserSignedIn}
-      {...props}
-    />
-  );
+  return <AuthContentSwitchPresentation onUserSignedIn={handleUserSignedIn} {...props} />;
 };
 
 // PRESENTATION -------------------------------------------------------------
 
 type AuthContentSwitchPresentationProps = {
-  signedInContent: JSX.Element;
-  signedOutContent: JSX.Element;
-  onUserSignedIn: (user: FacebookUser) => void;
+  readonly signedInContent: JSX.Element;
+  readonly signedOutContent: JSX.Element;
+  readonly onUserSignedIn: (user: FacebookUser) => void;
 };
 
 export const AuthContentSwitchPresentation: React.FC<AuthContentSwitchPresentationProps> = React.memo(

@@ -1,12 +1,14 @@
 import React from "react";
 import classNames from "classnames";
+import { HtmlInputProps } from "../../models/htmlProps/htmlInputProps";
 
-type FormCheckboxProps = React.HTMLProps<HTMLInputElement> &
-  React.HTMLAttributes<HTMLInputElement> & {
-    label: string;
-  };
+// PRESENTATION -------------------------------------------------------------
 
-export const FormCheckbox: React.FC<FormCheckboxProps> = React.memo((props) => {
+type FormCheckboxPresentationProps = HtmlInputProps & {
+  readonly label: string;
+};
+
+const FormCheckboxPresentation: React.FC<FormCheckboxPresentationProps> = React.memo((props) => {
   const { label, className, ...otherProps } = props;
   const fieldClassName = classNames("field", className);
 
@@ -20,3 +22,7 @@ export const FormCheckbox: React.FC<FormCheckboxProps> = React.memo((props) => {
     </div>
   );
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const FormCheckbox = FormCheckboxPresentation;

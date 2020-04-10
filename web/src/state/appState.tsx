@@ -1,6 +1,6 @@
 import { Post } from "../models/post";
 import { MenuType } from "../scenes/home/models/menuType";
-import { MapPosition } from "../components/map/mapPosition";
+import { MapPosition } from "../components/map/models/mapPosition";
 
 export const initialAppState: AppState = {
   posts: [],
@@ -9,29 +9,26 @@ export const initialAppState: AppState = {
   mapCenter: { latitude: 59.310519, longitude: 18.057875 },
   menuIsOpen: true,
   menuType: "list",
-  selectedPostId: undefined,
-  user: null,
-  userId: null,
   doNotCheckLogin: false,
 };
 
 export type AppState = {
-  posts: Post[];
-  loadingPosts: boolean;
-  loadingAddPost: boolean;
-  mapCenter: MapPosition;
-  menuIsOpen: boolean;
-  menuType: MenuType;
-  selectedPostId: string | undefined;
-  user: null | FacebookUser;
-  userId: null | string;
-  doNotCheckLogin: boolean;
+  readonly posts: Post[];
+  readonly loadingPosts: boolean;
+  readonly loadingAddPost: boolean;
+  readonly mapCenter: MapPosition;
+  readonly menuIsOpen: boolean;
+  readonly menuType: MenuType;
+  readonly selectedPostId?: string;
+  readonly user?: FacebookUser;
+  readonly userId?: string;
+  readonly doNotCheckLogin: boolean;
 };
 
 export type FacebookUser = {
-  uid: string;
-  displayName: string;
-  photoURL: string;
-  email: string;
-  phoneNumber: string | null;
+  readonly uid: string;
+  readonly displayName: string;
+  readonly photoURL: string;
+  readonly email: string;
+  readonly phoneNumber: string | null;
 };

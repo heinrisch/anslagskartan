@@ -1,14 +1,16 @@
 import React from "react";
 import { Map as LeafMap, TileLayer } from "react-leaflet";
-import { MapPosition } from "./mapPosition";
-import { TileType } from "./mapTileType";
+import { MapPosition } from "./models/mapPosition";
+import { TileType } from "./models/mapTileType";
+
+// PRESENTATION -------------------------------------------------------------
 
 type MapPresentationProps = {
   readonly defaultCenter: MapPosition;
   readonly defaultZoom: number;
 };
 
-export const Map: React.FC<MapPresentationProps> = React.memo((props) => {
+const MapPresentation: React.FC<MapPresentationProps> = React.memo((props) => {
   const { defaultCenter, defaultZoom, children } = props;
 
   return (
@@ -26,3 +28,7 @@ export const Map: React.FC<MapPresentationProps> = React.memo((props) => {
     </LeafMap>
   );
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const Map = MapPresentation;

@@ -3,17 +3,13 @@ import "./addressInput.css";
 import classNames from "classnames";
 import { AddressInput, AddressInputProps } from "./addressInput";
 
-export type Address = {
+// PRESENTATION -------------------------------------------------------------
+
+type FormAddressInputPresentationProps = AddressInputProps & {
   readonly label: string;
-  readonly latitude: number;
-  readonly longitude: number;
 };
 
-type FormAddressInputProps = AddressInputProps & {
-  label: string;
-};
-
-export const FormAddressInput: React.FC<FormAddressInputProps> = React.memo(
+const FormAddressInputPresentation: React.FC<FormAddressInputPresentationProps> = React.memo(
   (props) => {
     const { label, className, ...otherProps } = props;
     const fieldClassName = classNames("field", className);
@@ -27,3 +23,7 @@ export const FormAddressInput: React.FC<FormAddressInputProps> = React.memo(
     );
   }
 );
+
+// EXPORT ------------------------------------------------------------------
+
+export const FormAddressInput = FormAddressInputPresentation;

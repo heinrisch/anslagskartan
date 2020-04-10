@@ -17,7 +17,7 @@ export const useHandleUserSignInClickCallback = () => {
         const currentUser = firebase.auth().currentUser;
         const userId = await currentUser?.getIdToken(false);
 
-        dispatch({ type: "SET_USER_ID", userId: userId || null });
+        dispatch({ type: "SET_USER_ID", userId });
         dispatch({
           type: "FACEBOOK_USER_SIGNED_IN",
           user: user as FacebookUser,

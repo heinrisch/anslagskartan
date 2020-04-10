@@ -1,5 +1,5 @@
 import React from "react";
-import { LoadingButton } from "../../../../components/loadingIcon";
+import { LoadingIcon } from "../../../../components/loadingIcon";
 import { AppContext } from "../../../../state/appContext";
 import "./actionButtonList.css";
 import { Card } from "../../../../components/card";
@@ -9,25 +9,17 @@ import { Card } from "../../../../components/card";
 const ActionButtonListContainer: React.FC = () => {
   const { state } = React.useContext(AppContext);
 
-  return (
-    <ActionButtonListPresentation
-      profileImageUrl={state.user?.photoURL}
-      isLoading={state.loadingAddPost || state.loadingPosts}
-    />
-  );
+  return <ActionButtonListPresentation isLoading={state.loadingAddPost || state.loadingPosts} />;
 };
 
 // PRESENTATION -------------------------------------------------------------
 
 type ActionButtonListPresentationProps = {
-  isLoading: boolean;
-  profileImageUrl: string | undefined;
+  readonly isLoading: boolean;
 };
 
-const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> = (
-  props
-) => {
-  const { isLoading, profileImageUrl } = props;
+const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> = (props) => {
+  const { isLoading } = props;
 
   const style: React.CSSProperties = {
     position: "absolute",
@@ -44,11 +36,8 @@ const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> 
   return (
     <div style={style}>
       <Card className={className}>
-        <LoadingButton loading={isLoading} />
+        <LoadingIcon loading={isLoading} />
       </Card>
-      {/* <Paper className={className}>
-        <img src={profileImageUrl} alt="facebook avatar" />
-      </Paper> */}
     </div>
   );
 };

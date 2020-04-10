@@ -13,7 +13,7 @@ const PostListFooterContainer: React.FC = () => {
 // PRESENTATION -------------------------------------------------------------
 
 type PostListFooterPresentationProps = {
-  onAddPostClick: () => void;
+  readonly onAddPostClick: () => void;
 };
 
 const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = React.memo(
@@ -23,20 +23,12 @@ const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = Re
     return (
       <div
         style={{
-          position: "absolute",
-          bottom: 0,
-          margin: "0 -1rem",
           width: "100%",
           display: "flex",
         }}
       >
         <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
-          <PrimaryButton
-            style={{ height: "100%" }}
-            onClick={onAddPostClick}
-            size="large"
-            fullWidth
-          >
+          <PrimaryButton style={{ height: "100%" }} onClick={onAddPostClick} size="large" fullWidth>
             Be om hjälp
           </PrimaryButton>
         </div>

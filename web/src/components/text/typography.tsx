@@ -1,21 +1,23 @@
 import React from "react";
 import classNames from "classnames";
+import { HtmlSpanProps } from "../../models/htmlProps/htmlSpanProps";
 
-type TypographyProps = React.HTMLProps<HTMLSpanElement> &
-  React.HTMLAttributes<HTMLSpanElement> & {
-    ref?: React.RefObject<HTMLDivElement>;
-    as: "span" | "div" | "p";
-    size: 1 | 2 | 3 | 4 | 5 | 6 | 7;
-    color?: "grey-light";
-  };
+// PRESENTATION -------------------------------------------------------------
 
-export const Typography: React.FC<TypographyProps> = React.memo((props) => {
+type TypographyPresentationProps = HtmlSpanProps & {
+  readonly ref?: React.RefObject<HTMLDivElement>;
+  readonly as: "span" | "div" | "p";
+  readonly size: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  readonly color?: "grey-light";
+};
+
+export const TypographyPresentation: React.FC<TypographyPresentationProps> = React.memo((props) => {
   const { as: TagName, className, color, size, ...otherProps } = props;
-  const typographyClassName = classNames(
-    `is-size-${size}`,
-    `has-text-${color}`,
-    className
-  );
+  const typographyClassName = classNames(`is-size-${size}`, `has-text-${color}`, className);
 
   return <TagName className={typographyClassName} {...otherProps} />;
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const Typography = TypographyPresentation;

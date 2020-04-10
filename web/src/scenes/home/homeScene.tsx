@@ -1,28 +1,50 @@
 import React from "react";
-import { SidebarWrapper } from "../../components/sidebar/sidebarWrapper";
+import { Sidebar } from "../../components/sidebar/sidebar";
+import { useFetchAllPostsOnStartEffect } from "../../effects/fetchAllPostsOnStart";
+import { useHandleToggleSidebarViewCallback } from "../../handlers/handleToggleSidebarView";
+import { AppContext } from "../../state/appContext";
 import { ActionButtonList } from "./components/actionButtonList/actionButtonList";
 import { PostMap } from "./components/postMap/postMap";
-import { useFetchAllPostsOnStartEffect } from "../../effects/fetchAllPostsOnStart";
-import { Sidebar } from "../../components/sidebar/sidebar";
-import { SidebarPageWrapper } from "../../components/sidebar/sidebarPageWrapper";
+import { SidebarContentSwitcher } from "./components/sideMenuContentSwitcher";
+
+// CONTAINER ----------------------------------------------------------------
+
+const HomeSceneContainer: React.FC = React.memo(() => {
+  const { state } = React.useContext(AppContext);
+  const handleToggleSidebarIsOpenClick = useHandleToggleSidebarViewCallback();
+
+  return (
+    <HomeScenePresentation
+      isSidebarOpen={state.menuIsOpen}
+      onToggleSidebarIsOpen={handleToggleSidebarIsOpenClick}
+    />
+  );
+});
 
 // PRESENTATION -------------------------------------------------------------
 
-export const HomeScenePresentation: React.FC = React.memo(() => {
+type HomeScenePresentationProps = {
+  readonly isSidebarOpen: boolean;
+  readonly onToggleSidebarIsOpen: () => void;
+};
+
+export const HomeScenePresentation: React.FC<HomeScenePresentationProps> = React.memo((props) => {
+  const { isSidebarOpen, onToggleSidebarIsOpen } = props;
+
   useFetchAllPostsOnStartEffect();
 
   return (
-    <SidebarWrapper>
-      <Sidebar />
+    <>
+      <Sidebar open={isSidebarOpen} onToggleOpen={onToggleSidebarIsOpen}>
+        <SidebarContentSwitcher />
+      </Sidebar>
 
-      <SidebarPageWrapper>
-        <PostMap />
-        <ActionButtonList />
-      </SidebarPageWrapper>
-    </SidebarWrapper>
+      <PostMap />
+      <ActionButtonList />
+    </>
   );
 });
 
 // EXPORT ------------------------------------------------------------------
 
-export const HomeScene = HomeScenePresentation;
+export const HomeScene = HomeSceneContainer;

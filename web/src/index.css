@@ -1,13 +1,15 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.without-gutter {
+  margin-bottom: 0 !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.with-gutter-1 {
+  margin-bottom: 1rem;
+}
+
+.with-gutter-2 {
+  margin-bottom: 2rem;
+}
+
+.with-gutter-3 {
+  margin-bottom: 3rem;
 }

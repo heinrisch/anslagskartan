@@ -1,46 +1,29 @@
 import React from "react";
-import { slide as Menu } from "react-burger-menu";
-import { SidebarMenuToggle } from "./sidebarToggle";
-import { AppContext } from "../../state/appContext";
-import { SideMenuContentSwitcher } from "../../scenes/home/components/sideMenuContentSwitcher";
+import { SidebarToggle } from "./sidebarToggle";
+import { Card } from "../card";
 
-// CONTAINER ----------------------------------------------------------------
-
-const SidebarContainer: React.FC = React.memo(() => {
-  const { state } = React.useContext(AppContext);
-
-  return <SidebarPresentation open={state.menuIsOpen} />;
-});
-
-// PRESENTATION -------------------------------------------------------------
-
-type SidebarPresentationProps = {
-  open: boolean;
+type SidebarProps = {
+  readonly open: boolean;
+  readonly width?: number;
+  readonly onToggleOpen: () => void;
 };
 
-const SidebarPresentation: React.FC<SidebarPresentationProps> = React.memo(
-  (props) => {
-    const { open } = props;
-    const width = 320;
+export const Sidebar: React.FC<SidebarProps> = React.memo((props) => {
+  const { children, onToggleOpen, open, width = 320 } = props;
 
-    return (
-      <Menu
-        pageWrapId="page-wrap"
-        isOpen={open}
-        overlayClassName="side-menu__overlay"
-        width={`${width}px`}
-        noOverlay
-        disableAutoFocus
-        disableCloseOnEsc
-        disableOverlayClick
-      >
-        <SidebarMenuToggle width={width} />
-        <SideMenuContentSwitcher />
-      </Menu>
-    );
-  }
-);
+  const style: React.CSSProperties = {
+    backgroundColor: "#fff",
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: `${width}px`,
+    zIndex: 1000,
+  };
 
-// EXPORT ------------------------------------------------------------------
-
-export const Sidebar = SidebarContainer;
+  return (
+    <Card style={style} innerStyle={{ padding: 0 }} {...props}>
+      <SidebarToggle isOpen={open} onToggle={onToggleOpen} width={width} />
+      {children}
+    </Card>
+  );
+});

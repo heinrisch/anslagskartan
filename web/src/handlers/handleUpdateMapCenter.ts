@@ -1,6 +1,6 @@
 import React from "react";
-import { Address } from "../components/form/formAddressInput";
 import { AppContext } from "../state/appContext";
+import { Address } from "../components/form/models/address";
 
 export const useHandleUpdateMapCenterCallback = () => {
   const { dispatch } = React.useContext(AppContext);

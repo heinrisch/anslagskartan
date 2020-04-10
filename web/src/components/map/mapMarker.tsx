@@ -1,13 +1,15 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
-import { MapPosition } from "./mapPosition";
+import { MapPosition } from "./models/mapPosition";
 
-export type MapMarkerProps = {
-  position: MapPosition;
-  title: string;
+// PRESENTATION -------------------------------------------------------------
+
+type MapMarkerPresentationProps = {
+  readonly position: MapPosition;
+  readonly title: string;
 };
 
-export const MapMarker: React.FC<MapMarkerProps> = React.memo((props) => {
+const MapMarkerPresentation: React.FC<MapMarkerPresentationProps> = React.memo((props) => {
   const { children, position, title } = props;
 
   return (
@@ -16,3 +18,7 @@ export const MapMarker: React.FC<MapMarkerProps> = React.memo((props) => {
     </Marker>
   );
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const MapMarker = MapMarkerPresentation;

@@ -12,7 +12,7 @@ export const useHandleFacebookUserSignedInCallback = () => {
       const userId = await currentUser?.getIdToken(false);
 
       dispatch({ type: "FACEBOOK_USER_SIGNED_IN", user });
-      dispatch({ type: "SET_USER_ID", userId: userId || null });
+      dispatch({ type: "SET_USER_ID", userId });
     },
     [dispatch]
   );

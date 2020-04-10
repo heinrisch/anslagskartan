@@ -6,60 +6,44 @@ import { PostList } from "./postList/postList";
 
 // CONTAINER ----------------------------------------------------------------
 
-const SideMenuContentSwitcherContainer: React.FC = () => {
+const SidebarContentSwitcherContainer: React.FC = () => {
   const { state } = React.useContext(AppContext);
 
-  return <SideMenuContentSwitcherPresentation menuType={state.menuType} />;
+  return <SidebarContentSwitcherPresentation menuType={state.menuType} />;
 };
 
 // PRESENTATION -------------------------------------------------------------
 
-type SideMenuContentSwitcherPresentationProps = {
-  menuType: MenuType;
+type SidebarContentSwitcherPresentationProps = {
+  readonly menuType: MenuType;
 };
 
-const SideMenuContentSwitcherPresentation: React.FC<SideMenuContentSwitcherPresentationProps> = (
+const SidebarContentSwitcherPresentation: React.FC<SidebarContentSwitcherPresentationProps> = (
   props
 ) => {
   const { menuType } = props;
+  let content = null;
 
-  const style = {
-    padding: "1rem",
-    overflow: "auto",
-    maxHeight: "100vh",
-  };
-
-  return (
-    <div style={style}>
-      <MenuContent menuContentType={menuType} />
-    </div>
-  );
-};
-
-// HELPERS -----------------------------------------------------------------
-
-type MenuContentProps = {
-  menuContentType: MenuType;
-};
-
-const MenuContent: React.FC<MenuContentProps> = React.memo((props) => {
-  const { menuContentType } = props;
-
-  switch (menuContentType) {
+  switch (menuType) {
     case "add":
-      return <AddPost />;
+      content = <AddPost />;
+      break;
 
     case "list":
-      return <PostList />;
+      content = <PostList />;
+      break;
 
     case "none":
-      return null;
+      content = null;
+      break;
 
     default:
-      throw new Error("What menu type? " + menuContentType);
+      throw new Error("What menu type? " + menuType);
   }
-});
+
+  return <div style={{ height: "100vh" }} children={content} />;
+};
 
 // EXPORT ------------------------------------------------------------------
 
-export const SideMenuContentSwitcher = SideMenuContentSwitcherContainer;
+export const SidebarContentSwitcher = SidebarContentSwitcherContainer;

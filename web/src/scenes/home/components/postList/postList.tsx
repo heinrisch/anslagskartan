@@ -4,7 +4,7 @@ import { AppContext } from "../../../../state/appContext";
 import { SearchBar } from "../searchBar";
 import { PostItem } from "./postItem";
 import { PostListFooter } from "./postListFooter";
-import { Typography } from "../../../../components/text/typography";
+import { TypographyPresentation } from "../../../../components/text/typography";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -17,31 +17,35 @@ const PostListContainer: React.FC = () => {
 // PRESENTATION -------------------------------------------------------------
 
 type PostListPresentationProps = {
-  posts: Post[];
+  readonly posts: Post[];
 };
 
-const PostListPresentation: React.FC<PostListPresentationProps> = React.memo(
-  (props) => {
-    const { posts } = props;
-    const renderedPosts = posts.map((post) => (
-      <PostItem post={post} key={post.id} />
-    ));
+const PostListPresentation: React.FC<PostListPresentationProps> = React.memo((props) => {
+  const { posts } = props;
+  const renderedPosts = posts.map((post) => <PostItem post={post} key={post.id} />);
 
-    return (
-      <>
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        backgroundColor: "lightgray",
+      }}
+    >
+      <div style={{ padding: "1rem", marginBottom: "0.4rem", backgroundColor: "white" }}>
         <SearchBar />
-        <Typography as="span" size={7} color="grey-light">
+        <TypographyPresentation as="span" size={7} color="grey-light">
           Visar {renderedPosts.length} resultat
-        </Typography>
-        <div style={{ margin: "0 -1rem", paddingBottom: "60px" }}>
-          {renderedPosts}
-        </div>
+        </TypographyPresentation>
+      </div>
 
-        <PostListFooter />
-      </>
-    );
-  }
-);
+      <div style={{ overflowY: "auto" }}>{renderedPosts}</div>
+
+      <PostListFooter />
+    </div>
+  );
+});
 
 // EXPORT ------------------------------------------------------------------
 

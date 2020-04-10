@@ -1,12 +1,16 @@
 import React from "react";
 import classNames from "classnames";
+import { HtmlSpanProps } from "../models/htmlProps/htmlSpanProps";
 
-type TagProps = React.HTMLProps<HTMLSpanElement> &
-  React.HTMLAttributes<HTMLSpanElement>;
+// PRESENTATION -------------------------------------------------------------
 
-export const Tag: React.FC<TagProps> = React.memo((props) => {
+const TagPresentation: React.FC<HtmlSpanProps> = React.memo((props) => {
   const { className, ...otherProps } = props;
   const tagClassName = classNames("tag", className);
 
   return <span className={tagClassName} {...otherProps} />;
 });
+
+// EXPORT ------------------------------------------------------------------
+
+export const Tag = TagPresentation;

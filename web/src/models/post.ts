@@ -1,12 +1,12 @@
-import { MapPosition } from "../components/map/mapPosition";
+import { MapPosition } from "../components/map/models/mapPosition";
 
 export type Post = {
-  address?: string;
-  position: MapPosition;
-  title: string;
-  description?: string;
-  contactInfo?: string;
-  id?: string;
-  needs: string[];
-  userId?: string;
+  readonly address?: string;
+  readonly position: MapPosition;
+  readonly title: string;
+  readonly description?: string;
+  readonly contactInfo?: string;
+  readonly id?: string;
+  readonly needs: string[];
+  readonly userId?: string;
 };

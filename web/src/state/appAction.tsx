@@ -1,6 +1,6 @@
 import { Post } from "../models/post";
 import { MenuType } from "../scenes/home/models/menuType";
-import { MapPosition } from "../components/map/mapPosition";
+import { MapPosition } from "../components/map/models/mapPosition";
 import { FacebookUser } from "./appState";
 
 export type AppAction =
@@ -15,4 +15,4 @@ export type AppAction =
   | { type: "SELECT_POST"; post: Post }
   | { type: "CLOSE_SIDEBAR" }
   | { type: "FACEBOOK_USER_SIGNED_IN"; user: FacebookUser }
-  | { type: "SET_USER_ID"; userId: string | null };
+  | { type: "SET_USER_ID"; userId?: string };
