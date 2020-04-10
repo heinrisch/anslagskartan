@@ -11,16 +11,13 @@ export const LoadingButton: React.FC<LoadingButtonProps> = React.memo(
     const { loading } = props;
     if (!loading) return null;
 
+    const style: React.CSSProperties = {
+      color: "#ff5500",
+      cursor: "pointer",
+    };
+
     return (
-      <FontAwesomeIcon
-        size="2x"
-        icon={faCompactDisc}
-        style={{
-          color: "#ff5500",
-          cursor: "pointer",
-        }}
-        spin
-      />
+      <FontAwesomeIcon size="2x" icon={faCompactDisc} style={style} spin />
     );
   }
 );

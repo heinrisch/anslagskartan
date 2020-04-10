@@ -1,11 +1,9 @@
-import { BackendCreatePost, TaskResponse } from "../../models/post";
-import { ApiClient } from "../ApiClient";
-
-const apiClient = new ApiClient();
+import { BackendCreatePost, TaskResponse } from "../../models/backendPost";
+import { apiClient } from "../_apiClient";
 
 export const addPosts = (
   userId: string,
-  backendCreatePost: BackendCreatePost
+  post: BackendCreatePost
 ): Promise<TaskResponse> => {
-  return apiClient.createPost(userId, backendCreatePost);
+  return apiClient.createPost(userId, post);
 };

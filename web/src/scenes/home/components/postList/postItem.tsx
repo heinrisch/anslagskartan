@@ -1,14 +1,14 @@
 import React from "react";
-import { Post } from "../../../models/post";
-import { truncateString } from "../../../utils/truncateString";
+import { Post } from "../../../../models/post";
+import { truncateString } from "../../../../utils/truncateString";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import { AppContext } from "../../../state/appContext";
+import { AppContext } from "../../../../state/appContext";
 import { PostItemNeeds } from "./postItemNeeds";
 import "./postItem.css";
-import { useHandleSelectPostCallback } from "../../../handlers/handleSelectPost";
-import { Card } from "../../../components/card";
-import { Typography } from "../../../components/typography";
+import { useHandleSelectPostCallback } from "../../../../handlers/handleSelectPost";
+import { Card } from "../../../../components/card";
+import { Typography } from "../../../../components/text/typography";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -18,7 +18,7 @@ type PostItemContainerProps = {
 
 const PostItemContainer: React.FC<PostItemContainerProps> = (props) => {
   const { post } = props;
-  const { dispatch, state } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
 
   const isActive = state.selectedPostId === post.id;
 
@@ -26,7 +26,7 @@ const PostItemContainer: React.FC<PostItemContainerProps> = (props) => {
     ? post.description
     : truncateString(post.description || "", 40, true);
 
-  const handleClick = useHandleSelectPostCallback(dispatch, post);
+  const handleClick = useHandleSelectPostCallback(post);
 
   return (
     <PostItemPresentation

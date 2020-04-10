@@ -1,18 +1,11 @@
 import React from "react";
-import { AppContext } from "../../../state/appContext";
-import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
-import { Button } from "../../../components/buttons/button";
-import { PrimaryButton } from "../../../components/buttons/primaryButton";
+import { PrimaryButton } from "../../../../components/buttons/primaryButton";
+import { useHandleToggleSidebarViewCallback } from "../../../../handlers/handleToggleSidebarView";
 
 // CONTAINER ----------------------------------------------------------------
 
 const PostListFooterContainer: React.FC = () => {
-  const { dispatch } = React.useContext(AppContext);
-
-  const handleAddPostClick = useHandleToggleSidebarViewCallback(
-    dispatch,
-    "add"
-  );
+  const handleAddPostClick = useHandleToggleSidebarViewCallback("add");
 
   return <PostListFooterPresentation onAddPostClick={handleAddPostClick} />;
 };

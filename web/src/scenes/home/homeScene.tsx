@@ -1,21 +1,25 @@
 import React from "react";
-import { SideMenuContainer } from "./components/sideMenuContainer";
-import { ActionButtonList } from "./components/actionButtonList";
-import { Map } from "./components/map";
-import { SideMenu } from "./components/sideMenu";
+import { SidebarWrapper } from "../../components/sidebar/sidebarWrapper";
+import { ActionButtonList } from "./components/actionButtonList/actionButtonList";
+import { PostMap } from "./components/postMap/postMap";
+import { useFetchAllPostsOnStartEffect } from "../../effects/fetchAllPostsOnStart";
+import { Sidebar } from "../../components/sidebar/sidebar";
+import { SidebarPageWrapper } from "../../components/sidebar/sidebarPageWrapper";
 
 // PRESENTATION -------------------------------------------------------------
 
 export const HomeScenePresentation: React.FC = React.memo(() => {
-  return (
-    <SideMenuContainer>
-      <SideMenu />
+  useFetchAllPostsOnStartEffect();
 
-      <main id="page-wrap">
-        <Map />
+  return (
+    <SidebarWrapper>
+      <Sidebar />
+
+      <SidebarPageWrapper>
+        <PostMap />
         <ActionButtonList />
-      </main>
-    </SideMenuContainer>
+      </SidebarPageWrapper>
+    </SidebarWrapper>
   );
 });
 

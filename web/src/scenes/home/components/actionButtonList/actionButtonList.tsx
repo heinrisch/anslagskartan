@@ -1,8 +1,8 @@
 import React from "react";
-import { LoadingButton } from "./loadingButton";
-import { AppContext } from "../../../state/appContext";
+import { LoadingButton } from "../../../../components/loadingIcon";
+import { AppContext } from "../../../../state/appContext";
 import "./actionButtonList.css";
-import { Card } from "../../../components/card";
+import { Card } from "../../../../components/card";
 
 // CONTAINER ----------------------------------------------------------------
 

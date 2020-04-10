@@ -1,11 +1,11 @@
-import React from "react";
-import { AppAction } from "../state/appAction";
-import { FacebookUser } from "../state/appState";
 import firebase from "firebase";
+import React from "react";
+import { AppContext } from "../state/appContext";
+import { FacebookUser } from "../state/appState";
 
-export const useHandleFacebookUserSignedInCallback = (
-  dispatch: React.Dispatch<AppAction>
-) => {
+export const useHandleFacebookUserSignedInCallback = () => {
+  const { dispatch } = React.useContext(AppContext);
+
   return React.useCallback(
     async (user: FacebookUser) => {
       const currentUser = firebase.auth().currentUser;

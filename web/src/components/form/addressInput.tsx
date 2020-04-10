@@ -1,6 +1,6 @@
 import React from "react";
 import Geosuggest, { Styles, Suggest } from "react-geosuggest";
-import { MapPosition } from "../scenes/home/models/mapPosition";
+import { MapPosition } from "../map/mapPosition";
 import "./addressInput.css";
 import classNames from "classnames";
 

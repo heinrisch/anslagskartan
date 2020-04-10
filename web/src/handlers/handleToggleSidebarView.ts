@@ -1,12 +1,14 @@
 import { MenuType } from "../scenes/home/models/menuType";
-import { AppAction } from "../state/appAction";
 import React from "react";
+import { AppContext } from "../state/appContext";
 
-export const useHandleToggleSidebarViewCallback = (
-  dispatch: React.Dispatch<AppAction>,
-  menuType: MenuType
-) => {
+export const useHandleToggleSidebarViewCallback = (menuType?: MenuType) => {
+  const { dispatch, state } = React.useContext(AppContext);
+
   return React.useCallback(() => {
-    dispatch({ type: "TOGGLE_MENU_IS_OPEN", menuType });
-  }, [dispatch, menuType]);
+    dispatch({
+      type: "TOGGLE_MENU_IS_OPEN",
+      menuType: menuType || state.menuType,
+    });
+  }, [dispatch, state.menuType, menuType]);
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import "./addPost.css";
 import { AddPostSignedInContent } from "./addPostSignedInContent";
-import { AuthContentSwitch } from "./authContentSwitch";
-import { FacebookSignInNotification } from "./facebookSignInNotification";
+import { AuthContentSwitch } from "../authContentSwitch";
+import { FacebookSignInNotification } from "../facebookSignInNotification";
 
 // PRESENTATION -------------------------------------------------------------
 

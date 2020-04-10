@@ -6,21 +6,13 @@ import { HomeScene } from "./scenes/home/homeScene";
 import { AppContext } from "./state/appContext";
 import { initialAppState } from "./state/appState";
 import { appStateReducer } from "./state/appStateReducer";
-import { firebaseConfig } from "./utils/firebaseConfig";
-import { fetchPosts } from "./utils/http/fetchPosts";
+import { appConfig } from "./utils/appConfig";
 
 export const App: React.FC = React.memo(() => {
   const [state, dispatch] = React.useReducer(appStateReducer, initialAppState);
 
-  React.useEffect(() => {
-    dispatch({ type: "POSTS_PENDING" });
-    fetchPosts()
-      .then((posts) => dispatch({ type: "POSTS_RECEIVED", posts }))
-      .catch(() => dispatch({ type: "POSTS_REJECTED" }));
-  }, []);
-
   return (
-    <FirebaseAuthProvider firebase={firebase} {...firebaseConfig}>
+    <FirebaseAuthProvider firebase={firebase} {...appConfig.firebaseConfig}>
       <AppContext.Provider value={{ state, dispatch }}>
         <HomeScene />
       </AppContext.Provider>

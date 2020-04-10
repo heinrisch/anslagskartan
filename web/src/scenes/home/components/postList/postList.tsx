@@ -1,10 +1,10 @@
 import React from "react";
-import { Post } from "../../../models/post";
-import { AppContext } from "../../../state/appContext";
-import { SearchBar } from "./searchBar";
+import { Post } from "../../../../models/post";
+import { AppContext } from "../../../../state/appContext";
+import { SearchBar } from "../searchBar";
 import { PostItem } from "./postItem";
 import { PostListFooter } from "./postListFooter";
-import { Typography } from "../../../components/typography";
+import { Typography } from "../../../../components/text/typography";
 
 // CONTAINER ----------------------------------------------------------------
 

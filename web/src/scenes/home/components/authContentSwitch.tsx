@@ -15,9 +15,9 @@ type AuthContentSwitchContainerProps = {
 const AuthContentSwitchContainer: React.FC<AuthContentSwitchContainerProps> = (
   props
 ) => {
-  const { dispatch, state } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
 
-  const handleUserSignedIn = useHandleFacebookUserSignedInCallback(dispatch);
+  const handleUserSignedIn = useHandleFacebookUserSignedInCallback();
 
   if (state.doNotCheckLogin) {
     return props.signedInContent;

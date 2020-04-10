@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { useHandleUserSignInClickCallback } from "../../../handlers/handleUserSignInClick";
-import { AppContext } from "../../../state/appContext";
-import "./addPost.css";
 import { Button } from "../../../components/buttons/button";
 import { Gutter } from "../../../components/gutter";
 import { FacebookButton } from "../../../components/buttons/facebookButton";
@@ -12,13 +10,8 @@ import { FacebookButton } from "../../../components/buttons/facebookButton";
 // CONTAINER ----------------------------------------------------------------
 
 const FacebookSignInNotificationContainer: React.FC = React.memo(() => {
-  const { dispatch } = React.useContext(AppContext);
-
-  const handleCancelClick = useHandleToggleSidebarViewCallback(
-    dispatch,
-    "list"
-  );
-  const handleSignInClick = useHandleUserSignInClickCallback(dispatch);
+  const handleCancelClick = useHandleToggleSidebarViewCallback("list");
+  const handleSignInClick = useHandleUserSignInClickCallback();
 
   return (
     <FacebookSignInNotificationPresentation

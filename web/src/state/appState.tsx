@@ -1,6 +1,6 @@
 import { Post } from "../models/post";
 import { MenuType } from "../scenes/home/models/menuType";
-import { MapPosition } from "../scenes/home/models/mapPosition";
+import { MapPosition } from "../components/map/mapPosition";
 
 export const initialAppState: AppState = {
   posts: [],

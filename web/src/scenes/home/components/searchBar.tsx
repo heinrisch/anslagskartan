@@ -1,16 +1,16 @@
 import React from "react";
-import { AddressInput } from "../../../components/addressInput";
-import { Address } from "../../../components/formAddressInput";
+import { AddressInput } from "../../../components/form/addressInput";
+import { Address } from "../../../components/form/formAddressInput";
 import { useHandleUpdateMapCenterCallback } from "../../../handlers/handleUpdateMapCenter";
 import { AppContext } from "../../../state/appContext";
-import { MapPosition } from "../models/mapPosition";
+import { MapPosition } from "../../../components/map/mapPosition";
 
 // CONTAINER ----------------------------------------------------------------
 
 const SearchBarContainer: React.FC = () => {
-  const { dispatch, state } = React.useContext(AppContext);
+  const { state } = React.useContext(AppContext);
 
-  const handleChange = useHandleUpdateMapCenterCallback(dispatch);
+  const handleChange = useHandleUpdateMapCenterCallback();
 
   return (
     <SearchBarPresentation
