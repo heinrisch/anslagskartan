@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompactDisc } from "@fortawesome/free-solid-svg-icons";
+import "./loadingIcon.css";
 
 // PRESENTATION -------------------------------------------------------------
 
@@ -12,12 +13,7 @@ const LoadingIconPresentation: React.FC<LoadingIconPresentationProps> = React.me
   const { loading } = props;
   if (!loading) return null;
 
-  const style: React.CSSProperties = {
-    color: "#ff5500",
-    cursor: "pointer",
-  };
-
-  return <FontAwesomeIcon size="2x" icon={faCompactDisc} style={style} spin />;
+  return <FontAwesomeIcon className="loading-icon" size="2x" icon={faCompactDisc} spin />;
 });
 
 // EXPORT ------------------------------------------------------------------

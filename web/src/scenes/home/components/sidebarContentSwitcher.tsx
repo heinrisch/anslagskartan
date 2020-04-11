@@ -3,6 +3,7 @@ import { AppContext } from "../../../state/appContext";
 import { MenuType } from "../models/menuType";
 import { AddPost } from "./addPost/addPost";
 import { PostList } from "./postList/postList";
+import "./sidebarContentSwitcher.css";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -41,7 +42,7 @@ const SidebarContentSwitcherPresentation: React.FC<SidebarContentSwitcherPresent
       throw new Error("What menu type? " + menuType);
   }
 
-  return <div style={{ height: "100vh" }} children={content} />;
+  return <div className="sidebar-content-switcher" children={content} />;
 };
 
 // EXPORT ------------------------------------------------------------------

@@ -1,0 +1,13 @@
+.post-list-footer {
+  width: 100%;
+  display: flex;
+}
+
+.post-list-footer-item {
+  flex-basis: 0;
+  flex: 1 1 0px;
+}
+
+.post-list-footer-item-button {
+  height: 100%;
+}

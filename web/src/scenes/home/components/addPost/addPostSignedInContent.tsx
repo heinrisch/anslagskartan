@@ -1,7 +1,5 @@
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
-import { Button } from "../../../../components/buttons/button";
-import { Buttons } from "../../../../components/buttons/buttons";
 import { PrimaryButton } from "../../../../components/buttons/primaryButton";
 import { FormAddressInput } from "../../../../components/form/formAddressInput";
 import { FormCheckbox } from "../../../../components/form/formCheckbox";
@@ -15,6 +13,7 @@ import { MapPosition } from "../../../../components/map/models/mapPosition";
 import "./addPost.css";
 import { Address } from "../../../../components/form/models/address";
 import { LinkButton } from "../../../../components/buttons/linkButton";
+import { Card } from "../../../../components/card";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -62,39 +61,41 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
     const { register, handleSubmit } = useForm();
 
     return (
-      <div style={{ margin: "1rem" }}>
-        <LinkButton onClick={onCancelClick} withGutter={1}>
-          {"<"} Tillbaka till listan
-        </LinkButton>
+      <>
+        <Card className="with-gutter-half">
+          <LinkButton onClick={onCancelClick}>{"<"} Tillbaka till listan</LinkButton>
+        </Card>
 
-        <TitlePresentation as="h5" withGutter={true}>
-          Skapa en lapp
-        </TitlePresentation>
+        <Card>
+          <TitlePresentation as="h5" withGutter={true}>
+            Skapa en lapp
+          </TitlePresentation>
 
-        <form onSubmit={handleSubmit(onSubmitForm)}>
-          <FormInput name="title" ref={register} label="Kort beskrivning / Titel" />
-          <FormTextArea name="description" ref={register} label="Full beskrivning" rows={3} />
-          <FormTextArea name="contactInfo" ref={register} label="Kontaktinformation" rows={3} />
+          <form onSubmit={handleSubmit(onSubmitForm)}>
+            <FormInput name="title" ref={register} label="Kort beskrivning / Titel" />
+            <FormTextArea name="description" ref={register} label="Full beskrivning" rows={3} />
+            <FormTextArea name="contactInfo" ref={register} label="Kontaktinformation" rows={3} />
 
-          <label className="label" children="Behov" />
-          <FormCheckbox ref={register} name="printer" label="3D printer" />
-          <FormCheckbox ref={register} name="material" label="Material" />
-          <FormCheckbox ref={register} name="food" label="Mat" />
-          <FormCheckbox ref={register} name="other" label="Annat" />
+            <label className="label" children="Behov" />
+            <FormCheckbox ref={register} name="printer" label="3D printer" />
+            <FormCheckbox ref={register} name="material" label="Material" />
+            <FormCheckbox ref={register} name="food" label="Mat" />
+            <FormCheckbox ref={register} name="other" label="Annat" />
 
-          <FormAddressInput
-            className="form-field"
-            name="address"
-            label="Adress"
-            onChange={onAddressChange}
-            location={mapCenter}
-          />
+            <FormAddressInput
+              className="form-field"
+              name="address"
+              label="Adress"
+              onChange={onAddressChange}
+              location={mapCenter}
+            />
 
-          <PrimaryButton type="submit" fullWidth={true} loading={loading}>
-            Lägg till
-          </PrimaryButton>
-        </form>
-      </div>
+            <PrimaryButton type="submit" fullWidth={true} loading={loading}>
+              Lägg till
+            </PrimaryButton>
+          </form>
+        </Card>
+      </>
     );
   }
 );

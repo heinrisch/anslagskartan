@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "../card";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./sidebarToggle.css";
 
 // PRESENTATION -------------------------------------------------------------
 
@@ -12,22 +13,22 @@ type SidebarTogglePresentationProps = {
 };
 
 const SidebarTogglePresentation: React.FC<SidebarTogglePresentationProps> = React.memo((props) => {
-  const { isOpen, width, onToggle } = props;
+  const { isOpen, width, onToggle, ...otherProps } = props;
 
   const toggleStyle: React.CSSProperties = {
-    position: "absolute",
     left: `${width}px`,
-    top: "1rem",
-    cursor: "pointer",
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-    zIndex: -1,
   };
 
   const carret = isOpen ? faCaretLeft : faCaretRight;
 
   return (
-    <Card style={toggleStyle} innerStyle={{ padding: "1rem 0.5rem" }} onClick={onToggle}>
+    <Card
+      className="sidebar-toggle"
+      innerClassName="inner-sidebar-toggle"
+      style={toggleStyle}
+      onClick={onToggle}
+      {...otherProps}
+    >
       <FontAwesomeIcon icon={carret} />
     </Card>
   );

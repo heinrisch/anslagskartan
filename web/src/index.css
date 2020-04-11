@@ -17,3 +17,11 @@
 .with-gutter-three {
   margin-bottom: 3rem;
 }
+
+.is-centered {
+  text-align: center;
+}
+
+.is-padded {
+  padding: 1rem;
+}

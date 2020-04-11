@@ -1,0 +1,14 @@
+.post-list {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.post-list-header {
+  padding: 1rem;
+  background-color: white;
+}
+
+.post-list-list {
+  overflow-y: auto;
+}

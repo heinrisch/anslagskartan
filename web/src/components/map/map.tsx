@@ -2,6 +2,7 @@ import React from "react";
 import { Map as LeafMap, TileLayer } from "react-leaflet";
 import { MapPosition } from "./models/mapPosition";
 import { TileType } from "./models/mapTileType";
+import "./map.css";
 
 // PRESENTATION -------------------------------------------------------------
 
@@ -17,7 +18,7 @@ const MapPresentation: React.FC<MapPresentationProps> = React.memo((props) => {
     <LeafMap
       center={[defaultCenter.latitude, defaultCenter.longitude]}
       zoom={defaultZoom}
-      style={{ width: "100%", height: "100vh" }}
+      className="map"
       zoomControl={false}
     >
       <TileLayer

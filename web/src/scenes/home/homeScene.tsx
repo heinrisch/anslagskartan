@@ -5,7 +5,7 @@ import { useHandleToggleSidebarViewCallback } from "../../handlers/handleToggleS
 import { AppContext } from "../../state/appContext";
 import { ActionButtonList } from "./components/actionButtonList/actionButtonList";
 import { PostMap } from "./components/postMap/postMap";
-import { SidebarContentSwitcher } from "./components/sideMenuContentSwitcher";
+import { SidebarContentSwitcher } from "./components/sidebarContentSwitcher";
 
 // CONTAINER ----------------------------------------------------------------
 

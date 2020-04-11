@@ -21,20 +21,13 @@ type ActionButtonListPresentationProps = {
 const ActionButtonListPresentation: React.FC<ActionButtonListPresentationProps> = (props) => {
   const { isLoading } = props;
 
-  const style: React.CSSProperties = {
-    position: "absolute",
-    right: "1rem",
-    top: "1rem",
-    zIndex: 1000,
-  };
-
   const className = [
     "action-button-list__paper",
     `action-button-list__paper--hidden-${(!isLoading).toString()}`,
   ].join(" ");
 
   return (
-    <div style={style}>
+    <div className="action-button-list">
       <Card className={className}>
         <LoadingIcon loading={isLoading} />
       </Card>

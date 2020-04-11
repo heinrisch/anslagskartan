@@ -5,3 +5,9 @@
 .post-item:hover {
   background-color: lightgray;
 }
+
+.post-item-address {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: gray;
+}

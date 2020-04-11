@@ -1,6 +1,7 @@
 import React from "react";
 import { PrimaryButton } from "../../../../components/buttons/primaryButton";
 import { useHandleToggleSidebarViewCallback } from "../../../../handlers/handleToggleSidebarView";
+import "./postListFooter.css";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -21,14 +22,14 @@ const PostListFooterPresentation: React.FC<PostListFooterPresentationProps> = Re
     const { onAddPostClick } = props;
 
     return (
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-        }}
-      >
-        <div style={{ flexBasis: "0", flex: "1 1 0px" }}>
-          <PrimaryButton style={{ height: "100%" }} onClick={onAddPostClick} size="large" fullWidth>
+      <div className="post-list-footer">
+        <div className="post-list-footer-item">
+          <PrimaryButton
+            className="post-list-footer-item-button"
+            onClick={onAddPostClick}
+            size="large"
+            fullWidth
+          >
             Be om hjälp
           </PrimaryButton>
         </div>

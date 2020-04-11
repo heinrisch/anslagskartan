@@ -5,6 +5,7 @@ import { SearchBar } from "../searchBar";
 import { PostItem } from "./postItem";
 import { PostListFooter } from "./postListFooter";
 import { TypographyPresentation } from "../../../../components/text/typography";
+import "./postList.css";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -25,22 +26,15 @@ const PostListPresentation: React.FC<PostListPresentationProps> = React.memo((pr
   const renderedPosts = posts.map((post) => <PostItem post={post} key={post.id} />);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100vh",
-        backgroundColor: "lightgray",
-      }}
-    >
-      <div style={{ padding: "1rem", marginBottom: "0.4rem", backgroundColor: "white" }}>
+    <div className="post-list">
+      <div className="post-list-header with-gutter-half">
         <SearchBar />
         <TypographyPresentation as="span" size={7} color="grey-light">
           Visar {renderedPosts.length} resultat
         </TypographyPresentation>
       </div>
 
-      <div style={{ overflowY: "auto" }}>{renderedPosts}</div>
+      <div className="post-list-list">{renderedPosts}</div>
 
       <PostListFooter />
     </div>

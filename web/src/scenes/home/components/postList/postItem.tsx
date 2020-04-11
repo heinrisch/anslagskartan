@@ -55,11 +55,7 @@ const PostItemPresentation: React.FC<PostItemPresentationProps> = React.memo((pr
     <Card className="" onClick={onClick} key={post.id}>
       <Title as="h6">{post.title}</Title>
       <PostItemNeeds needs={post.needs} />
-      <TypographyPresentation
-        as="span"
-        size={7}
-        style={{ marginTop: "1rem", fontSize: "0.7rem", color: "gray" }}
-      >
+      <TypographyPresentation as="span" size={7} className="post-item-address">
         <FontAwesomeIcon icon={faMapMarkerAlt} /> {post.address}
       </TypographyPresentation>
       <div>{post.description}</div>

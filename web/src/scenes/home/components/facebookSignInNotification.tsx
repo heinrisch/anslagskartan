@@ -6,6 +6,9 @@ import { FacebookButton } from "../../../components/buttons/facebookButton";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { useHandleUserSignInClickCallback } from "../../../handlers/handleUserSignInClick";
 import { Title } from "../../../components/text/title";
+import "./facebookSignInNotification.css";
+import { Card } from "../../../components/card";
+import { LinkButton } from "../../../components/buttons/linkButton";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -33,33 +36,30 @@ const FacebookSignInNotificationPresentation: React.FC<FacebookSignInNotificatio
     const { onCancelClick, onSignInClick } = props;
 
     return (
-      <div style={{ padding: "1rem" }}>
-        <Title as="h6" withGutter={true}>
-          Logga in med Facebook för att fortsätta
-        </Title>
+      <>
+        <Card className="with-gutter-half">
+          <LinkButton onClick={onCancelClick}>{"<"} Tillbaka till listan</LinkButton>
+        </Card>
 
-        <p className="with-gutter-1">
-          Får att göra den här tjänsten användbar och säker, både för de som behöver hjälp och för
-          de som vill hjälpa till, behöver vi identifiera er. För närvarandet är Facebook den
-          enklaste och snabbaste lösningen.
-        </p>
+        <Card>
+          <Title as="h6" withGutter={true}>
+            Logga in med Facebook för att fortsätta
+          </Title>
 
-        <div style={{ textAlign: "center" }}>
-          <FacebookButton onClick={onSignInClick} withGutter={1}>
-            <FontAwesomeIcon
-              icon={faFacebookSquare}
-              style={{
-                marginRight: "1rem",
-              }}
-            />
-            Logga in med Facebook
-          </FacebookButton>
-        </div>
+          <p className="with-gutter-one">
+            Får att göra den här tjänsten användbar och säker, både för de som behöver hjälp och för
+            de som vill hjälpa till, behöver vi identifiera er. För närvarandet är Facebook den
+            enklaste och snabbaste lösningen.
+          </p>
 
-        <div style={{ textAlign: "center" }}>
-          <Button onClick={onCancelClick}>Tillbaka till listan</Button>
-        </div>
-      </div>
+          <div className="is-centered">
+            <FacebookButton onClick={onSignInClick} withGutter={1}>
+              <FontAwesomeIcon icon={faFacebookSquare} className="facebook-icon" />
+              Logga in med Facebook
+            </FacebookButton>
+          </div>
+        </Card>
+      </>
     );
   }
 );

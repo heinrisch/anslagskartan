@@ -10,7 +10,9 @@ const AddPostPresentation: React.FC = React.memo(() => {
   const signedInContent = <AddPostSignedInContent />;
   const signedOutContent = <FacebookSignInNotification />;
 
-  return <AuthContentSwitch signedInContent={signedInContent} signedOutContent={signedInContent} />;
+  return (
+    <AuthContentSwitch signedInContent={signedInContent} signedOutContent={signedOutContent} />
+  );
 });
 
 // EXPORT ------------------------------------------------------------------
