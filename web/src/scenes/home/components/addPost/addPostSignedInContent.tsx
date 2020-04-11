@@ -1,19 +1,19 @@
 import React from "react";
 import { OnSubmit, useForm } from "react-hook-form";
+import { LinkButton } from "../../../../components/buttons/linkButton";
 import { PrimaryButton } from "../../../../components/buttons/primaryButton";
+import { Card } from "../../../../components/card";
 import { FormAddressInput } from "../../../../components/form/formAddressInput";
 import { FormCheckbox } from "../../../../components/form/formCheckbox";
 import { FormInput } from "../../../../components/form/formInput";
 import { FormTextArea } from "../../../../components/form/formTextArea";
+import { Address } from "../../../../components/form/models/address";
+import { MapPosition } from "../../../../components/map/models/mapPosition";
 import { TitlePresentation } from "../../../../components/text/title";
 import { useHandleSubmitAddPostCallback } from "../../../../handlers/handleSubmitAddPost";
 import { useHandleToggleSidebarViewCallback } from "../../../../handlers/handleToggleSidebarView";
 import { AppContext } from "../../../../state/appContext";
-import { MapPosition } from "../../../../components/map/models/mapPosition";
 import "./addPost.css";
-import { Address } from "../../../../components/form/models/address";
-import { LinkButton } from "../../../../components/buttons/linkButton";
-import { Card } from "../../../../components/card";
 
 // CONTAINER ----------------------------------------------------------------
 
@@ -47,10 +47,20 @@ const AddPostSignedInContentContainer: React.FC = React.memo(() => {
 
 // PRESENTATION -------------------------------------------------------------
 
+export type AddPostFormData = {
+  readonly title: string;
+  readonly description: string;
+  readonly contactInfo: string;
+  readonly printer: boolean;
+  readonly material: boolean;
+  readonly food: boolean;
+  readonly other: boolean;
+};
+
 type AddPostSignedInContentPresentationProps = {
   readonly loading: boolean;
   readonly mapCenter: MapPosition;
-  readonly onSubmitForm: OnSubmit<Record<string, any>>;
+  readonly onSubmitForm: (data: AddPostFormData) => void;
   readonly onCancelClick: () => void;
   readonly onAddressChange: (address: Address) => void;
 };
@@ -58,7 +68,11 @@ type AddPostSignedInContentPresentationProps = {
 const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresentationProps> = React.memo(
   (props) => {
     const { mapCenter, onAddressChange, onCancelClick, onSubmitForm, loading } = props;
-    const { register, handleSubmit } = useForm();
+    const { register, errors, handleSubmit } = useForm<AddPostFormData>();
+
+    const tempSubmit = (data: AddPostFormData) => {
+      console.log(data);
+    };
 
     return (
       <>
@@ -71,19 +85,39 @@ const AddPostSignedInContentPresentation: React.FC<AddPostSignedInContentPresent
             Skapa en lapp
           </TitlePresentation>
 
-          <form onSubmit={handleSubmit(onSubmitForm)}>
-            <FormInput name="title" ref={register} label="Kort beskrivning / Titel" />
-            <FormTextArea name="description" ref={register} label="Full beskrivning" rows={3} />
-            <FormTextArea name="contactInfo" ref={register} label="Kontaktinformation" rows={3} />
+          <form onSubmit={handleSubmit(tempSubmit)}>
+            <FormInput
+              error={errors.title !== undefined}
+              errorMessage={errors.title && "Detta fält krävs"}
+              name="title"
+              reference={register({ required: true })}
+              label="Kort beskrivning / Titel"
+            />
+
+            <FormTextArea
+              error={errors.description !== undefined}
+              errorMessage={errors.description && "Detta fält krävs"}
+              name="description"
+              reference={register({ required: true })}
+              label="Full beskrivning"
+              rows={3}
+            />
+            <FormTextArea
+              error={errors.contactInfo !== undefined}
+              errorMessage={errors.contactInfo && "Detta fält krävs"}
+              name="contactInfo"
+              reference={register({ required: true })}
+              label="Kontaktinformation"
+              rows={3}
+            />
 
             <label className="label" children="Behov" />
-            <FormCheckbox ref={register} name="printer" label="3D printer" />
-            <FormCheckbox ref={register} name="material" label="Material" />
-            <FormCheckbox ref={register} name="food" label="Mat" />
-            <FormCheckbox ref={register} name="other" label="Annat" />
+            <FormCheckbox reference={register} name="printer" label="3D printer" />
+            <FormCheckbox reference={register} name="material" label="Material" />
+            <FormCheckbox reference={register} name="food" label="Mat" />
+            <FormCheckbox reference={register} name="other" label="Annat" />
 
             <FormAddressInput
-              className="form-field"
               name="address"
               label="Adress"
               onChange={onAddressChange}

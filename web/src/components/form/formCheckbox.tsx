@@ -4,24 +4,31 @@ import { HtmlInputProps } from "../../models/htmlProps/htmlInputProps";
 
 // PRESENTATION -------------------------------------------------------------
 
-type FormCheckboxPresentationProps = HtmlInputProps & {
+type FormCheckboxPresentationProps = Omit<HtmlInputProps, "ref"> & {
   readonly label: string;
+  readonly reference?:
+    | ((instance: HTMLInputElement | null) => void)
+    | React.RefObject<HTMLInputElement>
+    | null
+    | undefined;
 };
 
-const FormCheckboxPresentation: React.FC<FormCheckboxPresentationProps> = React.memo((props) => {
-  const { label, className, ...otherProps } = props;
-  const fieldClassName = classNames("field", className);
+const FormCheckboxPresentation: React.FC<FormCheckboxPresentationProps> = React.memo(
+  React.forwardRef((props) => {
+    const { label, className, reference, ...otherProps } = props;
+    const fieldClassName = classNames("field", className);
 
-  return (
-    <div className={fieldClassName}>
-      <div className="control">
-        <label className="checkbox">
-          <input type="checkbox" {...otherProps} /> {label}
-        </label>
+    return (
+      <div className={fieldClassName}>
+        <div className="control">
+          <label className="checkbox">
+            <input type="checkbox" ref={reference} {...otherProps} /> {label}
+          </label>
+        </div>
       </div>
-    </div>
-  );
-});
+    );
+  })
+);
 
 // EXPORT ------------------------------------------------------------------
 

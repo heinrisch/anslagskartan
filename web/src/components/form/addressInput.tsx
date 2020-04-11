@@ -61,6 +61,7 @@ const AddressInputPresentation: React.FC<AddressInputPresentationProps> = React.
       placeholder={placeholder}
       radius={6000}
       inputClassName={inputClassName}
+      autoActivateFirstSuggest={true}
       {...otherProps}
     />
   );

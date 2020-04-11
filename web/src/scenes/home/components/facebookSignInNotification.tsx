@@ -1,14 +1,13 @@
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button } from "../../../components/buttons/button";
 import { FacebookButton } from "../../../components/buttons/facebookButton";
+import { LinkButton } from "../../../components/buttons/linkButton";
+import { Card } from "../../../components/card";
+import { Title } from "../../../components/text/title";
 import { useHandleToggleSidebarViewCallback } from "../../../handlers/handleToggleSidebarView";
 import { useHandleUserSignInClickCallback } from "../../../handlers/handleUserSignInClick";
-import { Title } from "../../../components/text/title";
 import "./facebookSignInNotification.css";
-import { Card } from "../../../components/card";
-import { LinkButton } from "../../../components/buttons/linkButton";
 
 // CONTAINER ----------------------------------------------------------------
 

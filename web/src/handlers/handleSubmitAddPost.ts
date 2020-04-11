@@ -4,12 +4,15 @@ import { Address } from "../components/form/models/address";
 import { AppContext } from "../state/appContext";
 import { postMapper } from "./../models/postMapper";
 import { apiClient } from "./../utils/apiClient/index";
+import { AddPostFormData } from "../scenes/home/components/addPost/addPostSignedInContent";
 
-export const useHandleSubmitAddPostCallback = (address: Address): OnSubmit<Record<string, any>> => {
+export const useHandleSubmitAddPostCallback = (
+  address: Address
+): ((data: AddPostFormData) => Promise<void>) => {
   const { dispatch, state } = React.useContext(AppContext);
 
   return React.useCallback(
-    async (data: Record<string, any>) => {
+    async (data: AddPostFormData) => {
       if (state.userId === null) {
         throw new Error("User is not logged in");
       }
