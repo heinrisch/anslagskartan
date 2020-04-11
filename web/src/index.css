@@ -2,14 +2,18 @@
   margin-bottom: 0 !important;
 }
 
-.with-gutter-1 {
+.with-gutter-half {
+  margin-bottom: 0.4rem;
+}
+
+.with-gutter-one {
   margin-bottom: 1rem;
 }
 
-.with-gutter-2 {
+.with-gutter-two {
   margin-bottom: 2rem;
 }
 
-.with-gutter-3 {
+.with-gutter-three {
   margin-bottom: 3rem;
 }

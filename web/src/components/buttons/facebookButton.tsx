@@ -1,17 +1,14 @@
 import React from "react";
 import { Button, ButtonProps } from "./button";
+import classNames from "classnames";
 
 // PRESENTATION -------------------------------------------------------------
 
 const FacebookButtonPresentation: React.FC<ButtonProps> = React.memo((props) => {
-  const { style, ...otherProps } = props;
-  const buttonStyle: React.CSSProperties = {
-    ...style,
-    color: "#ffffff",
-    backgroundColor: "#4267B2",
-  };
+  const { className, ...otherProps } = props;
+  const facebookButtonClassName = classNames("facebook-button", className);
 
-  return <Button style={buttonStyle} {...otherProps} />;
+  return <Button className={facebookButtonClassName} {...otherProps} />;
 });
 
 // EXPORT ------------------------------------------------------------------

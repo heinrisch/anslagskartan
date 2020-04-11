@@ -1,7 +1,7 @@
 import React from "react";
-import "./addressInput.css";
-import classNames from "classnames";
 import { AddressInput, AddressInputProps } from "./addressInput";
+import "./addressInput.css";
+import { FormField } from "./formField";
 
 // PRESENTATION -------------------------------------------------------------
 
@@ -12,14 +12,11 @@ type FormAddressInputPresentationProps = AddressInputProps & {
 const FormAddressInputPresentation: React.FC<FormAddressInputPresentationProps> = React.memo(
   (props) => {
     const { label, className, ...otherProps } = props;
-    const fieldClassName = classNames("field", className);
 
     return (
-      <div className={fieldClassName}>
-        <label className="label" children={label} />
-        <div className="control"></div>
+      <FormField label={label}>
         <AddressInput {...otherProps} />
-      </div>
+      </FormField>
     );
   }
 );

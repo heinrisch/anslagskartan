@@ -39,19 +39,16 @@ type AddressInputPresentationProps = Omit<Omit<HtmlInputProps, "onChange">, "ref
 };
 
 const AddressInputPresentation: React.FC<AddressInputPresentationProps> = React.memo((props) => {
-  const {
-    fullWidth,
-    label,
-    onChange,
-    location,
-    className,
-    placeholder = "",
-    ...otherProps
-  } = props;
+  const { fullWidth, onChange, location, className, placeholder = "", ...otherProps } = props;
 
-  const inputClassName = classNames("address-input-suggest", "input", {
-    "is-fullwidth": fullWidth,
-  });
+  const inputClassName = classNames(
+    "address-input-suggest",
+    "input",
+    {
+      "is-fullwidth": fullWidth,
+    },
+    className
+  );
 
   const mapCenter = new google.maps.LatLng(location.latitude, location.longitude);
 

@@ -27,9 +27,9 @@ const ButtonPresentation: React.FC<ButtonPresentationProps> = React.memo((props)
     "button",
     `is-${size}`,
     { "is-fullwidth": fullWidth },
-    { "with-gutter-1": withGutter === 1 },
-    { "with-gutter-2": withGutter === 2 },
-    { "with-gutter-3": withGutter === 3 },
+    { "with-gutter-one": withGutter === 1 },
+    { "with-gutter-two": withGutter === 2 },
+    { "with-gutter-three": withGutter === 3 },
     { "is-loading": loading },
     className
   );
